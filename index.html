@@ -199,24 +199,21 @@
         </div>
 
         <aside class="contact-card">
-          <form class="contact-form"
-                action="mailto:thatbishbloke@gmail.com"
-                method="post"
-                enctype="text/plain">
-
+          <!-- NOTE: No mailto form submission (avoids "not secure" warning). -->
+          <form class="contact-form" id="contactForm">
             <div class="field">
               <label for="name">Name</label>
-              <input id="name" name="Name" type="text" placeholder="Your name" required />
+              <input id="name" type="text" placeholder="Your name" required />
             </div>
 
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" name="Email" type="email" placeholder="you@example.com" required />
+              <input id="email" type="email" placeholder="you@example.com" required />
             </div>
 
             <div class="field">
               <label for="message">Message</label>
-              <textarea id="message" name="Message" rows="4" placeholder="Project details…" required></textarea>
+              <textarea id="message" rows="4" placeholder="Project details…" required></textarea>
             </div>
 
             <button type="submit" class="btn primary btn-full">
@@ -240,7 +237,30 @@
   </footer>
 
   <script>
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Contact form -> opens a pre-filled email draft (no "not secure" form submission warning)
+    (function () {
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const to = "thatbishbloke@gmail.com";
+        const subject = encodeURIComponent("New website enquiry (ThatBishBloke)");
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`
+        );
+
+        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      });
+    })();
   </script>
 </body>
 </html>
