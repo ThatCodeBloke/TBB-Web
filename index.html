@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Official home of ThatBishBloke – comedy sketches, characters, streams and community." />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMW43G0FHH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MMW43G0FHH');
+  </script>
 </head>
 <body>
   <header class="site-header">
@@ -101,7 +110,6 @@
             A mildly feral cast of recurring disasters, heroes and people you probably recognise.
           </p>
           <p class="hint">
-            Add your PNGs to <code>assets/characters/</code> using the exact filenames below and the portraits will appear automatically.
           </p>
         </div>
 
@@ -112,8 +120,8 @@
               <h3>Craig</h3>
             </div>
             <p>
-              A walking tuba in human form who once famously faked his own death. Almost certainly squatting, occasionally borrows chickens,
-              and specialises in creatively questionable solutions. Questionable morals, outstanding comedy value, and will do absolutely anything for a fiver.
+              A walking tuba in human form who famously faked his own death and once saved Bryan’s life. 
+              Almost certainly squatting, prone to borrowing chickens, and an expert in creatively questionable solutions. Morals are flexible — anything’s possible for a fiver.
             </p>
           </article>
 
@@ -153,7 +161,7 @@
               <h3>Bryan</h3>
             </div>
             <p>
-              Appears unannounced, stays “just five minutes,” accidentally saves lives, and quietly carries a secret crush on Thomas that nobody seems to notice… or at least pretends not to.
+              Appears unannounced, stays “just five minutes,” whilst quietly carrying a secret crush on Thomas that nobody seems to notice… or at least pretends not to.
             </p>
           </article>
 
@@ -351,24 +359,24 @@
         </div>
 
         <aside class="contact-card">
-          <form class="contact-form">
+          <!-- SAFE CONTACT FORM (no mailto submit; opens a pre-filled email draft instead) -->
+          <form class="contact-form" id="contactForm">
             <div class="field">
               <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" />
+              <input id="name" type="text" placeholder="Your name" required />
             </div>
 
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" />
+              <input id="email" type="email" placeholder="you@example.com" required />
             </div>
 
             <div class="field">
               <label for="message">Message</label>
-              <textarea id="message" rows="4" placeholder="Project details…"></textarea>
+              <textarea id="message" rows="4" placeholder="Project details…" required></textarea>
             </div>
 
-            <button type="button" class="btn primary btn-full"
-              onclick="alert('Wire this to email or backend when ready.');">
+            <button type="submit" class="btn primary btn-full">
               Send message
             </button>
           </form>
@@ -390,6 +398,28 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Safe contact form: opens a pre-filled email draft (avoids the "not secure" form submit warning)
+    (function () {
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const to = "thatbishbloke@gmail.com";
+        const subject = encodeURIComponent("New website enquiry (ThatBishBloke)");
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`
+        );
+
+        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      });
+    })();
   </script>
 </body>
 </html>
