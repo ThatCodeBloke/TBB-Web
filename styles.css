@@ -52,7 +52,7 @@ body { line-height: 1.6; }
   z-index: 20;
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
-  background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.75));
+  background: 1px solid rgba(56, 189, 248, 0.4);
 }
 
 .header-inner {
@@ -68,7 +68,7 @@ body { line-height: 1.6; }
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 2px solid rgba(56, 189, 248, .9);
+  border: 2px solid rgba(56, 189, 248, .4);
   box-shadow: 0 0 22px rgba(56, 189, 248, .55);
   object-fit: cover;
 }
@@ -184,7 +184,7 @@ body { line-height: 1.6; }
   height: 44px;
   border-radius: 999px;
   object-fit: cover;
-  border: 2px solid rgba(56, 189, 248, .95);
+  border: 2px solid rgba(56, 189, 248, .4);
 }
 
 .char-card p {
@@ -204,7 +204,9 @@ body { line-height: 1.6; }
 .about-card,
 .community-card,
 .contact-card {
-  padding: 1.15rem 1.25rem;
+  padding: 1rem 1.25rem;
+  height: fit-content;
+  align-self: fit-content;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(56, 189, 248, .4);
   background: rgba(2, 6, 23, .9);
@@ -218,7 +220,7 @@ body { line-height: 1.6; }
   background: rgba(2, 6, 23, .96);
   color: var(--text);
   border-radius: 10px;
-  border: 1px solid rgba(56, 189, 248, .5);
+  border: 1px solid rgba(56, 189, 248, .4);
   padding: .55rem .7rem;
 }
 
@@ -280,7 +282,7 @@ body { line-height: 1.6; }
 .hero-video-placeholder {
   border-radius: 12px;
   overflow: hidden; /* This clips the TikTok corners to match your site */
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, .4);
   background: #000;
   line-height: 0; 
   box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
