@@ -135,6 +135,8 @@ body { line-height: 1.6; }
 }
 
 /* CHARACTER CARDS */
+
+/* This targets the name inside the character card */
 .char-card {
   display: block;
   padding: .8rem 1rem;
@@ -159,6 +161,11 @@ body { line-height: 1.6; }
 
 .char-card summary::-webkit-details-marker {
   display: none;
+}
+
+.char-head h3 {
+  font-size: 18px; /* Change this number to make it bigger or smaller */
+  margin: 0;      /* Removes extra spacing around the name */
 }
 
 .char-card summary::after {
