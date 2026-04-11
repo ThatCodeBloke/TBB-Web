@@ -164,7 +164,7 @@ body { line-height: 1.6; }
 }
 
 .char-head h3 {
-  font-size: 18px; /* Change this number to make it bigger or smaller */
+  font-size: 14px; /* Change this number to make it bigger or smaller */
   margin: 0;      /* Removes extra spacing around the name */
 }
 
