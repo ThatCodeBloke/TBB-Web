@@ -226,21 +226,44 @@ body { line-height: 1.6; }
 }
 
 /* FORM */
-.contact-form { display: grid; gap: .8rem; }
+/* Centers the labels and makes inputs full width */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; /* Adds space between each field */
+  align-items: center; /* Centers the fields within the card */
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Space between label and input */
+  width: 100%; /* Ensures fields stretch to the card edges */
+  max-width: 400px; /* Adjust this to make the form narrower or wider */
+}
+
+.field label {
+  text-align: center; /* Centers the "Name", "Email", and "Message" text */
+  font-weight: bold;
+  color: var(--text);
+}
 
 .field input,
 .field textarea {
-  background: rgba(2, 6, 23, .96);
+  width: 100%; /* Makes all boxes exactly the same width */
+  background: rgba(2, 6, 23, 0.96);
   color: var(--text);
   border-radius: 10px;
-  border: 1px solid rgba(56, 189, 248, .4);
-  padding: .55rem .7rem;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  padding: 0.7rem;
+  font-family: inherit;
 }
 
-/* FOOTER */
-.site-footer {
-  border-top: 1px solid rgba(56, 189, 248, .3);
-  padding: 1.6rem 0;
+/* Ensures the button also matches the width of the inputs */
+.btn-full {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 0.5rem;
 }
 
 /* ANIMATION */
