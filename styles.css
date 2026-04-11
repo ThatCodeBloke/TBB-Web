@@ -202,3 +202,48 @@ code { background: rgba(2, 6, 23, .75); border: 1px solid rgba(56, 189, 248, .35
   .section,
   .section-alt { padding: 3.2rem 0; }
 }
+
+/* Make summary look like a normal card header */
+.char-card summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+/* Remove default arrow */
+.char-card summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Add custom dropdown indicator */
+.char-card summary::after {
+  content: "▾";
+  margin-left: auto;
+  font-size: .9rem;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+/* Rotate arrow when open */
+.char-card[open] summary::after {
+  transform: rotate(180deg);
+}
+
+/* Hide description by default spacing */
+.char-card p {
+  margin-top: .6rem;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+/* Make cards feel smaller when closed */
+.char-card {
+  padding: .8rem 1rem;
+}
+
+/* Slight expansion when open */
+.char-card[open] {
+  padding: 1.1rem 1.25rem;
+}
