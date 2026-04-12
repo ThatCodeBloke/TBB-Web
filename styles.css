@@ -4,69 +4,38 @@
   box-sizing: border-box; 
 }
 
-/* Force absolute white and remove all background gradients */
-html, body {
-  background-color: #ffffff !important;
-  background-image: none !important;
-  color: #0f172a !important;
-}
-
-/* Fix for the Hero section specifically */
-.hero, .section, .section-alt {
-  background-image: none !important;
-}
-
-/* Ensure all cards have a border so they don't disappear on the white background */
-.char-card, .watch-card, .about-card, .community-card, .contact-card, .hero-card {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-}
-
 :root {
-  /* FIXED LIGHT THEME */
-  --bg: #ffffff;
-  --bg-alt: #f1f5f9;
-  --card-bg: #ffffff;
-  --accent: #0284c7; 
-  --text: #0f172a;
-  --muted: #475569;
-  --border-subtle: #e2e8f0;
-  --shadow-soft: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --bg: #020617;
+  --bg-alt: #020617;
+  --card-bg: rgba(2, 6, 23, 0.9);
+  --accent: #38bdf8;
+  --text: #e5f0ff;
+  --muted: #9ca3af;
+  --border-subtle: rgba(56, 189, 248, 0.4);
+  --shadow-soft: 0 24px 48px rgba(0, 0, 0, 0.9);
   --radius-lg: 18px;
   --radius-pill: 999px;
   --container-width: 1120px;
-}
-
-/* Hard override to prevent dark mode from triggering */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #ffffff;
-    --bg-alt: #f1f5f9;
-    --card-bg: #ffffff;
-    --text: #0f172a;
-    --border-subtle: #e2e8f0;
-  }
 }
 
 html, body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
-  background-color: var(--bg);
-  background-image: none !important; /* Removes the blue radial glow */
+  /* Restored the blue radial glow */
+  background: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .12), transparent 45%), #020617;
   line-height: 1.6;
 }
 
 /* LINKS */
 a {
-  color: var(--accent);
+  color: #ffffff !important;
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
 
 a:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* CONTAINER & SECTIONS */
@@ -77,11 +46,11 @@ a:hover {
 }
 
 .section { padding: 4rem 0; }
-.section-alt { padding: 4rem 0; background-color: var(--bg-alt); }
+.section-alt { padding: 4rem 0; background: rgba(2, 6, 23, 0.6); }
 
 .section-header { margin-bottom: 2rem; }
 .section-lead { color: var(--muted); max-width: 44rem; }
-.hint { color: var(--muted); margin-top: .6rem; font-size: .9rem; }
+.hint { color: rgba(156, 163, 175, 0.9); margin-top: .6rem; font-size: .9rem; }
 
 .two-column {
   display: grid;
@@ -96,7 +65,7 @@ a:hover {
   z-index: 20;
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(2, 6, 23, 0.7);
 }
 
 .header-inner {
@@ -111,7 +80,8 @@ a:hover {
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 1px solid var(--border-subtle);
+  border: 2px solid rgba(56, 189, 248, .4);
+  box-shadow: 0 0 22px rgba(56, 189, 248, .55);
   object-fit: cover;
 }
 
@@ -120,10 +90,7 @@ a:hover {
   color: var(--text) !important;
   border-bottom: 2px solid transparent;
 }
-
-.site-nav a:hover {
-  border-color: var(--accent);
-}
+.site-nav a:hover { border-color: var(--accent); }
 
 /* HERO */
 .hero { padding: 4.5rem 0 3rem; }
@@ -132,13 +99,6 @@ a:hover {
   grid-template-columns: 1.2fr 1fr;
   gap: 2.6rem;
   align-items: center;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .9rem;
-  margin-top: 1.2rem;
 }
 
 .btn {
@@ -152,29 +112,32 @@ a:hover {
 
 .btn.primary {
   background: linear-gradient(135deg, #38bdf8, #1d4ed8);
-  color: #ffffff;
+  color: #020617;
 }
 
 .btn.ghost {
   border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
+  background: rgba(2, 6, 23, .85);
   color: var(--text);
 }
 
-/* CHARACTER CARDS */
-.char-card {
-  display: block;
-  padding: .8rem 1rem;
+/* CARDS */
+.char-card, 
+.watch-card, 
+.about-card, 
+.community-card, 
+.contact-card, 
+.hero-card {
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
+  border: 1px solid rgba(56, 189, 248, .4);
+  background: rgba(2, 6, 23, .9);
   box-shadow: var(--shadow-soft);
+  /* The Fix: Ensures boxes don't stretch vertically */
+  align-self: start;
 }
 
-.char-card[open] {
-  padding: 1.1rem 1.25rem;
-  animation: fadeIn 0.2s ease-in-out;
-}
+.char-card { display: block; padding: .8rem 1rem; }
+.char-card[open] { padding: 1.1rem 1.25rem; animation: fadeIn 0.2s ease-in-out; }
 
 .char-card summary {
   list-style: none;
@@ -183,22 +146,14 @@ a:hover {
   align-items: center;
   gap: .75rem;
 }
-
 .char-card summary::-webkit-details-marker { display: none; }
 
-.char-head h3 {
-  font-size: 14px;
-  margin: 0;
-  color: var(--text);
-}
-
+.char-head h3 { font-size: 14px; margin: 0; }
 .char-card summary::after {
   content: "▾";
   margin-left: auto;
   color: var(--muted);
-  transition: transform 0.2s ease;
 }
-
 .char-card[open] summary::after { transform: rotate(180deg); }
 
 .char-avatar {
@@ -206,100 +161,22 @@ a:hover {
   height: 44px;
   border-radius: 999px;
   object-fit: cover;
-  border: 1px solid var(--border-subtle);
+  border: 2px solid rgba(56, 189, 248, .4);
 }
 
-.char-card p {
-  margin-top: .6rem;
-  font-size: .9rem;
-  color: var(--muted);
-}
-
-/* GRID & GENERAL CARDS */
+/* GRID & VIDEO */
 .card-grid, .watch-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.25rem;
-  align-items: start;
 }
 
-/* Update this section in your styles.css */
-.watch-card, 
-.about-card, 
-.community-card, 
-.contact-card {
-  padding: 1rem 1.25rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
-  box-shadow: var(--shadow-soft);
-  
-  /* THIS IS THE FIX: It stops the box from stretching to the bottom */
-  align-self: start; 
-  height: auto;
-}
-
-/* Specifically for the About section grid */
-#about .two-column {
-  align-items: start; /* Ensures all items in this row stay at their natural height */
-}
-
-/* FORM */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  align-items: center;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
-  max-width: 400px;
-}
-
-.field label {
-  text-align: center;
-  font-weight: bold;
-  color: var(--text);
-}
-
-.field input,
-.field textarea {
-  width: 100%;
-  background: #ffffff;
-  color: var(--text);
-  border-radius: 10px;
-  border: 1px solid var(--border-subtle);
-  padding: 0.7rem;
-  font-family: inherit;
-}
-
-.btn-full {
-  width: 100%;
-  max-width: 400px;
-  margin-top: 0.5rem;
-}
-
-/* HERO VIDEO CARD */
-.hero-card {
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
-}
-
-.hero-card:hover { transform: translateY(-5px); }
+.hero-card { padding: 1.5rem; transition: transform 0.3s ease; }
+.hero-card:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(56, 189, 248, 0.2); }
 
 .hero-tag {
   background: var(--accent);
-  color: #ffffff;
+  color: #020617;
   font-size: 0.75rem;
   font-weight: bold;
   padding: 0.3rem 0.8rem;
@@ -312,22 +189,21 @@ a:hover {
 .hero-video-placeholder {
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(56, 189, 248, .4);
   background: #000;
   line-height: 0;
 }
 
-.tiktok-embed { margin: 0 !important; width: 100% !important; }
-
-.hero-caption {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-style: italic;
-  text-align: center;
+/* FORM */
+.field input, .field textarea {
+  width: 100%;
+  background: rgba(2, 6, 23, 0.96);
+  color: var(--text);
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  padding: 0.7rem;
 }
 
-/* ANIMATION & RESPONSIVE */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
