@@ -1,3 +1,4 @@
+/* --- RESET & GLOBAL --- */
 *,
 *::before,
 *::after { 
@@ -22,12 +23,11 @@ html, body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
-  /* Restored the blue radial glow */
   background: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .12), transparent 45%), #020617;
   line-height: 1.6;
 }
 
-/* LINKS */
+/* --- LINKS --- */
 a {
   color: #ffffff !important;
   text-decoration: none;
@@ -38,7 +38,7 @@ a:hover {
   opacity: 0.8;
 }
 
-/* CONTAINER & SECTIONS */
+/* --- CONTAINER & SECTIONS --- */
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
@@ -58,7 +58,7 @@ a:hover {
   gap: 2.4rem;
 }
 
-/* HEADER */
+/* --- HEADER --- */
 .site-header {
   position: sticky;
   top: 0;
@@ -92,13 +92,20 @@ a:hover {
 }
 .site-nav a:hover { border-color: var(--accent); }
 
-/* HERO */
+/* --- HERO --- */
 .hero { padding: 4.5rem 0 3rem; }
 .hero-inner {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 2.6rem;
   align-items: center;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+  margin-top: 1.2rem;
 }
 
 .btn {
@@ -121,22 +128,30 @@ a:hover {
   color: var(--text);
 }
 
-/* CARDS */
-.char-card, 
+/* --- CARDS & SPACING FIX --- */
 .watch-card, 
 .about-card, 
 .community-card, 
 .contact-card, 
 .hero-card {
+  padding: 1.5rem; /* Restored and consistent internal spacing */
   border-radius: var(--radius-lg);
   border: 1px solid rgba(56, 189, 248, .4);
   background: rgba(2, 6, 23, .9);
   box-shadow: var(--shadow-soft);
-  /* The Fix: Ensures boxes don't stretch vertically */
-  align-self: start;
+  align-self: start; /* Keeps boxes at their natural height */
 }
 
-.char-card { display: block; padding: .8rem 1rem; }
+/* CHARACTER CARDS */
+.char-card {
+  display: block;
+  padding: .8rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(56, 189, 248, .4);
+  background: rgba(2, 6, 23, .9);
+  box-shadow: var(--shadow-soft);
+}
+
 .char-card[open] { padding: 1.1rem 1.25rem; animation: fadeIn 0.2s ease-in-out; }
 
 .char-card summary {
@@ -164,14 +179,24 @@ a:hover {
   border: 2px solid rgba(56, 189, 248, .4);
 }
 
-/* GRID & VIDEO */
+/* --- LISTS & GRIDS --- */
+.tick-list {
+  padding-left: 1.2rem;
+  margin: 1rem 0 0 0;
+}
+
+.tick-list li {
+  margin-bottom: 0.5rem;
+}
+
 .card-grid, .watch-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.25rem;
 }
 
-.hero-card { padding: 1.5rem; transition: transform 0.3s ease; }
+/* --- HERO VIDEO CARD --- */
+.hero-card { transition: transform 0.3s ease; }
 .hero-card:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(56, 189, 248, 0.2); }
 
 .hero-tag {
@@ -194,7 +219,27 @@ a:hover {
   line-height: 0;
 }
 
-/* FORM */
+.hero-caption {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* --- CONTACT FORM --- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .field input, .field textarea {
   width: 100%;
   background: rgba(2, 6, 23, 0.96);
@@ -204,6 +249,9 @@ a:hover {
   padding: 0.7rem;
 }
 
+.btn-full { width: 100%; margin-top: 0.5rem; }
+
+/* --- ANIMATION & RESPONSIVE --- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
@@ -212,4 +260,21 @@ a:hover {
 @media (max-width: 960px) {
   .two-column, .hero-inner { grid-template-columns: 1fr; }
   .site-nav { display: none; }
+}
+
+.site-footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
 }
