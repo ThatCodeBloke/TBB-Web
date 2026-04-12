@@ -223,12 +223,25 @@ a:hover {
   align-items: start;
 }
 
-.watch-card, .about-card, .community-card, .contact-card {
+/* Update this section in your styles.css */
+.watch-card, 
+.about-card, 
+.community-card, 
+.contact-card {
   padding: 1rem 1.25rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
   background: var(--card-bg);
   box-shadow: var(--shadow-soft);
+  
+  /* THIS IS THE FIX: It stops the box from stretching to the bottom */
+  align-self: start; 
+  height: auto;
+}
+
+/* Specifically for the About section grid */
+#about .two-column {
+  align-items: start; /* Ensures all items in this row stay at their natural height */
 }
 
 /* FORM */
