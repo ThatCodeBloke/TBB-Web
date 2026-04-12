@@ -141,19 +141,21 @@ a:hover {
   box-shadow: var(--shadow-soft);
 }
 
+/* Specific fix for About box: stays small */
+.about-card, .community-card {
+  align-self: start; 
+}
+
 /* UNIFORM PLATFORM BOXES */
 .watch-card {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensures all boxes in the grid stretch to match the tallest one */
+  height: 100%; 
 }
 
-.watch-card h3 {
-  margin-top: 0;
-}
-
+.watch-card h3 { margin-top: 0; }
 .watch-card p {
-  flex-grow: 1; /* Pushes the "View" link to the bottom so they align across cards */
+  flex-grow: 1; 
   margin-bottom: 1.5rem;
 }
 
@@ -204,11 +206,20 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
-.card-grid, .watch-grid {
+/* Keep watch boxes same height */
+.watch-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.25rem;
-  align-items: stretch; /* Forces grid items to same height */
+  align-items: stretch; 
+}
+
+/* Keep character cards and other grids natural height */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
 }
 
 /* --- CONTACT FORM CENTERED --- */
