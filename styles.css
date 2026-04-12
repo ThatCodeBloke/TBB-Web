@@ -4,6 +4,25 @@
   box-sizing: border-box; 
 }
 
+/* Force absolute white and remove all background gradients */
+html, body {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #0f172a !important;
+}
+
+/* Fix for the Hero section specifically */
+.hero, .section, .section-alt {
+  background-image: none !important;
+}
+
+/* Ensure all cards have a border so they don't disappear on the white background */
+.char-card, .watch-card, .about-card, .community-card, .contact-card, .hero-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
 :root {
   /* FIXED LIGHT THEME */
   --bg: #ffffff;
