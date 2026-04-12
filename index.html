@@ -451,10 +451,10 @@
   async function fetchLiveStats() {
     // 1. Define the platforms and their specific data keys
     const platforms = [
-      { id: 'yt-subs', url: 'https://api.socialcounts.org/youtube-live-subscriber-count/UCVp3N2Z_5lX4vXFf-E6_H0A', key: 'est_sub' }, 
-      { id: 'tt-followers', url: 'https://api.socialcounts.org/tiktok-live-follower-count/thatbishbloke', key: 'followers' },
+      { id: 'yt-subs', url: 'https://api.subscribercounter.com/api/youtube/channel/UCVp3N2Z_5lX4vXFf-E6_H0A', key: 'est_sub' }, 
+      { id: 'tt-followers', url: 'https://countle.com/api/tiktok/user/thatbishbloke', key: 'followers' },
       { id: 'ig-followers', url: 'https://api.socialcounts.org/instagram-live-follower-count/thatbishbloke', key: 'followers' },
-      { id: 'tw-followers', url: 'https://api.socialcounts.org/twitch-live-follower-count/thatbishbloke', key: 'followers' },
+      { id: 'tw-followers', url: 'https://countle.com/api/twitch/user/thatbishbloke', key: 'followers' },
       { id: 'fb-followers', url: 'https://api.socialcounts.org/facebook-live-follower-count/61575693107276', key: 'followers' },
       { id: 'th-followers', url: 'https://api.socialcounts.org/threads-live-follower-count/thatbishbloke', key: 'followers' }
     ];
