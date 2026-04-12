@@ -1,15 +1,13 @@
 *,
 *::before,
-*::after { 
-  box-sizing: border-box; 
-}
+*::after { box-sizing: border-box; }
 
 :root {
   /* Default: LIGHT MODE */
   --bg: #ffffff;
   --bg-alt: #f8fafc;
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --accent: #0284c7; 
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --accent: #0284c7; /* A slightly darker blue for better contrast on white */
   --text: #0f172a;
   --muted: #475569;
   --border-subtle: rgba(2, 132, 199, 0.2);
@@ -38,23 +36,33 @@ html, body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
   background-color: var(--bg);
-  background-image: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .12), transparent 45%);
-  line-height: 1.6;
+  /* The radial gradient now adapts to the theme */
+  background-image: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .1), transparent 45%);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* LINKS */
+/* Forces all links on the site to stay readable in both modes */
 a {
-  color: var(--accent);
+  color: var(--accent) !important; /* Blue in light mode, lighter blue in dark mode */
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
 
+/* Optional: Slight fade on hover so users know it's clickable */
 a:hover {
+  color: #ffffff !important;
   opacity: 0.8;
 }
 
-/* CONTAINER & SECTIONS */
+html, body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .12), transparent 45%), #020617;
+}
+
+body { line-height: 1.6; }
+
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
@@ -62,10 +70,12 @@ a:hover {
 }
 
 .section { padding: 4rem 0; }
-.section-alt { padding: 4rem 0; background: var(--bg-alt); }
+.section-alt { padding: 4rem 0; background: rgba(2, 6, 23, 0.6); }
 
 .section-header { margin-bottom: 2rem; }
 .section-lead { color: var(--muted); max-width: 44rem; }
+
+.hint { color: rgba(156, 163, 175, 0.9); margin-top: .6rem; font-size: .9rem; }
 
 .two-column {
   display: grid;
@@ -80,7 +90,7 @@ a:hover {
   z-index: 20;
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
-  background: var(--card-bg);
+  background: 1px solid rgba(56, 189, 248, 0.4);
 }
 
 .header-inner {
@@ -96,19 +106,22 @@ a:hover {
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 2px solid var(--border-subtle);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+  border: 2px solid rgba(56, 189, 248, .4);
+  box-shadow: 0 0 22px rgba(56, 189, 248, .55);
   object-fit: cover;
 }
 
 .site-nav { display: flex; gap: 1.3rem; font-size: .9rem; }
 
-.site-nav a {
+.site-nav a,
+.footer-links a {
   color: var(--text) !important;
+  text-decoration: none;
   border-bottom: 2px solid transparent;
 }
 
 .site-nav a:hover {
+  color: var(--text);
   border-color: var(--accent);
 }
 
@@ -135,47 +148,41 @@ a:hover {
   text-decoration: none;
   font-size: .9rem;
   cursor: pointer;
-  display: inline-block;
 }
 
 .btn.primary {
   background: linear-gradient(135deg, #38bdf8, #1d4ed8);
-  color: #ffffff;
+  color: #020617;
 }
 
 .btn.ghost {
   border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
+  background: rgba(2, 6, 23, .85);
   color: var(--text);
 }
 
-/* ADAPTIVE CARDS (General Styling) */
-.char-card,
-.watch-card,
-.about-card,
-.community-card,
-.contact-card,
-.hero-card {
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.btn:hover {
+  opacity: 0.9;
 }
 
-.char-card:hover,
-.watch-card:hover,
-.about-card:hover,
-.hero-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(56, 189, 248, 0.15);
+/* GRID */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
 }
 
-/* CHARACTER CARDS SPECIFIC */
+/* CHARACTER CARDS */
+
+/* This targets the name inside the character card */
 .char-card {
   display: block;
   padding: .8rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(56, 189, 248, .4);
+  background: rgba(2, 6, 23, .9);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.9);
 }
 
 .char-card[open] {
@@ -183,10 +190,32 @@ a:hover {
   animation: fadeIn 0.2s ease-in-out;
 }
 
+.char-card summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.char-card summary::-webkit-details-marker {
+  display: none;
+}
+
 .char-head h3 {
-  font-size: 16px;
-  margin: 0;
-  color: var(--text);
+  font-size: 14px; /* Change this number to make it bigger or smaller */
+  margin: 0;      /* Removes extra spacing around the name */
+}
+
+.char-card summary::after {
+  content: "▾";
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+.char-card[open] summary::after {
+  transform: rotate(180deg);
 }
 
 .char-avatar {
@@ -194,53 +223,114 @@ a:hover {
   height: 44px;
   border-radius: 999px;
   object-fit: cover;
-  border: 2px solid var(--border-subtle);
+  border: 2px solid rgba(56, 189, 248, .4);
 }
 
-/* GRID & FORMS */
-.card-grid, .watch-grid {
+.char-card p {
+  margin-top: .6rem;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+/* WATCH CARDS */
+.watch-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.25rem;
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.3rem;
 }
 
+.watch-card,
+.about-card,
+.community-card,
+.contact-card {
+  padding: 1rem 1.25rem;
+  height: fit-content;
+  align-self: fit-content;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(56, 189, 248, .4);
+  background: rgba(2, 6, 23, .9);
+}
+
+/* FORM */
+/* Centers the labels and makes inputs full width */
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  align-items: center;
-  padding: 1rem;
+  gap: 1.2rem; /* Adds space between each field */
+  align-items: center; /* Centers the fields within the card */
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
-  max-width: 400px;
+  gap: 0.5rem; /* Space between label and input */
+  width: 100%; /* Ensures fields stretch to the card edges */
+  max-width: 400px; /* Adjust this to make the form narrower or wider */
 }
 
 .field label {
-  text-align: center;
+  text-align: center; /* Centers the "Name", "Email", and "Message" text */
   font-weight: bold;
+  color: var(--text);
 }
 
-.field input, .field textarea {
-  width: 100%;
-  background: var(--bg);
+.field input,
+.field textarea {
+  width: 100%; /* Makes all boxes exactly the same width */
+  background: rgba(2, 6, 23, 0.96);
   color: var(--text);
   border-radius: 10px;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(56, 189, 248, 0.5);
   padding: 0.7rem;
+  font-family: inherit;
 }
 
-/* HERO VIDEO BOX */
-.hero-card { padding: 1.5rem; }
+/* Ensures the button also matches the width of the inputs */
+.btn-full {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 0.5rem;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .two-column,
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .site-nav {
+    display: none;
+  }
+}
+
+/* --- HERO VIDEO CARD STYLING --- */
+.hero-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.1); /* Subtle outer glow */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.hero-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 50px rgba(56, 189, 248, 0.2);
+}
 
 .hero-tag {
   background: var(--accent);
-  color: #ffffff;
+  color: #020617;
   font-size: 0.75rem;
   font-weight: bold;
   padding: 0.3rem 0.8rem;
@@ -248,25 +338,30 @@ a:hover {
   width: fit-content;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .hero-video-placeholder {
   border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
+  overflow: hidden; /* This clips the TikTok corners to match your site */
+  border: 1px solid rgba(56, 189, 248, .4);
   background: #000;
-  line-height: 0;
+  line-height: 0; 
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
 }
 
-.tiktok-embed { margin: 0 !important; width: 100% !important; }
-
-/* ANIMATION & RESPONSIVE */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Forces the TikTok iframe to stop using its own white background */
+.tiktok-embed {
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  width: 100% !important;
 }
 
-@media (max-width: 960px) {
-  .two-column, .hero-inner { grid-template-columns: 1fr; }
-  .site-nav { display: none; }
+.hero-caption {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
 }
