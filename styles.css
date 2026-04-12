@@ -34,9 +34,7 @@ a {
   transition: opacity 0.2s ease;
 }
 
-a:hover {
-  opacity: 0.8;
-}
+a:hover { opacity: 0.8; }
 
 /* --- CONTAINER & SECTIONS --- */
 .container {
@@ -52,12 +50,26 @@ a:hover {
 .section-lead { color: var(--muted); max-width: 44rem; }
 .hint { color: rgba(156, 163, 175, 0.9); margin-top: .6rem; font-size: .9rem; }
 
-/* This keeps the About and Community boxes from stretching */
+/* --- GRID LAYOUTS --- */
 .two-column {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 2.4rem;
-  align-items: start; /* CRITICAL: This keeps the right-hand box small */
+  align-items: start; /* Keeps "What I do" / side boxes small */
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 1rem;
+  align-items: start;
+}
+
+.watch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch; /* Keeps platform cards leveled */
 }
 
 /* --- HEADER --- */
@@ -88,10 +100,7 @@ a:hover {
 }
 
 .site-nav { display: flex; gap: 1.3rem; font-size: .9rem; }
-.site-nav a {
-  color: var(--text) !important;
-  border-bottom: 2px solid transparent;
-}
+.site-nav a { color: var(--text) !important; border-bottom: 2px solid transparent; }
 .site-nav a:hover { border-color: var(--accent); }
 
 /* --- HERO --- */
@@ -103,12 +112,7 @@ a:hover {
   align-items: center;
 }
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .9rem;
-  margin-top: 1.2rem;
-}
+.hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 1.2rem; }
 
 .btn {
   padding: .55rem 1.3rem;
@@ -119,18 +123,10 @@ a:hover {
   display: inline-block;
 }
 
-.btn.primary {
-  background: linear-gradient(135deg, #38bdf8, #1d4ed8);
-  color: #020617;
-}
+.btn.primary { background: linear-gradient(135deg, #38bdf8, #1d4ed8); color: #020617; }
+.btn.ghost { border: 1px solid var(--border-subtle); background: rgba(2, 6, 23, .85); color: var(--text); }
 
-.btn.ghost {
-  border: 1px solid var(--border-subtle);
-  background: rgba(2, 6, 23, .85);
-  color: var(--text);
-}
-
-/* --- CARDS --- */
+/* --- UNIVERSAL CARD STYLES --- */
 .watch-card, 
 .about-card, 
 .community-card, 
@@ -138,146 +134,65 @@ a:hover {
 .hero-card {
   padding: 1.5rem;
   border-radius: var(--radius-lg);
-  border: 1px var(--border-subtle);
+  border: 1px solid var(--border-subtle);
   background: var(--card-bg);
   box-shadow: var(--shadow-soft);
 }
 
-/* Specific fix for About box: stays small */
-.about-card, .community-card {
-  align-self: start; 
-}
-
-/* UNIFORM PLATFORM BOXES */
+/* Specific leveling for Watch/Platform cards */
 .watch-card {
   display: flex;
   flex-direction: column;
   height: 100%; 
+  transition: transform 0.3s ease;
 }
-
+.watch-card:hover { transform: translateY(-5px); }
 .watch-card h3 { margin-top: 0; }
-.watch-card p {
-  flex-grow: 1; 
-  margin-bottom: 1rem;
-}
+.watch-card p { flex-grow: 1; margin-bottom: 1.5rem; }
 
-/* CHARACTER CARDS */
+/* --- CHARACTER CARDS --- */
 .char-card {
   display: block;
   padding: .8rem 1rem;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(56, 189, 248, .4);
-  background: rgba(2, 6, 23, .9);
+  border: 1px solid var(--border-subtle);
+  background: var(--card-bg);
   box-shadow: var(--shadow-soft);
 }
-
 .char-card[open] { padding: 1.1rem 1.25rem; animation: fadeIn 0.2s ease-in-out; }
-
-.char-card summary {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-}
+.char-card summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: .75rem; }
 .char-card summary::-webkit-details-marker { display: none; }
-
 .char-head h3 { font-size: 14px; margin: 0; }
-.char-card summary::after {
-  content: "▾";
-  margin-left: auto;
-  color: var(--muted);
-}
+.char-card summary::after { content: "▾"; margin-left: auto; color: var(--muted); }
 .char-card[open] summary::after { transform: rotate(180deg); }
-
 .char-avatar {
-  width: 44px;
-  height: 44px;
+  width: 44px; height: 44px;
   border-radius: 999px;
   object-fit: cover;
-  border: 2px solid rgba(56, 189, 248, .4);
+  border: 2px solid var(--border-subtle);
 }
 
-/* --- LISTS & GRIDS --- */
-.tick-list {
-  padding-left: 1.2rem;
-  margin: 1rem 0 0 0;
-}
+/* --- LISTS --- */
+.tick-list { padding-left: 1.2rem; margin: 1rem 0 0 0; }
+.tick-list li { margin-bottom: 0.5rem; }
 
-.tick-list li {
-  margin-bottom: 0.5rem;
-}
-
-/* This controls the platform boxes in the Watch section */
-.watch-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.25rem;
-  align-items: stretch;
-}
-
-.watch-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  background: rgba(2, 6, 23, 0.9);
-}
-
-.watch-card p {
-  /* This pushes the "View" link to the very bottom of every box */
-  flex-grow: 1; 
-  margin-bottom: 1.5rem;
-}
-
-/* --- GRID & GENERAL CARDS --- */
-/* This controls the layout of the character cards */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-  gap: 1rem;
-  align-items: start;
-}
-
-/* --- CONTACT FORM CENTERED --- */
-.contact-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center; /* Centers labels and headers */
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
+/* --- CONTACT FORM --- */
+.contact-card { text-align: center; }
+.contact-form { display: flex; flex-direction: column; gap: 1.2rem; width: 100%; }
+.field { display: flex; flex-direction: column; gap: 0.5rem; }
 .field input, .field textarea {
   width: 100%;
   background: rgba(2, 6, 23, 0.96);
   color: var(--text);
   border-radius: 10px;
-  border: 1px solid rgba(56, 189, 248, 0.5);
+  border: 1px solid var(--border-subtle);
   padding: 0.7rem;
-  text-align: center; /* Centers the placeholder and input text */
+  text-align: center;
 }
-
 .btn-full { width: 100%; margin-top: 0.5rem; }
 
 /* --- HERO VIDEO CARD --- */
 .hero-card { transition: transform 0.3s ease; align-self: start; }
-.hero-card:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(56, 189, 248, 0.2); }
-
 .hero-tag {
   background: var(--accent);
   color: #020617;
@@ -289,39 +204,31 @@ a:hover {
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
-
 .hero-video-placeholder {
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(56, 189, 248, .4);
+  border: 1px solid var(--border-subtle);
   background: #000;
   line-height: 0;
 }
 
+/* --- BRAND COLOR CARDS --- */
+.card-youtube { background: linear-gradient(135deg, #FF0000, #282828); border-color: #FF0000; }
+.card-tiktok { background: #000000; border-color: #25F4EE; box-shadow: 3px 3px 0px #FE2C55; }
+.card-instagram { background: radial-gradient(circle at 30% 107%, #f58529 0%, #f58529 5%, #dd2a7b 45%, #8134af 60%, #515bd4 90%); border-color: #DD2A7B; }
+.card-facebook { background: linear-gradient(135deg, #1877F2, #3B5998); border-color: #1877F2; }
+.card-twitch { background: linear-gradient(135deg, #9146FF, #6441A5); border-color: #9146FF; }
+.card-threads { background: #000000; border: 1px solid #ffffff; }
+.card-amazon { background: linear-gradient(135deg, #FF9900, #232F3E); border-color: #FF9900; }
+
 /* --- ANIMATION & RESPONSIVE --- */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 960px) {
   .two-column, .hero-inner { grid-template-columns: 1fr; }
   .site-nav { display: none; }
 }
 
-.site-footer {
-  padding: 2rem 0;
-  border-top: 1px solid var(--border-subtle);
-  font-size: 0.9rem;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-}
+.site-footer { padding: 2rem 0; border-top: 1px solid var(--border-subtle); font-size: 0.9rem; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; }
+.footer-links { display: flex; gap: 1.5rem; }
