@@ -1,43 +1,60 @@
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after { 
+  box-sizing: border-box; 
+}
 
 :root {
-  --bg: #020617;
-  --bg-alt: #020617;
-  --card-bg: #020617;
-  --accent: #38bdf8;
-  --text: #e5f0ff;
-  --muted: #9ca3af;
-  --border-subtle: rgba(37, 99, 235, 0.55);
-  --shadow-soft: 0 24px 48px rgba(0, 0, 0, 0.9);
+  /* Default: LIGHT MODE */
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --accent: #0284c7; 
+  --text: #0f172a;
+  --muted: #475569;
+  --border-subtle: rgba(2, 132, 199, 0.2);
+  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.05);
   --radius-lg: 18px;
   --radius-pill: 999px;
   --container-width: 1120px;
 }
 
-/* Forces all links on the site to stay white */
-a {
-  color: #ffffff !important;
-  text-decoration: none; /* Optional: removes the underline */
-  transition: opacity 0.2s ease;
-}
-
-/* Optional: Slight fade on hover so users know it's clickable */
-a:hover {
-  color: #ffffff !important;
-  opacity: 0.8;
+/* Detect DARK MODE */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #020617;
+    --bg-alt: #020617;
+    --card-bg: rgba(2, 6, 23, 0.9);
+    --accent: #38bdf8;
+    --text: #e5f0ff;
+    --muted: #9ca3af;
+    --border-subtle: rgba(56, 189, 248, 0.4);
+    --shadow-soft: 0 24px 48px rgba(0, 0, 0, 0.9);
+  }
 }
 
 html, body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .12), transparent 45%), #020617;
+  background-color: var(--bg);
+  background-image: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .12), transparent 45%);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-body { line-height: 1.6; }
+/* LINKS */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
 
+a:hover {
+  opacity: 0.8;
+}
+
+/* CONTAINER & SECTIONS */
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
@@ -45,12 +62,10 @@ body { line-height: 1.6; }
 }
 
 .section { padding: 4rem 0; }
-.section-alt { padding: 4rem 0; background: rgba(2, 6, 23, 0.6); }
+.section-alt { padding: 4rem 0; background: var(--bg-alt); }
 
 .section-header { margin-bottom: 2rem; }
 .section-lead { color: var(--muted); max-width: 44rem; }
-
-.hint { color: rgba(156, 163, 175, 0.9); margin-top: .6rem; font-size: .9rem; }
 
 .two-column {
   display: grid;
@@ -65,7 +80,7 @@ body { line-height: 1.6; }
   z-index: 20;
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
-  background: 1px solid rgba(56, 189, 248, 0.4);
+  background: var(--card-bg);
 }
 
 .header-inner {
@@ -81,8 +96,8 @@ body { line-height: 1.6; }
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 2px solid rgba(56, 189, 248, .4);
-  box-shadow: 0 0 22px rgba(56, 189, 248, .55);
+  border: 2px solid var(--border-subtle);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
   object-fit: cover;
 }
 
@@ -90,12 +105,10 @@ body { line-height: 1.6; }
 
 .site-nav a {
   color: var(--text) !important;
-  text-decoration: none;
   border-bottom: 2px solid transparent;
 }
 
 .site-nav a:hover {
-  color: var(--text);
   border-color: var(--accent);
 }
 
@@ -122,41 +135,47 @@ body { line-height: 1.6; }
   text-decoration: none;
   font-size: .9rem;
   cursor: pointer;
+  display: inline-block;
 }
 
 .btn.primary {
   background: linear-gradient(135deg, #38bdf8, #1d4ed8);
-  color: #020617;
+  color: #ffffff;
 }
 
 .btn.ghost {
   border: 1px solid var(--border-subtle);
-  background: rgba(2, 6, 23, .85);
+  background: var(--card-bg);
   color: var(--text);
 }
 
-.btn:hover {
-  opacity: 0.9;
+/* ADAPTIVE CARDS (General Styling) */
+.char-card,
+.watch-card,
+.about-card,
+.community-card,
+.contact-card,
+.hero-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* GRID */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.25rem;
-  align-items: start;
+.char-card:hover,
+.watch-card:hover,
+.about-card:hover,
+.hero-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(56, 189, 248, 0.15);
 }
 
-/* CHARACTER CARDS */
-
-/* This targets the name inside the character card */
+/* CHARACTER CARDS SPECIFIC */
 .char-card {
   display: block;
   padding: .8rem 1rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(56, 189, 248, .4);
-  background: rgba(2, 6, 23, .9);
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.9);
 }
 
 .char-card[open] {
@@ -164,32 +183,10 @@ body { line-height: 1.6; }
   animation: fadeIn 0.2s ease-in-out;
 }
 
-.char-card summary {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-}
-
-.char-card summary::-webkit-details-marker {
-  display: none;
-}
-
 .char-head h3 {
-  font-size: 14px; /* Change this number to make it bigger or smaller */
-  margin: 0;      /* Removes extra spacing around the name */
-}
-
-.char-card summary::after {
-  content: "▾";
-  margin-left: auto;
-  color: var(--muted);
-  transition: transform 0.2s ease;
-}
-
-.char-card[open] summary::after {
-  transform: rotate(180deg);
+  font-size: 16px;
+  margin: 0;
+  color: var(--text);
 }
 
 .char-avatar {
@@ -197,114 +194,53 @@ body { line-height: 1.6; }
   height: 44px;
   border-radius: 999px;
   object-fit: cover;
-  border: 2px solid rgba(56, 189, 248, .4);
+  border: 2px solid var(--border-subtle);
 }
 
-.char-card p {
-  margin-top: .6rem;
-  font-size: .9rem;
-  color: var(--muted);
-}
-
-/* WATCH CARDS */
-.watch-grid {
+/* GRID & FORMS */
+.card-grid, .watch-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1.3rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
 }
 
-.watch-card,
-.about-card,
-.community-card,
-.contact-card {
-  padding: 1rem 1.25rem;
-  height: fit-content;
-  align-self: fit-content;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(56, 189, 248, .4);
-  background: rgba(2, 6, 23, .9);
-}
-
-/* FORM */
-/* Centers the labels and makes inputs full width */
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem; /* Adds space between each field */
-  align-items: center; /* Centers the fields within the card */
+  gap: 1.2rem;
+  align-items: center;
+  padding: 1rem;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Space between label and input */
-  width: 100%; /* Ensures fields stretch to the card edges */
-  max-width: 400px; /* Adjust this to make the form narrower or wider */
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
 }
 
 .field label {
-  text-align: center; /* Centers the "Name", "Email", and "Message" text */
+  text-align: center;
   font-weight: bold;
-  color: var(--text);
 }
 
-.field input,
-.field textarea {
-  width: 100%; /* Makes all boxes exactly the same width */
-  background: rgba(2, 6, 23, 0.96);
+.field input, .field textarea {
+  width: 100%;
+  background: var(--bg);
   color: var(--text);
   border-radius: 10px;
-  border: 1px solid rgba(56, 189, 248, 0.5);
-  padding: 0.7rem;
-  font-family: inherit;
-}
-
-/* Ensures the button also matches the width of the inputs */
-.btn-full {
-  width: 100%;
-  max-width: 400px;
-  margin-top: 0.5rem;
-}
-
-/* ANIMATION */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* RESPONSIVE */
-@media (max-width: 960px) {
-  .two-column,
-  .hero-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .site-nav {
-    display: none;
-  }
-}
-
-/* --- HERO VIDEO CARD STYLING --- */
-.hero-card {
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
-  background: rgba(2, 6, 23, 0.6);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 40px rgba(56, 189, 248, 0.1); /* Subtle outer glow */
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
+  padding: 0.7rem;
 }
 
-.hero-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 50px rgba(56, 189, 248, 0.2);
-}
+/* HERO VIDEO BOX */
+.hero-card { padding: 1.5rem; }
 
 .hero-tag {
   background: var(--accent);
-  color: #020617;
+  color: #ffffff;
   font-size: 0.75rem;
   font-weight: bold;
   padding: 0.3rem 0.8rem;
@@ -312,30 +248,25 @@ body { line-height: 1.6; }
   width: fit-content;
   margin-bottom: 1rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .hero-video-placeholder {
   border-radius: 12px;
-  overflow: hidden; /* This clips the TikTok corners to match your site */
-  border: 1px solid rgba(56, 189, 248, .4);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
   background: #000;
-  line-height: 0; 
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+  line-height: 0;
 }
 
-/* Forces the TikTok iframe to stop using its own white background */
-.tiktok-embed {
-  margin: 0 !important;
-  border: none !important;
-  background: transparent !important;
-  width: 100% !important;
+.tiktok-embed { margin: 0 !important; width: 100% !important; }
+
+/* ANIMATION & RESPONSIVE */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.hero-caption {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-style: italic;
-  text-align: center;
+@media (max-width: 960px) {
+  .two-column, .hero-inner { grid-template-columns: 1fr; }
+  .site-nav { display: none; }
 }
