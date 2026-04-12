@@ -67,9 +67,9 @@ a:hover { opacity: 0.8; }
 
 .watch-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.25rem;
-  align-items: stretch;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 /* --- HEADER --- */
@@ -142,11 +142,35 @@ a:hover { opacity: 0.8; }
 .watch-card {
   display: flex;
   flex-direction: column;
-  height: 100%; 
-  transition: transform 0.3s ease;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  min-height: 380px; /* Forces cards to be the same height */
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  justify-content: space-between; /* Pushes the button to the bottom */
 }
 .watch-card:hover { transform: translateY(-5px); }
 .watch-card h3 { margin-top: 0; text-align: center; }
+
+/* Make the live counter box stand out */
+.live-counter {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  width: 100%;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  font-family: monospace;
+}
 
 /* --- STAT STYLES FOR CARDS --- */
 .stat-row {

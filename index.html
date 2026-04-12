@@ -449,47 +449,36 @@
 
   // --- LIVE STATS LOGIC ---
   async function fetchLiveStats() {
-    try {
-      // 1. YouTube (Replace ID with your actual UC... ID)
-      const ytResponse = await fetch('https://api.socialcounts.org/youtube-live-subscriber-count/UC8877665544332211');
-      const ytData = await ytResponse.json();
-      document.getElementById('yt-subs').innerText = ytData.est_sub.toLocaleString();
+    // 1. Define the platforms and their specific data keys
+    const platforms = [
+      { id: 'yt-subs', url: 'https://api.socialcounts.org/youtube-live-subscriber-count/UCVp3N2Z_5lX4vXFf-E6_H0A', key: 'est_sub' }, 
+      { id: 'tt-followers', url: 'https://api.socialcounts.org/tiktok-live-follower-count/thatbishbloke', key: 'followers' },
+      { id: 'ig-followers', url: 'https://api.socialcounts.org/instagram-live-follower-count/thatbishbloke', key: 'followers' },
+      { id: 'tw-followers', url: 'https://api.socialcounts.org/twitch-live-follower-count/thatbishbloke', key: 'followers' },
+      { id: 'fb-followers', url: 'https://api.socialcounts.org/facebook-live-follower-count/61575693107276', key: 'followers' },
+      { id: 'th-followers', url: 'https://api.socialcounts.org/threads-live-follower-count/thatbishbloke', key: 'followers' }
+    ];
 
-      // 2. Twitch
-      const twResponse = await fetch('https://api.socialcounts.org/twitch-live-follower-count/thatbishbloke');
-      const twData = await twResponse.json();
-      document.getElementById('tw-followers').innerText = twData.followers.toLocaleString();
-
-      // 3. TikTok
-      const ttResponse = await fetch('https://api.socialcounts.org/tiktok-live-follower-count/thatbishbloke');
-      const ttData = await ttResponse.json();
-      document.getElementById('tt-followers').innerText = ttData.followers.toLocaleString();
-
-      // 4. Instagram
-      const igResponse = await fetch('https://api.socialcounts.org/instagram-live-follower-count/thatbishbloke');
-      const igData = await igResponse.json();
-      document.getElementById('ig-followers').innerText = igData.followers.toLocaleString();
-
-      // 5. Facebook
-      const fbResponse = await fetch('https://api.socialcounts.org/facebook-live-follower-count/61575693107276');
-      const fbData = await fbResponse.json();
-      document.getElementById('fb-followers').innerText = fbData.followers.toLocaleString();
-
-      // 6. Threads
-      const thResponse = await fetch('https://api.socialcounts.org/threads-live-follower-count/thatbishbloke');
-      const thData = await thResponse.json();
-      document.getElementById('th-followers').innerText = thData.followers.toLocaleString();
-
-    } catch (error) {
-      console.error("Live stats error:", error);
-      // Fallback text so it doesn't stay as "..."
-      document.querySelectorAll('.stat-value').forEach(el => {
-        if (el.innerText === "...") el.innerText = "Live";
-      });
-    }
+    // 2. Loop through each platform individually
+    platforms.forEach(async (p) => {
+      try {
+        const response = await fetch(p.url);
+        if (!response.ok) throw new Error();
+        
+        const data = await response.json();
+        const count = data[p.key];
+        
+        if (count !== undefined) {
+          document.getElementById(p.id).innerText = count.toLocaleString();
+        }
+      } catch (e) {
+        // If one fails, only THAT card shows "Live", others keep trying
+        console.error(`Error loading ${p.id}`);
+        document.getElementById(p.id).innerText = "Live";
+      }
+    });
   }
 
-  // Run on load and every 60s
   document.addEventListener('DOMContentLoaded', fetchLiveStats);
   setInterval(fetchLiveStats, 60000);
 </script>
