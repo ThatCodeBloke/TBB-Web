@@ -128,18 +128,33 @@ a:hover {
   color: var(--text);
 }
 
-/* --- CARDS & SPACING FIX --- */
+/* --- CARDS --- */
 .watch-card, 
 .about-card, 
 .community-card, 
 .contact-card, 
 .hero-card {
-  padding: 1.5rem; /* Restored and consistent internal spacing */
+  padding: 1.5rem;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(56, 189, 248, .4);
   background: rgba(2, 6, 23, .9);
   box-shadow: var(--shadow-soft);
-  align-self: start; /* Keeps boxes at their natural height */
+}
+
+/* UNIFORM PLATFORM BOXES */
+.watch-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures all boxes in the grid stretch to match the tallest one */
+}
+
+.watch-card h3 {
+  margin-top: 0;
+}
+
+.watch-card p {
+  flex-grow: 1; /* Pushes the "View" link to the bottom so they align across cards */
+  margin-bottom: 1.5rem;
 }
 
 /* CHARACTER CARDS */
@@ -193,10 +208,44 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.25rem;
+  align-items: stretch; /* Forces grid items to same height */
 }
 
+/* --- CONTACT FORM CENTERED --- */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; /* Centers labels and headers */
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field input, .field textarea {
+  width: 100%;
+  background: rgba(2, 6, 23, 0.96);
+  color: var(--text);
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  padding: 0.7rem;
+  text-align: center; /* Centers the placeholder and input text */
+}
+
+.btn-full { width: 100%; margin-top: 0.5rem; }
+
 /* --- HERO VIDEO CARD --- */
-.hero-card { transition: transform 0.3s ease; }
+.hero-card { transition: transform 0.3s ease; align-self: start; }
 .hero-card:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(56, 189, 248, 0.2); }
 
 .hero-tag {
@@ -218,38 +267,6 @@ a:hover {
   background: #000;
   line-height: 0;
 }
-
-.hero-caption {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-style: italic;
-  text-align: center;
-}
-
-/* --- CONTACT FORM --- */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.field input, .field textarea {
-  width: 100%;
-  background: rgba(2, 6, 23, 0.96);
-  color: var(--text);
-  border-radius: 10px;
-  border: 1px solid rgba(56, 189, 248, 0.5);
-  padding: 0.7rem;
-}
-
-.btn-full { width: 100%; margin-top: 0.5rem; }
 
 /* --- ANIMATION & RESPONSIVE --- */
 @keyframes fadeIn {
