@@ -140,37 +140,58 @@ a:hover { opacity: 0.8; }
 }
 
 .watch-card {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2.5rem 1.5rem;
-  min-height: 400px; /* Forces cards to be the same height */
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
-  border: 1px solid var(--border-subtle);
-  justify-content: space-between; /* Pushes the button to the bottom */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    min-height: 420px;
+    border-radius: var(--radius-lg);
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 .watch-card:hover { transform: translateY(-5px); }
-.watch-card h3 { margin-top: 0; text-align: center; }
+.watch-card h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 0;
+}
+
+.title-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
 
 .card-icon {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 40px;
-    height: 40px;
-    opacity: 0.8; /* Subtle transparency so it doesn't fight the text */
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.15); /* Light glass effect */
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .card-icon img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* Adds punch to the logo */
 }
 
 /* Hover effect: Make the logo pop when the card is hovered */
@@ -301,12 +322,15 @@ a:hover { opacity: 0.8; }
 }
 
 /* --- BRAND COLOR CARDS --- */
-.card-youtube { background: linear-gradient(135deg, #FF0000, #282828); border-color: #FF0000; }
-.card-tiktok { background: #000000; border-color: #25F4EE; box-shadow: 3px 3px 0px #FE2C55; }
-.card-instagram { background: radial-gradient(circle at 30% 107%, #f58529 0%, #f58529 5%, #dd2a7b 45%, #8134af 60%, #515bd4 90%); border-color: #DD2A7B; }
-.card-facebook { background: linear-gradient(135deg, #1877F2, #3B5998); border-color: #1877F2; }
-.card-twitch { background: linear-gradient(135deg, #9146FF, #6441A5); border-color: #9146FF; }
-.card-threads { background: #000000; border: 1px solid #ffffff; }
+.card-youtube { background: linear-gradient(145deg, #cc0000, #1a1a1a); border-color: #ff4d4d; }
+.card-tiktok { background: linear-gradient(145deg, #000000, #252525); border-color: #25F4EE; }
+.card-instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); border-color: #ff9dcc; }
+.card-facebook { background: linear-gradient(145deg, #1877F2, #0a3d82); border-color: #4c9aff; }
+.card-twitch { background: linear-gradient(145deg, #9146FF, #3c1c70); border-color: #b18cff; }
+.card-threads { background: #111; border-color: #fff; }
+.card-threads .card-icon {
+    background: rgba(255, 255, 255, 1); /* Solid white background for black threads logo */
+}
 
 /* --- FOOTER --- */
 .site-footer { padding: 2rem 0; border-top: 1px solid var(--border-subtle); font-size: 0.9rem; }
