@@ -269,13 +269,10 @@
         <div class="watch-grid">
             <article class="watch-card card-youtube">
                 <div class="card-icon"><img src="assets/social logos/YTLogo.png" alt=""></div>
-                <h3><img src="assets/social-logos/youtube.png" class="title-icon" alt=""> YouTube</h3>
+                <h3><img src="assets/social logos/YTLogo" class="title-icon" alt=""> YouTube</h3>
                 <div class="live-counter">
-                    <span class="stat-value" id="yt-subs">3,500+</span>
+                    <span class="stat-value" id="yt-subs">--</span>
                     <span class="stat-label">Subscribers</span>
-                    <div class="stat-divider"></div>
-                    <span class="stat-value">500+</span>
-                    <span class="stat-label">Videos</span>
                 </div>
                 <p>Long-form sketches and highlight compilations.</p>
                 <div class="chip-row">
@@ -285,13 +282,10 @@
 
             <article class="watch-card card-tiktok">
                 <div class="card-icon"><img src="assets/social logos/TTLogo.png" alt=""></div>
-                <h3><img src="assets/social-logos/tiktok.png" class="title-icon" alt=""> TikTok</h3>
+                <h3><img src="assets/social logos/TTLogo.png" class="title-icon" alt=""> TikTok</h3>
                 <div class="live-counter">
-                    <span class="stat-value" id="tt-followers">60,000+</span>
+                    <span class="stat-value" id="tt-followers">--</span>
                     <span class="stat-label">Followers</span>
-                    <div class="stat-divider"></div>
-                    <span class="stat-value">1.4M+</span>
-                    <span class="stat-label">Likes</span>
                 </div>
                 <p>Short-form characters and bite-size chaos.</p>
                 <div class="chip-row">
@@ -301,13 +295,10 @@
 
             <article class="watch-card card-instagram">
                 <div class="card-icon"><img src="assets/social logos/IGLogo.png" alt=""></div>
-                <h3><img src="assets/social-logos/instagram.png" class="title-icon" alt=""> Instagram</h3>
+                <h3><img src="assets/social logos/IGLogo.png" class="title-icon" alt=""> Instagram</h3>
                 <div class="live-counter">
-                    <span class="stat-value" id="ig-followers">5,000+</span>
+                    <span class="stat-value" id="ig-followers">--</span>
                     <span class="stat-label">Followers</span>
-                    <div class="stat-divider"></div>
-                    <span class="stat-value">400+</span>
-                    <span class="stat-label">Posts</span>
                 </div>
                 <p>Reels, behind-the-scenes and stills.</p>
                 <div class="chip-row">
@@ -317,9 +308,9 @@
 
             <article class="watch-card card-facebook">
                 <div class="card-icon"><img src="assets/social logos/FBLogo.png" alt=""></div>
-                <h3><img src="assets/social-logos/facebook.png" class="title-icon" alt=""> Facebook</h3>
+                <h3><img src="assets/social logos/FBLogo.png" class="title-icon" alt=""> Facebook</h3>
                 <div class="live-counter">
-                    <span class="stat-value" id="fb-followers">3,000+</span>
+                    <span class="stat-value" id="fb-followers">--</span>
                     <span class="stat-label">Followers</span>
                 </div>
                 <p>Clips and shares for the Facebook crowd.</p>
@@ -330,9 +321,9 @@
 
             <article class="watch-card card-twitch">
                 <div class="card-icon"><img src="assets/social logos/TwitchLogo.png" alt=""></div>
-                <h3><img src="assets/social-logos/twitch.png" class="title-icon" alt=""> Twitch</h3>
+                <h3><img src="assets/social logos/TwitchLogo.png" class="title-icon" alt=""> Twitch</h3>
                 <div class="live-counter">
-                    <span class="stat-value" id="tw-followers">100+</span>
+                    <span class="stat-value" id="tw-followers">--</span>
                     <span class="stat-label">Followers</span>
                 </div>
                 <p>Live streams and community gaming nights.</p>
@@ -343,9 +334,9 @@
 
             <article class="watch-card card-threads">
                 <div class="card-icon"><img src="assets/social logos/ThreadsLogo.png" alt=""></div>
-                <h3><img src="assets/social-logos/threads.png" class="title-icon" alt=""> Threads</h3>
+                <h3><img src="assets/social logos/ThreadsLogo.png" class="title-icon" alt=""> Threads</h3>
                 <div class="live-counter">
-                    <span class="stat-value" id="th-followers">50+</span>
+                    <span class="stat-value" id="th-followers">--</span>
                     <span class="stat-label">Followers</span>
                 </div>
                 <p>Thoughts and chaotic updates between uploads.</p>
@@ -443,7 +434,6 @@
   </footer>
 
 <script>
-  // --- UI LOGIC ---
   document.querySelectorAll(".char-card").forEach(card => {
     card.addEventListener("toggle", function () {
       if (card.open) {
@@ -456,7 +446,6 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Contact form mailto logic
   (function () {
     const form = document.getElementById("contactForm");
     if (!form) return;
@@ -472,9 +461,7 @@
     });
   })();
 
-  // --- LIVE STATS LOGIC ---
   async function fetchLiveStats() {
-    // 1. Define the platforms and their specific data keys
     const platforms = [
       { id: 'yt-subs', url: 'https://api.subscribercounter.com/api/youtube/channel/UCVp3N2Z_5lX4vXFf-E6_H0A', key: 'est_sub' }, 
       { id: 'tt-followers', url: 'https://countle.com/api/tiktok/user/thatbishbloke', key: 'followers' },
@@ -484,7 +471,6 @@
       { id: 'th-followers', url: 'https://api.socialcounts.org/threads-live-follower-count/thatbishbloke', key: 'followers' }
     ];
 
-    // 2. Loop through each platform individually
     platforms.forEach(async (p) => {
       try {
         const response = await fetch(p.url);
@@ -497,9 +483,11 @@
           document.getElementById(p.id).innerText = count.toLocaleString();
         }
       } catch (e) {
-        // If one fails, only THAT card shows "Live", others keep trying
         console.error(`Error loading ${p.id}`);
-        document.getElementById(p.id).innerText = "Live";
+        // Only show text if the API actually fails
+        if(document.getElementById(p.id).innerText === "--") {
+             document.getElementById(p.id).innerText = "Live";
+        }
       }
     });
   }

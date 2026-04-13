@@ -168,6 +168,7 @@ a:hover { opacity: 0.8; }
     width: 20px;
     height: 20px;
     object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .card-icon {
@@ -329,7 +330,8 @@ a:hover { opacity: 0.8; }
 .card-twitch { background: linear-gradient(145deg, #9146FF, #3c1c70); border-color: #b18cff; }
 .card-threads { background: #111; border-color: #fff; }
 .card-threads .card-icon {
-    background: rgba(255, 255, 255, 1); /* Solid white background for black threads logo */
+    background: rgba(0, 0, 0, 0.6); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* --- FOOTER --- */
