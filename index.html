@@ -370,29 +370,30 @@
     </section>
 
     <section id="community" class="section">
-      <div class="container two-column">
+      <div class="container two-column" style="align-items: center; gap: 4rem;">
         <div>
           <h2>ThatBishCommunity</h2>
           <p class="section-lead">Welcome to ThatBishCommunity!</p>
           <p>
             The official hub for ThatBishBloke across TikTok, YouTube, and beyond. Join for comedy, livestreams, clips, and community chaos.
           </p>
+
+          <div style="margin: 2rem 0;">
+            <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;">Inside the server:</h3>
+            <ul class="tick-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.95rem;">
+              <li>Chat with Bish &amp; regulars</li>
+              <li>Behind-the-scenes bits</li>
+              <li>Stream updates &amp; events</li>
+              <li>Character &amp; sketch ideas</li>
+            </ul>
+          </div>
+
           <a class="btn primary" href="https://discord.gg/HPK7kQ459s" target="_blank" rel="noopener noreferrer">
             Join Our Discord
           </a>
         </div>
 
-      <div style="margin: 2rem 0;">
-        <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;">Inside the server:</h3>
-        <ul class="tick-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.95rem;">
-          <li>Chat with Bish & regulars</li>
-          <li>Behind-the-scenes bits</li>
-          <li>Stream updates & events</li>
-          <li>Character & sketch ideas</li>
-        </ul>
-      </div>
-
-        <aside class="community-card"style="padding: 0; overflow: hidden; display: flex; justify-content: center; background: transparent; border: none;">
+        <aside class="community-widget-wrapper" style="width: 100%; max-width: 400px; padding: 0; overflow: hidden; background: transparent; border: none;">
           <iframe
             src="https://discord.com/widget?id=1373033379045310595&theme=dark"
             width="100%"
@@ -400,7 +401,7 @@
             allowtransparency="true"
             frameborder="0"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-            style="border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+            style="border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-soft);">
           </iframe>
         </aside>
       </div>
