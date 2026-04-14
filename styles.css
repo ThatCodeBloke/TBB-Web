@@ -515,3 +515,88 @@ a:hover { opacity: 0.8; }
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
+
+/* --- LIVE HUB GRID --- */
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.live-player-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Aspect Ratio for Videos */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* TikTok Placeholder specifically */
+.tiktok-placeholder {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  padding: 2rem;
+  text-align: center;
+}
+
+.tiktok-placeholder img { width: 40px; margin-bottom: 1rem; }
+
+/* Status Badges */
+.player-header {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.live-status {
+  padding: 0.2rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.live-status.pulse {
+  background: #ff0000;
+  color: #fff;
+  box-shadow: 0 0 0 rgba(255, 0, 0, 0.4);
+  animation: pulse-red 2s infinite;
+}
+
+.live-status.offline {
+  background: var(--muted);
+  color: #000;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+.live-meta { padding: 1.5rem; }
+.live-meta h3 { margin: 0 0 0.5rem 0; font-size: 1.1rem; }
+.live-meta p { font-size: 0.9rem; color: var(--muted); margin: 0; }
