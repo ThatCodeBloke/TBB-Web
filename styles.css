@@ -563,9 +563,9 @@ a:hover { opacity: 0.8; }
 .tiktok-placeholder img { width: 40px; margin-bottom: 1rem; }
 
 /* TikTok Fallback Box */
-.tiktok-live-fallback {
+.tiktok-fallback {
   width: 100%;
-  height: 315px; 
+  height: 315px;
   background: radial-gradient(circle at center, #1a1a1a, #000);
   display: flex;
   flex-direction: column;
@@ -574,6 +574,12 @@ a:hover { opacity: 0.8; }
   padding: 2rem;
   text-align: center;
   border-bottom: 1px solid var(--border-subtle);
+}
+
+.tt-icon-glow img {
+  width: 50px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 15px rgba(37, 244, 238, 0.6));
 }
 
 .tiktok-logo-overlay img {
@@ -606,10 +612,12 @@ a:hover { opacity: 0.8; }
   animation: pulse-red 2s infinite;
 }
 
-/* Status Class Toggles */
+/* Offline Styling */
 .live-status.offline {
   background: #334155 !important;
   color: #94a3b8 !important;
+  animation: none !important;
+  box-shadow: none !important;
 }
 
 @keyframes pulse-red {
@@ -626,7 +634,7 @@ a:hover { opacity: 0.8; }
 /* Visual Feedback for Offline Players */
 .live-player-card:has(.offline) iframe,
 .live-player-card:has(.offline) .tiktok-live-fallback {
-    filter: grayscale(1) opacity(0.3);
+    filter: grayscale(1) opacity(0.4);
     pointer-events: none;
 }
 
