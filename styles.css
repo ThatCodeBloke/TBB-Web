@@ -623,21 +623,24 @@ a:hover { opacity: 0.8; }
 .live-meta p { font-size: 0.9rem; color: var(--muted); margin: 0; }
 
 /* Gray out the player card when offline */
-.live-player-card:has(.offline) .video-container {
-    filter: grayscale(1) opacity(0.5);
-    pointer-events: none; /* Prevents clicking a dead player */
+.live-player-card:has(.offline) .video-container,
+.live-player-card:has(.offline) .tiktok-live-fallback {
+    filter: grayscale(1) opacity(0.4);
+    pointer-events: none;
 }
 
 /* Red Pulse for Live */
 .live-status.pulse {
     background: #ff0000 !important;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     color: white !important;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+    animation: pulse-red 2s infinite;
 }
 
 /* Muted Gray for Offline */
 .live-status.offline {
-    background: #475569 !important;
-    color: #cbd5e1 !important;
+    background: #334155 !important;
+    color: #94a3b8 !important;
     box-shadow: none;
+    animation: none;
 }
