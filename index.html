@@ -302,11 +302,11 @@
           <img src="assets/social logos/TTLogo.png" alt="TikTok">
         </div>
         <p>TikTok embeds are restricted. Join the live chat directly on the app!</p>
-        <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="btn primary">Join TikTok Live</a>
+        <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="btn primary">Open TikTok Live</a>
       </div>
       <div class="live-meta">
         <h3>TikTok Live</h3>
-        <p>Mobile madness and community gifts.</p>
+        <p>Engagement and gifts happen directly on the app.</p>
       </div>
     </div>
   </div>
@@ -595,11 +595,14 @@ async function updateLiveHub() {
         const twResp = await fetch('https://api.decapi.me/twitch/uptime/thatbishbloke');
         const uptime = await twResp.text();
         const twStatus = document.getElementById('tw-status');
+        const twIframe = document.querySelector('.card-twitch iframe');
         
         if (uptime.includes("offline")) {
             twStatus.innerText = "Offline";
             twStatus.className = "live-status offline";
         } else {
+            // If it just turned live, reload the iframe to start the video
+            if (twStatus.innerText === "Offline") twIframe.src = twIframe.src;
             twStatus.innerText = "Live";
             twStatus.className = "live-status pulse";
         }
@@ -607,33 +610,31 @@ async function updateLiveHub() {
 
     // 2. YOUTUBE CHECK
     try {
-        // Using a cors proxy to check your live status page
         const ytStatus = document.getElementById('yt-status');
+        const ytIframe = document.querySelector('.card-youtube iframe');
+        // We use a proxy to check your live page for the "LIVE" indicator
         const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.youtube.com/@ThatBishBloke/live'));
         const data = await response.json();
         
-        // If the page contains "LIVE_STREAM_OFFLINE" or doesn't have live features, it's offline
-        if (data.contents.includes("LIVE_STREAM_OFFLINE") || !data.contents.includes('{"iconType":"LIVE"}')) {
+        const isLive = data.contents.includes('{"iconType":"LIVE"}') && !data.contents.includes("LIVE_STREAM_OFFLINE");
+
+        if (!isLive) {
             ytStatus.innerText = "Offline";
             ytStatus.className = "live-status offline";
         } else {
+            if (ytStatus.innerText === "Offline") ytIframe.src = ytIframe.src;
             ytStatus.innerText = "Live";
             ytStatus.className = "live-status pulse";
         }
-    } catch (e) { 
-        console.error("YouTube check failed");
-        document.getElementById('yt-status').innerText = "Check Stream";
-    }
+    } catch (e) { console.error("YouTube check failed"); }
 
-    // 3. TIKTOK STATUS
-    // TikTok is a walled garden; we set this to "Active" or "Check Live" 
-    // to ensure the user clicks through to the app.
+    // 3. TIKTOK STATUS (Static Link Hub)
     const ttStatus = document.getElementById('tt-status');
     ttStatus.innerText = "Check Live";
     ttStatus.className = "live-status pulse"; 
 }
 
-// Initial run and refresh every 60 seconds
+// Check every 60 seconds
 updateLiveHub();
 setInterval(updateLiveHub, 60000);
 
