@@ -470,57 +470,44 @@ a:hover { opacity: 0.8; }
   padding-bottom: 2rem;
 }
 
+/* --- AMAZON BRANDED CARD --- */
 .card-amazon {
-  border-color: var(--border-subtle) !important;
-  max-width: 350px; /* Matches width of cards in the grid */
+  border-color: rgba(255, 153, 0, 0.4) !important; /* Amazon Orange */
+  max-width: 350px;
   width: 100%;
 }
 
 .card-amazon:hover {
-  border-color: var(--accent) !important;
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+  border-color: #FF9900 !important;
+  box-shadow: 0 0 20px rgba(255, 153, 0, 0.2);
+}
+
+.card-amazon h3 {
+  color: #FF9900;
 }
 
 .card-amazon .stat-value {
-  color: var(--text); /* Keeping it consistent with other blue cards */
+  color: #FF9900 !important;
+  font-size: 1.1rem; /* Adjusted for longer text */
 }
 
+/* Specific button hover for Amazon branding */
 .card-amazon .chip-link:hover {
-  background: #ff9900 !important;
-  border-color: #ff9900 !important;
-  color: #232f3e !important; /* Amazon dark blue/black */
+  background: #FF9900 !important;
+  border-color: #FF9900 !important;
+  color: #232F3E !important; /* Amazon Dark Blue text on hover */
+}
+
+/* Ensuring the long labels don't look cramped */
+.card-amazon .stat-label {
+  line-height: 1.4;
+  padding: 0 5px;
+  font-size: 0.7rem;
 }
 
 .centered-card {
   max-width: 400px;
   width: 100%;
-}
-
-/* Amazon Card Specifics */
-.amazon-card {
-  border-color: rgba(255, 153, 0, 0.4) !important;
-}
-
-.amazon-card .chip-link:hover {
-  background: #ff9900 !important;
-  color: #000 !important;
-  border-color: #ff9900 !important;
-}
-
-.platform-icon.amazon {
-  background: #ff9900;
-  color: #000;
-}
-
-.amazon-card .btn.primary {
-  background: #ff9900;
-  color: #000 !important;
-  font-weight: 700;
-}
-
-.amazon-card .btn.primary:hover {
-  background: #e68a00;
-  transform: translateY(-2px);
 }
 
 /* Adjusting the grid to handle 3 items nicely */
