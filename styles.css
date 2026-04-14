@@ -389,18 +389,22 @@ a:hover { opacity: 0.8; }
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-/* --- COMMUNITY HIGHLIGHT BOX (Updated for Bottom Placement) --- */
 .community-highlight {
-  margin-top: 4rem;
-  max-width: var(--container-width);
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(2, 6, 23, 0.8));
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 4rem 2rem;
   text-align: center;
-  margin: 4rem 0; /* Keeps it within the flow */
-  box-shadow: 0 0 40px rgba(56, 189, 248, 0.05);
-  width: 100%; /* Stays inside the .container */
+  margin-top: 4rem; /* Ensuring gap after Amazon */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  overflow: hidden; /* Prevents box shadow/gradients from breaking the page width */
 }
 
 .community-highlight h2 {
@@ -462,23 +466,23 @@ a:hover { opacity: 0.8; }
 .amazon-full-row {
   display: flex;
   justify-content: center;
-  margin-top: 2rem; /* Matches the gap between previous rows */
+  margin-top: 2rem; /* Padding between row 2 and 3 */
   padding-bottom: 2rem;
 }
 
 .card-amazon {
-  border-color: rgba(255, 153, 0, 0.4) !important; /* Amazon Orange */
-  max-width: 350px; /* Ensures it matches the width of cards in the grid above */
+  border-color: var(--border-subtle) !important;
+  max-width: 350px; /* Matches width of cards in the grid */
   width: 100%;
 }
 
 .card-amazon:hover {
-  border-color: #ff9900 !important;
-  box-shadow: 0 0 20px rgba(255, 153, 0, 0.2);
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
 .card-amazon .stat-value {
-  color: #ff9900; /* Amazon Orange for the stats */
+  color: var(--text); /* Keeping it consistent with other blue cards */
 }
 
 .card-amazon .chip-link:hover {
