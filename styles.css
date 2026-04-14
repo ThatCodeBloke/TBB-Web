@@ -330,7 +330,7 @@ a:hover { opacity: 0.8; }
 
 /* --- BRAND COLOR CARDS --- */
 .card-youtube { background: linear-gradient(145deg, #cc0000, #1a1a1a); border-color: #ff4d4d; }
-.card-tiktok { background: linear-gradient(145deg, #000000, #252525); border-color: #25F4EE; }
+.card-tiktok { background: linear-gradient(145deg, #000000, #252525); border-color: #25F4EE; box-shadow: -2px 0 0 #FE2C55, 2px 0 0 #25F4EE; }
 .card-instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); border-color: #ff9dcc; }
 .card-facebook { background: linear-gradient(145deg, #1877F2, #0a3d82); border-color: #4c9aff; }
 .card-twitch { background: linear-gradient(145deg, #9146FF, #3c1c70); border-color: #b18cff; }
