@@ -562,6 +562,26 @@ a:hover { opacity: 0.8; }
 
 .tiktok-placeholder img { width: 40px; margin-bottom: 1rem; }
 
+/* TikTok Fallback Box */
+.tiktok-live-fallback {
+  width: 100%;
+  height: 315px; 
+  background: radial-gradient(circle at center, #1a1a1a, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tiktok-logo-overlay img {
+  width: 50px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(37, 244, 238, 0.4));
+}
+
 /* Status Badges */
 .player-header {
   padding: 1rem;
@@ -581,14 +601,15 @@ a:hover { opacity: 0.8; }
 
 .live-status.pulse {
   background: #ff0000;
-  color: #fff;
+  color: #ffffff;
   box-shadow: 0 0 0 rgba(255, 0, 0, 0.4);
   animation: pulse-red 2s infinite;
 }
 
+/* Status Class Toggles */
 .live-status.offline {
-  background: var(--muted);
-  color: #000;
+  background: #334155 !important;
+  color: #94a3b8 !important;
 }
 
 @keyframes pulse-red {
@@ -600,3 +621,23 @@ a:hover { opacity: 0.8; }
 .live-meta { padding: 1.5rem; }
 .live-meta h3 { margin: 0 0 0.5rem 0; font-size: 1.1rem; }
 .live-meta p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+
+/* Gray out the player card when offline */
+.live-player-card:has(.offline) .video-container {
+    filter: grayscale(1) opacity(0.5);
+    pointer-events: none; /* Prevents clicking a dead player */
+}
+
+/* Red Pulse for Live */
+.live-status.pulse {
+    background: #ff0000 !important;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    color: white !important;
+}
+
+/* Muted Gray for Offline */
+.live-status.offline {
+    background: #475569 !important;
+    color: #cbd5e1 !important;
+    box-shadow: none;
+}

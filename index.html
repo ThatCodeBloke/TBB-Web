@@ -259,7 +259,7 @@
       </div>
     </section>
 
-    <section id="live-hub" class="section">
+<section id="live-hub" class="section">
   <div class="container">
     <div class="section-header">
       <h2>The Live Hub</h2>
@@ -269,12 +269,10 @@
     <div class="live-grid">
       <div class="live-player-card card-twitch">
         <div class="player-header">
-          <span class="live-status pulse">Live</span>
-          <div class="live-stats">
-          </div>
+          <span id="tw-status" class="live-status offline">Checking...</span>
         </div>
         <div class="video-container">
-          <iframe src="https://player.twitch.tv/?channel=thatbishbloke&parent=thatbishbloke.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+          <iframe src="https://player.twitch.tv/?channel=thatbishbloke&parent=thatbishbloke.com" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
         </div>
         <div class="live-meta">
           <h3>Twitch Stream</h3>
@@ -284,12 +282,10 @@
 
       <div class="live-player-card card-youtube">
         <div class="player-header">
-          <span class="live-status offline">Offline</span>
-          <div class="live-stats">
-          </div>
+          <span id="yt-status" class="live-status offline">Checking...</span>
         </div>
         <div class="video-container">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/live_stream?channel=UCVp3N2Z_5lX4vXFf-E6_H0A" title="YouTube live player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/live_stream?channel=UCVp3N2Z_5lX4vXFf-E6_H0A" frameborder="0" allowfullscreen></iframe>
         </div>
         <div class="live-meta">
           <h3>YouTube Live</h3>
@@ -299,12 +295,14 @@
 
       <div class="live-player-card card-tiktok">
         <div class="player-header">
-          <span class="live-status pulse">Live</span>
+          <span id="tt-status" class="live-status offline">Checking...</span>
         </div>
-        <div class="tiktok-placeholder">
-          <img src="assets/social logos/TTLogo.png" alt="TikTok">
-          <p>TikTok doesn't allow external video embeds.</p>
-          <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="btn primary">Watch on TikTok</a>
+        <div class="tiktok-live-fallback">
+          <div class="tiktok-logo-overlay">
+            <img src="assets/social logos/TTLogo.png" alt="TikTok">
+          </div>
+          <p>TikTok doesn't allow external video players.</p>
+          <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="btn primary">Open TikTok Live</a>
         </div>
         <div class="live-meta">
           <h3>TikTok Live</h3>
@@ -591,6 +589,54 @@
 
   document.addEventListener('DOMContentLoaded', fetchLiveStats);
   setInterval(fetchLiveStats, 60000);
+
+async function updateLiveHub() {
+    // 1. TWITCH CHECK (Using Decapi)
+    try {
+        const response = await fetch('https://api.decapi.me/twitch/uptime/thatbishbloke');
+        const uptime = await response.text();
+        const twStatus = document.getElementById('tw-status');
+        
+        if (uptime.includes("offline")) {
+            twStatus.innerText = "Offline";
+            twStatus.className = "live-status offline";
+        } else {
+            twStatus.innerText = "Live";
+            twStatus.className = "live-status pulse";
+        }
+    } catch (e) { console.error("Twitch check failed"); }
+
+    // 2. YOUTUBE CHECK (Smart Detection)
+    try {
+        const ytChannelId = 'UCVp3N2Z_5lX4vXFf-E6_H0A';
+        // We fetch the embed page; if you are live, the "canonical" link changes
+        const ytResp = await fetch(`https://www.youtube.com/embed/live_stream?channel=${UCVp3N2Z_5lX4vXFf-E6_H0A}`);
+        const html = await ytResp.text();
+        const ytStatus = document.getElementById('yt-status');
+        
+        // If the live stream embed contains a "VIDEO_ID", you are likely live
+        if (html.includes("LIVE_STREAM_OFFLINE")) {
+            ytStatus.innerText = "Offline";
+            ytStatus.className = "live-status offline";
+        } else {
+            ytStatus.innerText = "Live";
+            ytStatus.className = "live-status pulse";
+        }
+    } catch (e) { 
+        document.getElementById('yt-status').innerText = "Check Stream";
+    }
+
+    // 3. TIKTOK CHECK
+    // TikTok prevents automated "Status" checks. 
+    // Best strategy: Default to "View Live" to encourage clicks, or "Active"
+    const ttStatus = document.getElementById('tt-status');
+    ttStatus.innerText = "Check Live";
+    ttStatus.className = "live-status pulse"; 
+}
+
+updateLiveHub();
+setInterval(updateLiveHub, 60000); // Check every minute
+
 </script>
 
 </body>
