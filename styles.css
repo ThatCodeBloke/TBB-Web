@@ -214,11 +214,14 @@ a:hover { opacity: 0.8; }
 /* Make the live counter box stand out */
 .live-counter {
   margin: 1rem 0;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 12px;
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* This centers the text horizontally */
+  justify-content: center;
+  text-align: center;     /* Ensures multi-line text stays centered */
 }
 
 .stat-value {
@@ -430,11 +433,11 @@ a:hover { opacity: 0.8; }
 
 /* --- DUAL STAT STYLING --- */
 .stat-divider {
+  width: 40px;            /* Gives the line a fixed width */
   height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  margin: 1rem 0;
-  width: 40%;
-  margin-left: 30%;
+  background: var(--border-subtle);
+  margin: 0.75rem auto;   /* 'auto' for left/right centers it in the flex box */
+  opacity: 0.5;
 }
 
 @media (max-width: 768px) {
