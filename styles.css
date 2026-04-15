@@ -657,10 +657,10 @@ a:hover { opacity: 0.8; }
 }
 
 .live-status.pulse {
-  background: #ff0000;
-  color: #ffffff;
-  box-shadow: 0 0 0 rgba(255, 0, 0, 0.4);
-  animation: pulse-red 2s infinite;
+    background: #ff0000 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    animation: pulse-red 2s infinite;
 }
 
 /* Offline Styling */
@@ -685,13 +685,13 @@ a:hover { opacity: 0.8; }
 /* Visual Feedback for Offline Players */
 .live-player-card:has(.offline) iframe,
 .live-player-card:has(.offline) .tiktok-live-fallback {
-    filter: grayscale(1) opacity(0.4);
-    pointer-events: none;
+    filter: grayscale(1) opacity(0.3);
 }
 
-.live-player-card:has(.pulse):hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+.live-player-card:has(.pulse):hover,
+  .live-player-card:has(.pulse) iframe {
+    filter: none !important;
+    opacity: 1 !important;
 }
 
 /* Red Pulse for Live */
@@ -703,7 +703,7 @@ a:hover { opacity: 0.8; }
 
 /* Muted Gray for Offline */
 .live-status.offline {
-    background: #334155 !important; /* Dark Slate Gray */
+    background: #334155 !important;
     color: #94a3b8 !important;
     animation: none !important;
     box-shadow: none !important;
