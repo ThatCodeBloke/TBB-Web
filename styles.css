@@ -1,13 +1,8 @@
-/* --- RESET & GLOBAL --- */
-*,
-*::before,
-*::after { 
-  box-sizing: border-box; 
-}
+/* --- 1. RESET & GLOBAL VARIABLES --- */
+*, *::before, *::after { box-sizing: border-box; }
 
 :root {
   --bg: #020617;
-  --bg-alt: #020617;
   --card-bg: rgba(2, 6, 23, 0.9);
   --accent: #38bdf8;
   --text: #e5f0ff;
@@ -17,909 +12,112 @@
   --radius-lg: 18px;
   --radius-pill: 999px;
   --container-width: 1120px;
+  /* TikTok Specific Colors */
+  --tt-pink: #fe2c55;
+  --tt-cyan: #25f4ee;
 }
 
 html, body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .12), transparent 45%), #020617;
+  background: radial-gradient(circle at 30% -10%, rgba(56, 189, 248, .12), transparent 45%), var(--bg);
   line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
-/* --- LINKS --- */
-a {
-  color: #ffffff !important;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
+a { color: #fff !important; text-decoration: none; transition: 0.2s ease; }
 a:hover { opacity: 0.8; }
 
-/* --- CONTAINER & SECTIONS --- */
-.container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 1.4rem;
-}
-
+/* --- 2. LAYOUT COMPONENTS --- */
+.container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
 .section { padding: 4rem 0; }
 .section-alt { padding: 4rem 0; background: rgba(2, 6, 23, 0.6); }
+.section-header { margin-bottom: 2rem; text-align: left; }
+.section-lead { color: var(--muted); max-width: 44rem; font-size: 1.1rem; }
 
-.section-header { margin-bottom: 2rem; }
-.section-lead { color: var(--muted); max-width: 44rem; }
-.hint { color: rgba(156, 163, 175, 0.9); margin-top: .6rem; font-size: .9rem; }
+.two-column { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.4rem; align-items: start; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
 
-/* --- GRID LAYOUTS --- */
-.two-column {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 2.4rem;
-  align-items: start;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-  gap: 1rem;
-  align-items: start;
-}
-
-.watch-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-/* --- HEADER --- */
+/* --- 3. HEADER & HERO --- */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
+  position: sticky; top: 0; z-index: 20;
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
   background: rgba(2, 6, 23, 0.7);
 }
-
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: .9rem 0;
-}
-
+.header-inner { display: flex; justify-content: space-between; align-items: center; padding: .9rem 0; }
 .logo { display: flex; align-items: center; gap: .65rem; }
-.logo-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  border: 2px solid rgba(56, 189, 248, .4);
-  box-shadow: 0 0 22px rgba(56, 189, 248, .55);
-  object-fit: cover;
-}
-
+.logo-img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border-subtle); box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
 .site-nav { display: flex; gap: 1.3rem; font-size: .9rem; }
-.site-nav a { color: var(--text) !important; border-bottom: 2px solid transparent; }
-.site-nav a:hover { border-color: var(--accent); }
 
-/* --- HERO --- */
 .hero { padding: 4.5rem 0 3rem; }
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 2.6rem;
-  align-items: center;
-}
+.hero-inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.6rem; align-items: center; }
+.btn { padding: .6rem 1.4rem; border-radius: var(--radius-pill); cursor: pointer; display: inline-block; font-weight: 600; }
+.btn.primary { background: linear-gradient(135deg, #38bdf8, #1d4ed8); color: #020617 !important; }
+.btn.ghost { border: 1px solid var(--border-subtle); background: rgba(2, 6, 23, .85); }
 
-.hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 1.2rem; }
-
-.btn {
-  padding: .55rem 1.3rem;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  font-size: .9rem;
-  cursor: pointer;
-  display: inline-block;
-}
-
-.btn.primary { background: linear-gradient(135deg, #38bdf8, #1d4ed8); color: #020617; }
-.btn.ghost { border: 1px solid var(--border-subtle); background: rgba(2, 6, 23, .85); color: var(--text); }
-
-/* --- UNIVERSAL CARD STYLES --- */
-.watch-card, 
-.about-card, 
-.community-card, 
-.contact-card, 
-.hero-card {
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
-  box-shadow: var(--shadow-soft);
-}
-
-.watch-card {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2.5rem 1.5rem;
-    min-height: 420px;
-    border-radius: var(--radius-lg);
-    background: var(--card-bg);
-    border: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-soft);
-    justify-content: space-between;
-    height: 100%;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-.watch-card:hover { transform: translateY(-5px); }
-.watch-card h3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    margin-top: 0;
-}
-
-.title-icon {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-}
-
-.card-icon {
-    position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.15); /* Light glass effect */
-    backdrop-filter: blur(5px);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.card-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* Adds punch to the logo */
-}
-
-/* Hover effect: Make the logo pop when the card is hovered */
-.watch-card:hover .card-icon {
-    transform: scale(1.1) rotate(5deg);
-    opacity: 1;
-}
-
-/* Mobile tweak */
-@media (max-width: 480px) {
-    .card-icon {
-        width: 30px;
-        height: 30px;
-        top: 1rem;
-        right: 1rem;
-    }
-}
-
-/* Make the live counter box stand out */
-.live-counter {
-  margin: 1rem 0;
-  padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;    /* Centers the stats horizontally */
-  justify-content: center;
-  text-align: center;
-  width: 100%;            /* Forces the box to stretch back to full card width */
-  box-sizing: border-box; /* Ensures padding doesn't push the box out of the card */
-}
-
-.stat-value {
-  display: block;
-  font-size: 2rem;
-  font-weight: 900;
-  color: #fff;
-  font-family: monospace;
-}
-
-/* --- STAT STYLES FOR CARDS --- */
-.stat-row {
-  display: flex;
-  gap: 1rem;
-  margin: 1rem 0;
-  justify-content: center;
-  flex-grow: 1; /* Pushes button to bottom */
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 80px;
-}
-
-.stat-number {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #fff;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--accent);
-}
-
-.chip-row {
-  width: 100%;
-  margin-top: auto;
-}
-
-.total-stats-banner {
-  text-align: center;
-  margin-top: 3.5rem;
-  font-size: 1.1rem;
-  color: var(--text);
-  padding: 2.5rem;
-  background: rgba(56, 189, 248, 0.05);
-  border-radius: var(--radius-lg);
-  border: 1px dashed var(--border-subtle);
-}
-
-.total-stats-banner .stat-number {
-  display: inline;
-  font-size: 2.2rem;
-  color: var(--accent);
-  margin: 0 0.4rem;
-}
-
-/* --- CHARACTER CARDS --- */
-.char-card {
-  display: block;
-  padding: .8rem 1rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  background: var(--card-bg);
-  box-shadow: var(--shadow-soft);
-}
-.char-card[open] { padding: 1.1rem 1.25rem; animation: fadeIn 0.2s ease-in-out; }
+/* --- 4. CHARACTER CARDS --- */
+.char-card { padding: .8rem 1rem; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); background: var(--card-bg); margin-bottom: 0.5rem; }
 .char-card summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: .75rem; }
-.char-head h3 { font-size: 14px; margin: 0; }
-.char-card summary::after { content: "▾"; margin-left: auto; color: var(--muted); }
-.char-avatar {
-  width: 44px; height: 44px;
-  border-radius: 999px;
-  object-fit: cover;
-  border: 2px solid var(--border-subtle);
-}
+.char-avatar { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--border-subtle); object-fit: cover; }
+.char-card[open] { padding: 1.1rem; }
 
-/* --- CONTACT FORM --- */
-.merged-card {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 3rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  text-align: center;
-}
-.contact-form { display: flex; flex-direction: column; gap: 1.2rem; max-width: 600px; margin: 0 auto; }
-.field { display: flex; flex-direction: column; gap: 0.5rem; text-align: left; }
-.field input, .field textarea {
-  width: 100%;
-  background: rgba(2, 6, 23, 0.96);
-  color: var(--text);
-  border-radius: 10px;
-  border: 1px solid var(--border-subtle);
-  padding: 0.7rem;
-}
+/* --- 5. LIVE HUB & VIDEO CARDS --- */
+.live-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem; }
+.live-player-card { background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
 
-/* --- BRAND COLOR CARDS --- */
-.card-youtube { background: linear-gradient(145deg, #cc0000, #1a1a1a); border-color: #ff4d4d; }
-.card-tiktok { background: linear-gradient(145deg, #000000, #1a1a1a); border: 1px solid #25F4EE !important; box-shadow: -3px 0 0 #FE2C55, 3px 0 0 #25F4EE, var(--shadow-soft); }
-.card-instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); border-color: #ff9dcc; }
-.card-facebook { background: linear-gradient(145deg, #1877F2, #0a3d82); border-color: #4c9aff; }
-.card-twitch { background: linear-gradient(145deg, #9146FF, #3c1c70); border-color: #b18cff; }
-.card-threads { background: #111; border-color: #fff; }
-.card-threads .card-icon {
-    background: rgba(0, 0, 0, 0.6); 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
+.player-header { padding: 1rem; display: flex; justify-content: space-between; background: rgba(255, 255, 255, 0.03); }
+.live-status { padding: 0.2rem 0.8rem; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+.live-status.pulse { background: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); animation: pulse-red 2s infinite; }
+.live-status.offline { background: #334155; color: #94a3b8; }
 
-/* --- FOOTER --- */
-.site-footer { padding: 2rem 0; border-top: 1px solid var(--border-subtle); font-size: 0.9rem; }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; }
-.footer-links { display: flex; gap: 1.5rem; }
+.video-container { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* TikTok Custom Brand Look */
+.tiktok-terminal {
+  background: #010101 !important;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-bottom: 2px solid var(--tt-cyan); height: 480px; position: relative;
+}
+.tt-logo-main { width: 80px; filter: drop-shadow(0 0 10px var(--tt-cyan)); margin-bottom: 15px; animation: tt-float 3s ease-in-out infinite; }
+.btn-tt-join { background: var(--tt-cyan); color: #000 !important; padding: 10px 25px; border-radius: 4px; font-weight: 800; box-shadow: 3px 3px 0 var(--tt-pink); }
+.terminal-text { font-family: monospace; color: var(--tt-cyan); font-size: 0.75rem; margin-top: 8px; opacity: 0.8; }
+
+/* --- 6. WATCH & PLATFORM CARDS --- */
+.watch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+.watch-card { padding: 2rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); background: var(--card-bg); text-align: center; display: flex; flex-direction: column; transition: 0.3s ease; }
+.watch-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+.live-counter { margin: 1rem 0; padding: 1rem; background: rgba(0, 0, 0, 0.3); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); }
+.stat-value { font-size: 1.8rem; font-weight: 900; color: #fff; display: block; font-family: monospace; }
+.stat-label { font-size: 0.7rem; text-transform: uppercase; color: var(--muted); letter-spacing: 1px; }
+.stat-divider { width: 30px; height: 1px; background: var(--border-subtle); margin: 0.5rem auto; }
+
+/* Platform Specific Gradients */
+.card-youtube { background: linear-gradient(145deg, #cc0000, #1a1a1a); }
+.card-twitch { background: linear-gradient(145deg, #9146FF, #1a1a1a); }
+.card-amazon { background: linear-gradient(145deg, #FF9900, #232F3E); }
+.card-tiktok { background: #000; border-color: var(--tt-cyan); box-shadow: -3px 0 0 var(--tt-pink), 3px 0 0 var(--tt-cyan); }
+
+/* --- 7. MERCH SECTION --- */
+.merch-section { padding: 6rem 0; background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.05)); text-align: center; }
+.merch-card-placeholder {
+  max-width: 450px; margin: 0 auto; padding: 3rem;
+  background: var(--card-bg); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); backdrop-filter: blur(10px);
+}
+.status-tag { display: inline-block; padding: 6px 16px; background: var(--accent); color: #000; font-weight: 800; border-radius: var(--radius-pill); margin: 1rem 0; }
+.loading-bar-container { width: 200px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 1rem auto; overflow: hidden; }
+.loading-bar-fill { width: 65%; height: 100%; background: var(--accent); animation: shimmer 2s infinite ease-in-out; }
+
+/* --- 8. ANIMATIONS & MEDIA QUERIES --- */
+@keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); } }
+@keyframes tt-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes shimmer { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
 @media (max-width: 960px) {
   .two-column, .hero-inner { grid-template-columns: 1fr; }
   .site-nav { display: none; }
-}
-
-.live-counter {
-  margin: 1rem 0;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stat-value {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--accent);
-  font-family: monospace; /* Gives it a "digital counter" feel */
-}
-
-.stat-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--muted);
-}
-
-.live-counter {
-  margin: 1rem 0;
-  padding: 0.6rem;
-  background: rgba(0, 0, 0, 0.3); /* Darker background for contrast */
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stat-value {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: #fff; /* White looks best against brand backgrounds */
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-.community-highlight {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(2, 6, 23, 0.8));
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 4rem 2rem;
-  text-align: center;
-  margin-top: 4rem; /* Ensuring gap after Amazon */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  overflow: hidden; /* Prevents box shadow/gradients from breaking the page width */
-}
-
-.community-highlight h2 {
-  margin-bottom: 2.5rem;
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--accent);
-  opacity: 0.9;
-}
-
-.highlight-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.highlight-value {
-  display: block;
-  font-size: 3.5rem; /* Slightly larger for impact */
-  font-weight: 900;
-  color: #fff;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-.highlight-label {
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 4px;
-  color: var(--muted);
-}
-
-/* --- DUAL STAT STYLING --- */
-.stat-divider {
-  width: 40px;
-  height: 1px;
-  background: var(--border-subtle);
-  margin: 0.75rem auto;
-  opacity: 0.5;
-}
-
-@media (max-width: 768px) {
-  .highlight-grid { 
-    grid-template-columns: 1fr; 
-    gap: 3rem; 
-  }
-  .highlight-value { 
-    font-size: 3rem; 
-  }
-  .community-highlight {
-    padding: 3rem 1.5rem;
-  }
-}
-
-.amazon-full-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem; /* Padding between row 2 and 3 */
-  padding-bottom: 2rem;
-}
-
-/* --- AMAZON BRANDED CARD (Gradient Style) --- */
-.card-amazon { 
-  background: linear-gradient(145deg, #FF9900, #232F3E); 
-  border-color: #ffb347; /* Lighter orange border to make it pop */
-}
-
-/* Make the title and stats white to stand out against the gradient background */
-.card-amazon h3, 
-.card-amazon .stat-value {
-  color: #ffffff !important;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-/* Ensure the label is readable against the dark part of the gradient */
-.card-amazon .stat-label {
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.4;
-  padding: 0 5px;
-  font-size: 0.7rem;
-}
-
-/* Hover Effect */
-.card-amazon:hover {
-  border-color: #ffffff !important;
-  box-shadow: 0 0 25px rgba(255, 153, 0, 0.4);
-}
-
-/* Button behavior inside Amazon card */
-.card-amazon .chip-link:hover {
-  background: #ffffff !important;
-  color: #232F3E !important;
-  border-color: #ffffff !important;
-}
-
-.centered-card {
-  max-width: 400px;
-  width: 100%;
-}
-
-/* Adjusting the grid to handle 3 items nicely */
-.watch-stream-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-/* --- LIVE HUB GRID --- */
-.live-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.live-player-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Aspect Ratio for Videos */
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* Forces TikTok card into the 16:9 rectangle shape */
-.tiktok-visual-hub {
-  background: radial-gradient(circle at center, #1a1a1a, #000);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.tt-content {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.tt-logo-small {
-  width: 40px;
-  filter: drop-shadow(0 0 10px rgba(37, 244, 238, 0.4));
-}
-
-.btn-tt-join {
-  background: #25F4EE;
-  color: #000 !important;
-  padding: 8px 20px;
-  border-radius: var(--radius-pill);
-  font-weight: 800;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  transition: transform 0.2s ease;
-}
-
-.btn-tt-join:hover {
-  transform: scale(1.05);
-  background: #ffffff;
-}
-
-/* Fix for the blank space/height issue */
-.live-player-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.live-meta {
-  flex-grow: 1; /* Pushes everything to align at the bottom */
-}
-
-/* TikTok Placeholder specifically */
-.tiktok-placeholder {
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  padding: 2rem;
-  text-align: center;
-}
-
-.tiktok-placeholder img { width: 40px; margin-bottom: 1rem; }
-
-/* TikTok Fallback Box */
-.tiktok-fallback {
-  width: 100%;
-  height: 315px;
-  background: radial-gradient(circle at center, #1a1a1a, #000);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  text-align: center;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.tt-icon-glow img {
-  width: 50px;
-  margin-bottom: 1rem;
-  filter: drop-shadow(0 0 15px rgba(37, 244, 238, 0.6));
-}
-
-.tiktok-logo-overlay img {
-  width: 50px;
-  margin-bottom: 1rem;
-  filter: drop-shadow(0 0 10px rgba(37, 244, 238, 0.4));
-}
-
-/* Status Badges */
-.player-header {
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.live-status {
-  padding: 0.2rem 0.8rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.live-status.pulse {
-    background: #ff0000 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    animation: pulse-red 2s infinite;
-}
-
-/* Offline Styling */
-.live-status.offline {
-  background: #334155 !important;
-  color: #94a3b8 !important;
-  animation: none !important;
-  box-shadow: none !important;
-}
-
-@keyframes pulse-red {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-}
-
-.live-meta { padding: 1.5rem; }
-.live-meta h3 { margin: 0 0 0.5rem 0; font-size: 1.1rem; }
-.live-meta p { font-size: 0.9rem; color: var(--muted); margin: 0; }
-
-/* Gray out the player card when offline */
-/* Visual Feedback for Offline Players */
-.live-player-card:has(.offline) iframe,
-.live-player-card:has(.offline) .tiktok-live-fallback {
-    filter: grayscale(1) opacity(0.3);
-}
-
-.live-player-card:has(.pulse):hover,
-  .live-player-card:has(.pulse) iframe {
-    filter: none !important;
-    opacity: 1 !important;
-}
-
-/* Red Pulse for Live */
-.live-status.pulse {
-    background: #ff0000 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-}
-
-/* Muted Gray for Offline */
-.live-status.offline {
-    background: #334155 !important;
-    color: #94a3b8 !important;
-    animation: none !important;
-    box-shadow: none !important;
-}
-
-#twitch-embed iframe {
-    width: 100% !important;
-    aspect-ratio: 16 / 9;
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-/* Ensure the SDK container doesn't create extra gaps */
-#twitch-embed {
-    width: 100%;
-    line-height: 0;
-}
-
-/* TikTok Terminal Card Styling */
-.tiktok-terminal {
-    background: #000 !important;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid #25F4EE;
-    height: 480px; /* Matches the new Twitch height */
-}
-
-/* The scanning line that moves up and down */
-.scanline {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: rgba(37, 244, 238, 0.3);
-    opacity: 0.5;
-    animation: scan 4s linear infinite;
-    z-index: 2;
-}
-
-/* Old school monitor flicker effect */
-.terminal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.15),
-        rgba(0, 0, 0, 0.15) 1px,
-        transparent 1px,
-        transparent 2px
-    );
-    pointer-events: none;
-    z-index: 3;
-}
-
-.terminal-text {
-    font-family: 'Courier New', Courier, monospace;
-    color: #25F4EE;
-    font-size: 0.8rem;
-    margin-top: 10px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 5px #25F4EE;
-    opacity: 0.8;
-}
-
-.tt-logo-main {
-    width: 80px;
-    filter: drop-shadow(0 0 10px #25F4EE);
-    margin-bottom: 20px;
-}
-
-@keyframes scan {
-    0% { top: 0%; }
-    100% { top: 100%; }
-}
-
-/* Make the Join button "Pop" more on this card */
-.btn-tt-join {
-    margin-top: 25px;
-    padding: 12px 25px;
-    background: #25F4EE;
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: 0.3s;
-    display: inline-block;
-    border: 2px solid transparent;
-}
-
-.btn-tt-join:hover {
-    background: transparent;
-    color: #25F4EE;
-    border-color: #25F4EE;
-    box-shadow: 0 0 15px #25F4EE;
-}
-
-/* --- TikTok Brand Styling --- */
-.tiktok-brand-view {
-    background: #010101;
-    height: 480px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-bottom: 2px solid #fe2c55;
-}
-
-.tt-neon-badge {
-    background: #fe2c55 !important;
-    color: white !important;
-    box-shadow: 0 0 10px #25f4ee;
-}
-
-.tt-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 50%, rgba(0,0,0,0.8) 100%);
-    z-index: 1;
-}
-
-.tt-logo-glow img {
-    width: 100px;
-    filter: drop-shadow(4px 0px 0px #fe2c55) drop-shadow(-4px 0px 0px #25f4ee);
-    animation: tt-float 3s ease-in-out infinite;
-}
-
-.btn-tt-neon {
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: white;
-    color: black;
-    font-weight: 900;
-    border-radius: 4px;
-    position: relative;
-    z-index: 5;
-    transition: 0.3s;
-    border: none;
-    box-shadow: 3px 3px 0px #fe2c55, -3px -3px 0px #25f4ee;
-}
-
-.btn-tt-neon:hover {
-    transform: translate(2px, 2px);
-    box-shadow: none;
-}
-
-.tt-sidebar-icons {
-    position: absolute;
-    right: 15px;
-    bottom: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    z-index: 2;
-    font-size: 1.5rem;
-}
-
-@keyframes tt-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* --- Merch Section --- */
-.merch-section {
-    padding: 80px 0;
-    background: rgba(255, 255, 255, 0.02);
-    text-align: center;
-}
-
-.merch-coming-soon {
-    max-width: 500px;
-    margin: 40px auto;
-}
-
-.merch-card-placeholder {
-    background: var(--card-bg);
-    border: 1px solid var(--border-subtle);
-    padding: 50px;
-    border-radius: var(--radius-lg);
-    position: relative;
-}
-
-.status-tag {
-    display: inline-block;
-    padding: 5px 15px;
-    background: var(--accent);
-    color: black;
-    font-weight: 800;
-    border-radius: var(--radius-pill);
-    margin: 15px 0;
-}
-
-.loading-bar-container {
-    width: 100%;
-    height: 6px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    margin-top: 20px;
-    overflow: hidden;
-}
-
-.loading-bar-fill {
-    width: 65%;
-    height: 100%;
-    background: var(--accent);
-    box-shadow: 0 0 15px var(--accent);
-    animation: loading-pulse 2s ease-in-out infinite;
-}
-
-@keyframes loading-pulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
 }
