@@ -720,3 +720,88 @@ a:hover { opacity: 0.8; }
     width: 100%;
     line-height: 0;
 }
+
+/* TikTok Terminal Card Styling */
+.tiktok-terminal {
+    background: #000 !important;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #25F4EE;
+    height: 480px; /* Matches the new Twitch height */
+}
+
+/* The scanning line that moves up and down */
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(37, 244, 238, 0.3);
+    opacity: 0.5;
+    animation: scan 4s linear infinite;
+    z-index: 2;
+}
+
+/* Old school monitor flicker effect */
+.terminal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 3;
+}
+
+.terminal-text {
+    font-family: 'Courier New', Courier, monospace;
+    color: #25F4EE;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px #25F4EE;
+    opacity: 0.8;
+}
+
+.tt-logo-main {
+    width: 80px;
+    filter: drop-shadow(0 0 10px #25F4EE);
+    margin-bottom: 20px;
+}
+
+@keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+/* Make the Join button "Pop" more on this card */
+.btn-tt-join {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: #25F4EE;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: 0.3s;
+    display: inline-block;
+    border: 2px solid transparent;
+}
+
+.btn-tt-join:hover {
+    background: transparent;
+    color: #25F4EE;
+    border-color: #25F4EE;
+    box-shadow: 0 0 15px #25F4EE;
+}

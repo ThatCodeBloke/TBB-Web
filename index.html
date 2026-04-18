@@ -293,17 +293,25 @@
 
       <div class="live-player-card card-tiktok">
         <div class="player-header">
-          <span id="tt-status" class="live-status pulse" style="background: #25F4EE !important; color: #000 !important;">Check Live</span>
-        </div>
-        <div class="video-container tiktok-visual-hub">
-          <div class="tt-content">
-            <img src="assets/social logos/TTLogo.png" alt="TikTok" class="tt-logo-small">
-            <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="btn-tt-join">Join the Chaos</a>
+          <span id="tt-status" class="live-status pulse" style="background: #25F4EE !important; color: #000 !important;">SIGNAL ACTIVE</span>
+      </div>
+  
+      <div class="video-container tiktok-terminal">
+        <div class="terminal-overlay"></div>
+        <div class="scanline"></div>
+    
+        <div class="tt-content">
+          <div class="glitch-wrapper">
+            <img src="assets/social logos/TTLogo.png" alt="TikTok" class="tt-logo-main">
           </div>
+          <div class="terminal-text">>> STATUS: PENDING_CONNECTION</div>
+          <div class="terminal-text">>> INTERACTION: ENABLED</div>
+          <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="btn-tt-join">ENTER LIVE ROOM</a>
         </div>
+        
         <div class="live-meta">
-          <h3>TikTok Live</h3>
-          <p>Interaction and gifts happen directly on the TikTok app.</p>
+          <h3>TikTok Live Hub</h3>
+          <p>Mobile-exclusive interaction, gifts, and vertical chaos.</p>
         </div>
       </div>
     </div>
@@ -513,7 +521,7 @@
 <script src="https://embed.twitch.tv/embed/v1.js"></script>
 
 <script>
-  // Character Card Toggle Logic
+  // --- Character Card Toggle Logic ---
   document.querySelectorAll(".char-card").forEach(card => {
     card.addEventListener("toggle", function () {
       if (card.open) {
@@ -526,7 +534,7 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Contact Form Logic
+  // --- Contact Form Logic ---
   (function () {
     const form = document.getElementById("contactForm");
     if (!form) return;
@@ -542,7 +550,7 @@
     });
   })();
 
-  // Platform Stats Logic
+  // --- Platform Stats Logic ---
   async function fetchLiveStats() {
     const platforms = [
       { id: 'yt-subs', url: 'https://api.subscribercounter.com/api/youtube/channel/UCVp3N2Z_5lX4vXFf-E6_H0A', key: 'est_sub' }, 
@@ -563,34 +571,30 @@
     });
   }
 
-  // Twitch Player Instance with Chat & Events
+  // --- Twitch Player Instance (Fullscreen + Chat + Events) ---
   var twitchPlayer;
   function initTwitch() {
     twitchPlayer = new Twitch.Embed("twitch-embed", {
       width: "100%",
-      height: 480, // Increased height to accommodate chat
+      height: 480, // Matches Terminal Height
       channel: "thatbishbloke",
-      layout: "video-with-chat", // Enables Chat
+      layout: "video-with-chat", 
       autoplay: true,
       muted: true,
       theme: "dark",
-      allowfullscreen: true, // Enables Fullscreen
+      allowfullscreen: true,
       parent: ["thatbishbloke.com"]
     });
 
-    // Event Listeners
     twitchPlayer.addEventListener(Twitch.Embed.VIDEO_READY, () => {
-      console.log("Twitch Player: Video is ready");
-    });
-
-    twitchPlayer.addEventListener(Twitch.Embed.VIDEO_PLAY, (data) => {
-      console.log("Twitch Player: Stream started playing", data.sessionId);
+      console.log("Twitch Player: Ready");
     });
   }
 
-  // Live Hub Automatic Updates
+  // --- Live Hub Automatic Updates ---
   async function updateLiveHub() {
     const timestamp = new Date().getTime();
+    let isCurrentlyLive = false;
 
     // 1. TWITCH CHECK
     try {
@@ -601,41 +605,48 @@
       if (uptime.toLowerCase().includes("offline")) {
         twStatus.innerText = "Offline";
         twStatus.className = "live-status offline";
-        // Programmatic access to pause
         if(twitchPlayer) twitchPlayer.getPlayer().pause();
       } else {
         twStatus.innerText = "Live";
         twStatus.className = "live-status pulse";
-        // Programmatic access to play
         if(twitchPlayer) twitchPlayer.getPlayer().play();
+        isCurrentlyLive = true;
       }
     } catch (e) { console.error("Twitch check failed"); }
 
     // 2. YOUTUBE CHECK
     try {
       const ytStatus = document.getElementById('yt-status');
-      const ytIframe = document.querySelector('.card-youtube iframe');
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.youtube.com/@ThatBishBloke/live')}&cb=${timestamp}`);
       const data = await response.json();
-      
       const isLive = data.contents.includes('inlineSymbol":') && data.contents.includes('style":"LIVE"');
 
       if (!isLive) {
         ytStatus.innerText = "Offline";
         ytStatus.className = "live-status offline";
       } else {
-        if (ytStatus.innerText !== "Live") {
-          ytStatus.innerText = "Live";
-          ytStatus.className = "live-status pulse";
-          ytIframe.src = ytIframe.src;
-        }
+        ytStatus.innerText = "Live";
+        ytStatus.className = "live-status pulse";
+        isCurrentlyLive = true;
       }
     } catch (e) { console.error("YouTube check failed"); }
 
-    // 3. TIKTOK STATUS (Static)
+    // 3. TIKTOK TERMINAL LOGIC
     const ttStatus = document.getElementById('tt-status');
-    ttStatus.innerText = "Check Live";
-    ttStatus.className = "live-status pulse"; 
+    const ttLines = document.querySelectorAll('.terminal-text');
+    
+    // If you're live on one platform, we change the TikTok text to "Signal Detected"
+    if (isCurrentlyLive) {
+        ttStatus.innerText = "SIGNAL DETECTED";
+        ttStatus.style.background = "#25F4EE";
+        if(ttLines.length > 0) ttLines[0].innerText = ">> STATUS: BROADCASTING_LIVE";
+        if(ttLines.length > 1) ttLines[1].innerText = ">> UPLINK: STABLE";
+    } else {
+        ttStatus.innerText = "CHECK LIVE";
+        ttStatus.style.background = "#25F4EE";
+        if(ttLines.length > 0) ttLines[0].innerText = ">> STATUS: STANDBY_MODE";
+        if(ttLines.length > 1) ttLines[1].innerText = ">> UPLINK: READY";
+    }
   }
 
   window.onload = () => {
