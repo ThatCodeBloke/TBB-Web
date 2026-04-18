@@ -721,7 +721,7 @@ a:hover { opacity: 0.8; }
     line-height: 0;
 }
 
-/* TikTok Terminal Card Styling */
+/* --- TIKTOK TERMINAL HUB --- */
 .tiktok-terminal {
     background: #000 !important;
     position: relative;
@@ -730,29 +730,23 @@ a:hover { opacity: 0.8; }
     align-items: center;
     justify-content: center;
     border-bottom: 2px solid #25F4EE;
-    height: 480px; /* Matches the new Twitch height */
+    height: 480px; 
 }
 
-/* The scanning line that moves up and down */
 .scanline {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
     background: rgba(37, 244, 238, 0.3);
     opacity: 0.5;
     animation: scan 4s linear infinite;
     z-index: 2;
 }
 
-/* Old school monitor flicker effect */
 .terminal-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: repeating-linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.15),
@@ -780,18 +774,11 @@ a:hover { opacity: 0.8; }
     margin-bottom: 20px;
 }
 
-@keyframes scan {
-    0% { top: 0%; }
-    100% { top: 100%; }
-}
-
-/* Make the Join button "Pop" more on this card */
 .btn-tt-join {
     margin-top: 25px;
     padding: 12px 25px;
     background: #25F4EE;
     color: #000;
-    text-decoration: none;
     font-weight: bold;
     border-radius: 4px;
     transition: 0.3s;
@@ -806,82 +793,16 @@ a:hover { opacity: 0.8; }
     box-shadow: 0 0 15px #25F4EE;
 }
 
-/* --- TikTok Brand Styling --- */
-.tiktok-brand-view {
-    background: #010101;
-    height: 480px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-bottom: 2px solid #fe2c55;
+@keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
 }
 
-.tt-neon-badge {
-    background: #fe2c55 !important;
-    color: white !important;
-    box-shadow: 0 0 10px #25f4ee;
-}
-
-.tt-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 50%, rgba(0,0,0,0.8) 100%);
-    z-index: 1;
-}
-
-.tt-logo-glow img {
-    width: 100px;
-    filter: drop-shadow(4px 0px 0px #fe2c55) drop-shadow(-4px 0px 0px #25f4ee);
-    animation: tt-float 3s ease-in-out infinite;
-}
-
-.btn-tt-neon {
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: white;
-    color: black;
-    font-weight: 900;
-    border-radius: 4px;
-    position: relative;
-    z-index: 5;
-    transition: 0.3s;
-    border: none;
-    box-shadow: 3px 3px 0px #fe2c55, -3px -3px 0px #25f4ee;
-}
-
-.btn-tt-neon:hover {
-    transform: translate(2px, 2px);
-    box-shadow: none;
-}
-
-.tt-sidebar-icons {
-    position: absolute;
-    right: 15px;
-    bottom: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    z-index: 2;
-    font-size: 1.5rem;
-}
-
-@keyframes tt-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* --- Merch Section --- */
+/* --- MERCH SECTION --- */
 .merch-section {
     padding: 80px 0;
     background: rgba(255, 255, 255, 0.02);
     text-align: center;
-}
-
-.merch-coming-soon {
-    max-width: 500px;
-    margin: 40px auto;
 }
 
 .merch-card-placeholder {
@@ -890,6 +811,8 @@ a:hover { opacity: 0.8; }
     padding: 50px;
     border-radius: var(--radius-lg);
     position: relative;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .status-tag {
@@ -899,7 +822,7 @@ a:hover { opacity: 0.8; }
     color: black;
     font-weight: 800;
     border-radius: var(--radius-pill);
-    margin: 15px 0;
+    margin-bottom: 15px;
 }
 
 .loading-bar-container {
