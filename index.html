@@ -563,18 +563,28 @@
     });
   }
 
-  // Twitch Player Instance
+  // Twitch Player Instance with Chat & Events
   var twitchPlayer;
   function initTwitch() {
     twitchPlayer = new Twitch.Embed("twitch-embed", {
       width: "100%",
-      height: 315,
+      height: 480, // Increased height to accommodate chat
       channel: "thatbishbloke",
-      layout: "video",
+      layout: "video-with-chat", // Enables Chat
       autoplay: true,
       muted: true,
       theme: "dark",
+      allowfullscreen: true, // Enables Fullscreen
       parent: ["thatbishbloke.com"]
+    });
+
+    // Event Listeners
+    twitchPlayer.addEventListener(Twitch.Embed.VIDEO_READY, () => {
+      console.log("Twitch Player: Video is ready");
+    });
+
+    twitchPlayer.addEventListener(Twitch.Embed.VIDEO_PLAY, (data) => {
+      console.log("Twitch Player: Stream started playing", data.sessionId);
     });
   }
 
@@ -591,10 +601,12 @@
       if (uptime.toLowerCase().includes("offline")) {
         twStatus.innerText = "Offline";
         twStatus.className = "live-status offline";
+        // Programmatic access to pause
         if(twitchPlayer) twitchPlayer.getPlayer().pause();
       } else {
         twStatus.innerText = "Live";
         twStatus.className = "live-status pulse";
+        // Programmatic access to play
         if(twitchPlayer) twitchPlayer.getPlayer().play();
       }
     } catch (e) { console.error("Twitch check failed"); }
