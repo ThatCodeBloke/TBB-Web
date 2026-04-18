@@ -721,91 +721,84 @@ a:hover { opacity: 0.8; }
     line-height: 0;
 }
 
-/* --- TIKTOK UNIFIED STYLE --- */
+/* --- TIKTOK UNIFIED STYLE 2026 --- */
 .card-tiktok {
   border: 1px solid #25F4EE !important;
-  box-shadow: -4px 0 10px rgba(254, 44, 85, 0.3), 4px 0 10px rgba(37, 244, 238, 0.3);
+  display: flex;
+  flex-direction: column;
 }
 
 .tt-badge {
-  background: #FE2C55 !important;
-  color: #fff !important;
+  background: #fe2c55 !important;
+  color: white !important;
 }
 
-.tiktok-mobile-wrapper {
+.tt-display-box {
   position: relative;
-  height: 480px; /* Matched to Twitch Player */
+  height: 480px; /* Matches Twitch Player exactly */
   background: #000;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.tt-gradient-bg {
+.tt-overlay-fx {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, #111 0%, #000 100%);
-  z-index: 1;
-}
-
-/* Reusing your scanline animation */
-.scanline {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 2px;
-  background: rgba(37, 244, 238, 0.2);
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
   z-index: 2;
-  animation: scan 4s linear infinite;
 }
 
-.tt-ui-body {
+.tt-main-content {
   position: relative;
   z-index: 5;
   text-align: center;
 }
 
-.tt-logo-float {
-  width: 70px;
+.tt-logo-glow {
+  width: 75px;
   filter: drop-shadow(0 0 15px #25F4EE);
-  animation: tt-float 3s ease-in-out infinite;
+  margin-bottom: 20px;
 }
 
-.tt-terminal-box {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 10px 20px;
+.tt-status-window {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 12px 20px;
   border-radius: 8px;
-  margin: 15px 0;
   border: 1px solid rgba(37, 244, 238, 0.2);
+  margin-bottom: 20px;
 }
 
 .btn-tt-neon {
   display: inline-block;
   background: #fff;
   color: #000 !important;
-  padding: 12px 25px;
-  border-radius: 4px;
+  padding: 12px 30px;
   font-weight: 900;
-  text-transform: uppercase;
-  box-shadow: 4px 4px 0px #FE2C55, -4px -4px 0px #25F4EE;
-  transition: 0.2s;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0px #fe2c55, -4px -4px 0px #25f4ee;
+  transition: 0.2s ease;
 }
 
 .btn-tt-neon:hover {
   transform: scale(1.05);
-  box-shadow: 2px 2px 0px #FE2C55, -2px -2px 0px #25F4EE;
+  box-shadow: 2px 2px 0px #fe2c55, -2px -2px 0px #25f4ee;
 }
 
-.tt-sidebar {
+.tt-sidebar-icons {
   position: absolute;
   right: 15px;
-  bottom: 80px;
+  bottom: 30px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  z-index: 5;
   font-size: 1.2rem;
-  opacity: 0.6;
+  opacity: 0.5;
+  z-index: 5;
 }
 
 @keyframes tt-float {
