@@ -708,3 +708,15 @@ a:hover { opacity: 0.8; }
     animation: none !important;
     box-shadow: none !important;
 }
+
+#twitch-embed iframe {
+    width: 100% !important;
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Ensure the SDK container doesn't create extra gaps */
+#twitch-embed {
+    width: 100%;
+    line-height: 0;
+}
