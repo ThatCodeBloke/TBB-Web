@@ -271,9 +271,7 @@
         <div class="player-header">
           <span id="tw-status" class="live-status offline">Offline</span>
         </div>
-        <div class="video-container">
-          <iframe src="https://player.twitch.tv/?channel=thatbishbloke&parent=thatbishbloke.com" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
-        </div>
+        <div id="twitch-embed"></div>
         <div class="live-meta">
           <h3>Twitch Stream</h3>
           <p>Join the chat and get involved in the games!</p>
@@ -312,7 +310,7 @@
   </div>
 </section>
 
-    <section id="watch" class="section section-alt">
+<section id="watch" class="section section-alt">
   <div class="container">
     <div class="section-header">
       <h2>Watch &amp; Stream</h2>
@@ -409,18 +407,19 @@
           <a class="chip-link btn ghost" target="_blank" href="https://www.threads.com/@thatbishbloke">View Threads</a>
         </div>
       </article>
-    </div> <div style="display: flex; justify-content: center; margin-top: 2rem;">
-      
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 2rem;">
       <article class="watch-card card-amazon" style="max-width: 350px; width: 100%;">
         <h3><img src="assets/social logos/AmazonLogo.png" class="title-icon" alt=""> Amazon</h3>
         <div class="live-counter">
           <span class="stat-value">Streaming</span>
-          <span class="stat-label">A list to all the bits and bobs I use for streaming for both visual and audio</span>
+          <span class="stat-label">Gear list for visuals & audio</span>
           <div class="stat-divider"></div>
           <span class="stat-value">Fishing</span>
-          <span class="stat-label">Things i think i need to become the ultimate angler… but wont..</span>
+          <span class="stat-label">Future "Pro" Angler gear</span>
         </div>
-        <p>Support the channel and the hobby via my official wishlists.</p>
+        <p>Support the channel and the hobby via my wishlists.</p>
         <div class="chip-row">
           <a class="chip-link btn ghost" target="_blank" href="https://www.amazon.co.uk/shop/thatbishbloke">View My Wishlists</a>
         </div>
@@ -447,87 +446,74 @@
   </div>
 </section>
 
-    <section id="community" class="section">
-      <div class="container two-column" style="align-items: center; gap: 4rem;">
-        <div>
-          <h2>ThatBishCommunity</h2>
-          <p class="section-lead">Welcome to ThatBishCommunity!</p>
-          <p>
-            The official hub for ThatBishBloke across TikTok, YouTube, and beyond. Join for comedy, livestreams, clips, and community chaos.
-          </p>
+<section id="community" class="section">
+  <div class="container two-column" style="align-items: center; gap: 4rem;">
+    <div>
+      <h2>ThatBishCommunity</h2>
+      <p class="section-lead">Welcome to ThatBishCommunity!</p>
+      <p>The official hub for ThatBishBloke. Join for comedy, livestreams, clips, and community chaos.</p>
 
-          <div style="margin: 2rem 0;">
-            <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;">Inside the server:</h3>
-            <ul class="tick-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.95rem;">
-              <li>Chat with Bish &amp; regulars</li>
-              <li>Behind-the-scenes bits</li>
-              <li>Stream updates &amp; events</li>
-              <li>Character &amp; sketch ideas</li>
-            </ul>
-          </div>
-
-          <a class="btn primary" href="https://discord.gg/HPK7kQ459s" target="_blank" rel="noopener noreferrer">
-            Join Our Discord
-          </a>
-        </div>
-
-        <aside class="community-widget-wrapper" style="width: 100%; max-width: 400px; padding: 0; overflow: hidden; background: transparent; border: none;">
-          <iframe
-            src="https://discord.com/widget?id=1373033379045310595&theme=dark"
-            width="100%"
-            height="500"
-            allowtransparency="true"
-            frameborder="0"
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-            style="border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-soft);">
-          </iframe>
-        </aside>
+      <div style="margin: 2rem 0;">
+        <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;">Inside the server:</h3>
+        <ul class="tick-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.95rem;">
+          <li>Chat with Bish &amp; regulars</li>
+          <li>Behind-the-scenes bits</li>
+          <li>Stream updates &amp; events</li>
+          <li>Character &amp; sketch ideas</li>
+        </ul>
       </div>
-    </section>
 
-    <section id="contact" class="section section-alt">
-      <div class="container">
-        <div class="contact-card merged-card">
-          <div class="section-header">
-            <h2>Contact &amp; Collabs</h2>
-            <p class="section-lead">Open for collaborations across acting, character work, branded content, and more.</p>
-            <p style="margin-bottom: 2rem; color: var(--muted);">
-              The more context you share regarding project details and timeline, the better we can make it.
-            </p>
-          </div>
-
-          <form class="contact-form" id="contactForm">
-            <div class="field">
-              <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" required />
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" required />
-            </div>
-            <div class="field">
-              <label for="message">Message</label>
-              <textarea id="message" rows="5" placeholder="Tell me about your project, timeline, and ideas..." required></textarea>
-            </div>
-            <button type="submit" class="btn primary btn-full">Send Collaboration Request</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>&copy; <span id="year"></span> ThatBishBloke</span>
-      <div class="footer-links">
-        <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/thatbishbloke/">Instagram</a>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@thatbishbloke">TikTok</a>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@ThatBishBloke">YouTube</a>
-      </div>
+      <a class="btn primary" href="https://discord.gg/HPK7kQ459s" target="_blank" rel="noopener noreferrer">Join Our Discord</a>
     </div>
-  </footer>
+
+    <aside class="community-widget-wrapper" style="width: 100%; max-width: 400px;">
+      <iframe src="https://discord.com/widget?id=1373033379045310595&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-soft);"></iframe>
+    </aside>
+  </div>
+</section>
+
+<section id="contact" class="section section-alt">
+  <div class="container">
+    <div class="contact-card merged-card">
+      <div class="section-header">
+        <h2>Contact &amp; Collabs</h2>
+        <p class="section-lead">Open for collaborations across acting, character work, and branded content.</p>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="btn primary btn-full">Send Collaboration Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>&copy; <span id="year"></span> ThatBishBloke</span>
+    <div class="footer-links">
+      <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/thatbishbloke/">Instagram</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@thatbishbloke">TikTok</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@ThatBishBloke">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://embed.twitch.tv/embed/v1.js"></script>
 
 <script>
+  // Character Card Toggle Logic
   document.querySelectorAll(".char-card").forEach(card => {
     card.addEventListener("toggle", function () {
       if (card.open) {
@@ -540,6 +526,7 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // Contact Form Logic
   (function () {
     const form = document.getElementById("contactForm");
     if (!form) return;
@@ -555,6 +542,7 @@
     });
   })();
 
+  // Platform Stats Logic
   async function fetchLiveStats() {
     const platforms = [
       { id: 'yt-subs', url: 'https://api.subscribercounter.com/api/youtube/channel/UCVp3N2Z_5lX4vXFf-E6_H0A', key: 'est_sub' }, 
@@ -568,90 +556,82 @@
     platforms.forEach(async (p) => {
       try {
         const response = await fetch(p.url);
-        if (!response.ok) throw new Error();
-        
         const data = await response.json();
         const count = data[p.key];
-        
-        if (count !== undefined) {
-          document.getElementById(p.id).innerText = count.toLocaleString();
-        }
-      } catch (e) {
-        console.error(`Error loading ${p.id}`);
-        // Only show text if the API actually fails
-        if(document.getElementById(p.id).innerText === "--") {
-             document.getElementById(p.id).innerText = "Live";
-        }
-      }
+        if (count !== undefined) document.getElementById(p.id).innerText = count.toLocaleString();
+      } catch (e) { console.error(`Error loading ${p.id}`); }
     });
   }
 
-  document.addEventListener('DOMContentLoaded', fetchLiveStats);
-  setInterval(fetchLiveStats, 60000);
+  // Twitch Player Instance
+  var twitchPlayer;
+  function initTwitch() {
+    twitchPlayer = new Twitch.Embed("twitch-embed", {
+      width: "100%",
+      height: 315,
+      channel: "thatbishbloke",
+      layout: "video",
+      autoplay: true,
+      muted: true,
+      theme: "dark",
+      parent: ["thatbishbloke.com"]
+    });
+  }
 
-async function updateLiveHub() {
-    const timestamp = new Date().getTime(); // Prevents browser caching
+  // Live Hub Automatic Updates
+  async function updateLiveHub() {
+    const timestamp = new Date().getTime();
 
     // 1. TWITCH CHECK
     try {
-        const twStatus = document.getElementById('tw-status');
-        const twIframe = document.querySelector('.card-twitch iframe');
-        
-        // Fetching with a cache-buster
-        const response = await fetch(`https://api.decapi.me/twitch/uptime/thatbishbloke?cb=${timestamp}`);
-        const uptime = await response.text();
-        
-        if (uptime.toLowerCase().includes("offline")) {
-            twStatus.innerText = "Offline";
-            twStatus.className = "live-status offline";
-        } else {
-            // Update to Live if not already
-            if (twStatus.innerText !== "Live") {
-                twStatus.innerText = "Live";
-                twStatus.className = "live-status pulse";
-                twIframe.src = twIframe.src; // Reload player to start stream
-            }
-        }
-    } catch (e) { console.error("Twitch check failed", e); }
+      const response = await fetch(`https://api.decapi.me/twitch/uptime/thatbishbloke?cb=${timestamp}`);
+      const uptime = await response.text();
+      const twStatus = document.getElementById('tw-status');
+      
+      if (uptime.toLowerCase().includes("offline")) {
+        twStatus.innerText = "Offline";
+        twStatus.className = "live-status offline";
+        if(twitchPlayer) twitchPlayer.getPlayer().pause();
+      } else {
+        twStatus.innerText = "Live";
+        twStatus.className = "live-status pulse";
+        if(twitchPlayer) twitchPlayer.getPlayer().play();
+      }
+    } catch (e) { console.error("Twitch check failed"); }
 
     // 2. YOUTUBE CHECK
     try {
-        const ytStatus = document.getElementById('yt-status');
-        const ytIframe = document.querySelector('.card-youtube iframe');
-        
-        // Checking the live page via a more reliable proxy
-        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.youtube.com/@ThatBishBloke/live')}&cb=${timestamp}`);
-        const data = await response.json();
-        
-        // YouTube outputs specific strings when a channel is truly live
-        const isLive = data.contents.includes('inlineSymbol":') && data.contents.includes('style":"LIVE"');
+      const ytStatus = document.getElementById('yt-status');
+      const ytIframe = document.querySelector('.card-youtube iframe');
+      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.youtube.com/@ThatBishBloke/live')}&cb=${timestamp}`);
+      const data = await response.json();
+      
+      const isLive = data.contents.includes('inlineSymbol":') && data.contents.includes('style":"LIVE"');
 
-        if (!isLive) {
-            ytStatus.innerText = "Offline";
-            ytStatus.className = "live-status offline";
-        } else {
-            if (ytStatus.innerText !== "Live") {
-                ytStatus.innerText = "Live";
-                ytStatus.className = "live-status pulse";
-                ytIframe.src = ytIframe.src;
-            }
+      if (!isLive) {
+        ytStatus.innerText = "Offline";
+        ytStatus.className = "live-status offline";
+      } else {
+        if (ytStatus.innerText !== "Live") {
+          ytStatus.innerText = "Live";
+          ytStatus.className = "live-status pulse";
+          ytIframe.src = ytIframe.src;
         }
-    } catch (e) { console.error("YouTube check failed", e); }
+      }
+    } catch (e) { console.error("YouTube check failed"); }
 
-    // 3. TIKTOK STATUS (Static Manual Check)
+    // 3. TIKTOK STATUS (Static)
     const ttStatus = document.getElementById('tt-status');
     ttStatus.innerText = "Check Live";
-    ttStatus.style.background = "#25F4EE";
-    ttStatus.style.color = "#000";
     ttStatus.className = "live-status pulse"; 
-}
+  }
 
-// Initial run
-updateLiveHub();
-// Check every 60 seconds
-setInterval(updateLiveHub, 60000);
-
+  window.onload = () => {
+    initTwitch();
+    fetchLiveStats();
+    updateLiveHub();
+    setInterval(updateLiveHub, 60000);
+  };
 </script>
-
 </body>
 </html>
