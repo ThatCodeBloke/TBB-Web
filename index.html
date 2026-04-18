@@ -521,7 +521,7 @@
 <script src="https://embed.twitch.tv/embed/v1.js"></script>
 
 <script>
-  // --- Character Card Toggle Logic ---
+  // --- UI Logic: Character Card Accordion ---
   document.querySelectorAll(".char-card").forEach(card => {
     card.addEventListener("toggle", function () {
       if (card.open) {
@@ -532,7 +532,9 @@
     });
   });
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  // --- UI Logic: Footer Year ---
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // --- Contact Form Logic ---
   (function () {
@@ -566,17 +568,21 @@
         const response = await fetch(p.url);
         const data = await response.json();
         const count = data[p.key];
-        if (count !== undefined) document.getElementById(p.id).innerText = count.toLocaleString();
+        const el = document.getElementById(p.id);
+        if (count !== undefined && el) el.innerText = count.toLocaleString();
       } catch (e) { console.error(`Error loading ${p.id}`); }
     });
   }
 
-  // --- Twitch Player Instance (Fullscreen + Chat + Events) ---
+  // --- Twitch Player: Fullscreen, Chat, & Events ---
   var twitchPlayer;
   function initTwitch() {
+    // Ensure the container exists before initializing
+    if (!document.getElementById("twitch-embed")) return;
+
     twitchPlayer = new Twitch.Embed("twitch-embed", {
       width: "100%",
-      height: 480, // Matches Terminal Height
+      height: 480, // Matched to TikTok Terminal height
       channel: "thatbishbloke",
       layout: "video-with-chat", 
       autoplay: true,
@@ -586,73 +592,81 @@
       parent: ["thatbishbloke.com"]
     });
 
+    // Handle SDK Events
     twitchPlayer.addEventListener(Twitch.Embed.VIDEO_READY, () => {
-      console.log("Twitch Player: Ready");
+      console.log("Twitch SDK: Player Ready");
     });
   }
 
-  // --- Live Hub Automatic Updates ---
+  // --- Live Hub: Cross-Platform Sync ---
   async function updateLiveHub() {
     const timestamp = new Date().getTime();
     let isCurrentlyLive = false;
 
-    // 1. TWITCH CHECK
+    // 1. Twitch Check
     try {
       const response = await fetch(`https://api.decapi.me/twitch/uptime/thatbishbloke?cb=${timestamp}`);
       const uptime = await response.text();
       const twStatus = document.getElementById('tw-status');
       
       if (uptime.toLowerCase().includes("offline")) {
-        twStatus.innerText = "Offline";
-        twStatus.className = "live-status offline";
+        if(twStatus) {
+          twStatus.innerText = "Offline";
+          twStatus.className = "live-status offline";
+        }
         if(twitchPlayer) twitchPlayer.getPlayer().pause();
       } else {
-        twStatus.innerText = "Live";
-        twStatus.className = "live-status pulse";
+        if(twStatus) {
+          twStatus.innerText = "Live";
+          twStatus.className = "live-status pulse";
+        }
         if(twitchPlayer) twitchPlayer.getPlayer().play();
         isCurrentlyLive = true;
       }
-    } catch (e) { console.error("Twitch check failed"); }
+    } catch (e) { console.error("Twitch sync failed"); }
 
-    // 2. YOUTUBE CHECK
+    // 2. YouTube Check
     try {
       const ytStatus = document.getElementById('yt-status');
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.youtube.com/@ThatBishBloke/live')}&cb=${timestamp}`);
       const data = await response.json();
-      const isLive = data.contents.includes('inlineSymbol":') && data.contents.includes('style":"LIVE"');
+      const isYTLive = data.contents.includes('inlineSymbol":') && data.contents.includes('style\":\"LIVE\"');
 
-      if (!isLive) {
-        ytStatus.innerText = "Offline";
-        ytStatus.className = "live-status offline";
-      } else {
-        ytStatus.innerText = "Live";
-        ytStatus.className = "live-status pulse";
-        isCurrentlyLive = true;
+      if (ytStatus) {
+        if (!isYTLive) {
+          ytStatus.innerText = "Offline";
+          ytStatus.className = "live-status offline";
+        } else {
+          ytStatus.innerText = "Live";
+          ytStatus.className = "live-status pulse";
+          isCurrentlyLive = true;
+        }
       }
-    } catch (e) { console.error("YouTube check failed"); }
+    } catch (e) { console.error("YouTube sync failed"); }
 
-    // 3. TIKTOK TERMINAL LOGIC
+    // 3. TikTok Terminal Reactivity
     const ttStatus = document.getElementById('tt-status');
     const ttLines = document.querySelectorAll('.terminal-text');
     
-    // If you're live on one platform, we change the TikTok text to "Signal Detected"
-    if (isCurrentlyLive) {
+    if (ttStatus) {
+      if (isCurrentlyLive) {
         ttStatus.innerText = "SIGNAL DETECTED";
-        ttStatus.style.background = "#25F4EE";
-        if(ttLines.length > 0) ttLines[0].innerText = ">> STATUS: BROADCASTING_LIVE";
-        if(ttLines.length > 1) ttLines[1].innerText = ">> UPLINK: STABLE";
-    } else {
+        if(ttLines[0]) ttLines[0].innerText = ">> STATUS: BROADCASTING_LIVE";
+        if(ttLines[1]) ttLines[1].innerText = ">> UPLINK: ENCRYPTED_STABLE";
+      } else {
         ttStatus.innerText = "CHECK LIVE";
-        ttStatus.style.background = "#25F4EE";
-        if(ttLines.length > 0) ttLines[0].innerText = ">> STATUS: STANDBY_MODE";
-        if(ttLines.length > 1) ttLines[1].innerText = ">> UPLINK: READY";
+        if(ttLines[0]) ttLines[0].innerText = ">> STATUS: STANDBY_MODE";
+        if(ttLines[1]) ttLines[1].innerText = ">> UPLINK: READY_FOR_CONN";
+      }
     }
   }
 
+  // --- Initializers ---
   window.onload = () => {
     initTwitch();
     fetchLiveStats();
     updateLiveHub();
+    // Poll for status changes every 60 seconds
     setInterval(updateLiveHub, 60000);
   };
 </script>
