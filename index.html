@@ -293,24 +293,35 @@
 
       <div class="live-player-card card-tiktok">
         <div class="player-header">
-          <span id="tt-status" class="live-status pulse" style="background: #25F4EE !important; color: #000 !important;">SIGNAL ACTIVE</span>
+          <span id="tt-status" class="live-status pulse tt-neon-badge">SIGNAL ACTIVE</span>
         </div>
 
-        <div class="video-container tiktok-terminal">
-          <div class="terminal-overlay"></div>
-          <div class="scanline"></div>
-
-          <div class="tt-content">
-            <div class="glitch-wrapper">
-              <img src="assets/social logos/TTLogo.png" alt="TikTok" class="tt-logo-main">
+        <div class="video-container tiktok-brand-view">
+          <div class="tt-overlay"></div>
+          <div class="tt-ui-elements">
+            <div class="tt-user-info">
+              <img src="logo-bish.jpg" alt="Bish" class="tt-avatar-mini">
+              <span>@thatbishbloke</span>
             </div>
-            <div class="terminal-text">>> STATUS: PENDING_CONNECTION</div>
-            <div class="terminal-text">>> INTERACTION: ENABLED</div>
-            <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="btn-tt-join">ENTER LIVE ROOM</a>
           </div>
-        </div> <div class="live-meta">
+          
+          <div class="tt-content-center">
+            <div class="tt-logo-glow">
+              <img src="assets/social logos/TTLogo.png" alt="TikTok">
+            </div>
+            <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="btn-tt-neon">JOIN THE CHAOS</a>
+          </div>
+          
+          <div class="tt-sidebar-icons">
+            <div class="tt-icon">❤️</div>
+            <div class="tt-icon">💬</div>
+            <div class="tt-icon">🔄</div>
+          </div>
+        </div>
+
+        <div class="live-meta">
           <h3>TikTok Live Hub</h3>
-          <p>Mobile-exclusive interaction, gifts, and vertical chaos.</p>
+          <p>Vertical madness, gifts, and community goals.</p>
         </div>
       </div>
     </div>
@@ -452,6 +463,26 @@
     </div>
   </div>
 </section>
+
+<section id="merch" class="merch-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="glitch" data-text="THE STASH">THE STASH</h2>
+        <p>Official ThatBishBloke gear is being forged in the fires of chaos.</p>
+      </div>
+      
+      <div class="merch-coming-soon">
+        <div class="merch-card-placeholder">
+          <div class="shopify-bag-icon">🛍️</div>
+          <h3>Shopify Store</h3>
+          <span class="status-tag">COMING SOON</span>
+          <div class="loading-bar-container">
+            <div class="loading-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 <section id="community" class="section">
   <div class="container two-column" style="align-items: center; gap: 4rem;">
@@ -655,7 +686,7 @@
       } else {
         ttStatus.innerText = "CHECK LIVE";
         if(ttLines[0]) ttLines[0].innerText = ">> STATUS: STANDBY_MODE";
-        if(ttLines[1]) ttLines[1].innerText = ">> UPLINK: READY_FOR_CONN";
+        if(ttLines[1]) ttLines[1].innerText = ">> UPLINK: READY_FOR_CONNECTION";
       }
     }
   }
