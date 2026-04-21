@@ -859,3 +859,92 @@ a:hover { opacity: 0.8; }
     0%, 100% { opacity: 0.6; }
     50% { opacity: 1; }
 }
+
+/* --- PRODUCT GRID --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+}
+
+.product-tag {
+  position: absolute;
+  top: 15px; left: 15px;
+  background: var(--accent);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.product-img-wrap {
+  width: 100%;
+  height: 250px;
+  background: #fff; /* Shopify product shots usually have white bgs */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-img-wrap img {
+  max-width: 90%;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img-wrap img {
+  transform: scale(1.1);
+}
+
+.product-info {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.product-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.price {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.btn-buy {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn-buy:hover {
+  background: var(--accent);
+  color: #000 !important;
+  border-color: var(--accent);
+}
