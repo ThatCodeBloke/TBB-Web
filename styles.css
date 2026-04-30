@@ -1002,17 +1002,57 @@ a:hover { opacity: 0.8; }
 
 .platform-btn:hover { transform: translateY(-3px); }
 
+/* --- Mega Live Card Base Styles --- */
+.mega-live-card {
+  background: var(--card-bg, #0f172a);
+  border: 1px solid var(--border-subtle, #1e293b);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  margin-top: 2rem;
+}
+
+.mega-live-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Desktop: Text on left, Player on right */
+  align-items: stretch;
+}
+
+/* --- Text Side --- */
+.mega-live-text {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertical centering */
+}
+
+/* --- Player Side --- */
 .mega-live-player {
   background: #000;
   width: 100%;
-  /* Remove any 'height: 100%' that might conflict with the 500px script height */
-  min-height: 500px; 
+  min-height: 600px; /* Matched to JS height to prevent clipping */
+  display: flex;
+  flex-direction: column;
 }
 
+/* --- Responsive Layout (Mobile/Tablet) --- */
 @media (max-width: 900px) {
-  .mega-live-content { grid-template-columns: 1fr; }
-  .mega-live-text { order: 2; padding: 2rem; }
+  .mega-live-content {
+    grid-template-columns: 1fr; /* Stack vertically */
+  }
+
   .mega-live-player {
-    min-height: 600px; /* Gives extra room for stacked layout */
+    order: 1; /* Video on top */
+    min-height: 500px; /* Slightly shorter for smaller screens */
+  }
+
+  .mega-live-text {
+    order: 2; /* Text underneath */
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .platform-cta-group {
+    align-items: center;
   }
 }
