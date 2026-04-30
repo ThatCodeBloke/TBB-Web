@@ -948,3 +948,68 @@ a:hover { opacity: 0.8; }
   color: #000 !important;
   border-color: var(--accent);
 }
+
+.mega-live-card {
+  background: var(--card-bg, #0f172a);
+  border: 1px solid var(--border-subtle, #1e293b);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.mega-live-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+}
+
+.mega-live-text {
+  padding: 3rem;
+}
+
+.live-meta-tag {
+  color: #ff0050; /* TikTok Pink */
+  font-weight: bold;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.platform-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.platform-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.platform-btn img { height: 20px; }
+
+.platform-btn.tt { background: #000; color: #fff; border: 1px solid #ff0050; }
+.platform-btn.yt { background: #ff0000; color: #fff; }
+
+.platform-btn:hover { transform: translateY(-3px); }
+
+.mega-live-player {
+  background: #000;
+  height: 100%;
+  min-height: 400px;
+}
+
+@media (max-width: 900px) {
+  .mega-live-content { grid-template-columns: 1fr; }
+  .mega-live-text { order: 2; padding: 2rem; }
+  .mega-live-player { order: 1; min-height: 300px; }
+}
