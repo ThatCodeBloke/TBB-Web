@@ -621,15 +621,15 @@
     });
   }
 
-  // --- Initialize Hub on Load ---
+// --- Initialize Hub on Load ---
   window.onload = () => {
     // Initialize Twitch Embed inside the Mega Card
     if (document.getElementById("twitch-embed")) {
       new Twitch.Embed("twitch-embed", {
         width: "100%",
-        height: "100%",
+        height: 500, // Fixed height works better for chat layouts
         channel: "thatbishbloke",
-        layout: "video", // Removed chat for a cleaner 'preview' look in the mega card
+        layout: "video-with-chat", // <--- This brings the chat back
         autoplay: false, 
         muted: true,
         theme: "dark",
