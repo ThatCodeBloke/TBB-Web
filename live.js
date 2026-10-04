@@ -54,10 +54,16 @@
     if (!player || !videos || !videos.length) return;
     var i = 0, timer = null, stopped = false;
     function src(id) { return 'https://www.tiktok.com/player/v1/' + id + '?music_info=1&description=1&rel=0&native_context_menu=0'; }
+    var frame = $('tt-frame');
     function show(n) {
       i = (n + videos.length) % videos.length;
       player.src = src(videos[i].id);
       player.title = videos[i].title ? 'TikTok: ' + videos[i].title : 'Latest TikTok from ThatBishBloke';
+      // The clip's thumbnail shows while TikTok's player loads, instead of a black box.
+      if (frame) frame.style.backgroundImage = videos[i].cover ? 'url("' + String(videos[i].cover).replace(/"/g, '') + '")' : '';
+      // Caption = this clip's own caption, minus the hashtags.
+      var cap = String(videos[i].title || '').replace(/#\S+/g, '').replace(/\s+/g, ' ').trim();
+      setText('tt-caption', cap || 'His latest TikToks, straight from @thatbishbloke.');
       Array.prototype.forEach.call(dots.children, function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
     }
     function stop() { stopped = true; if (timer) clearInterval(timer); }
@@ -80,7 +86,6 @@
       var d = e.data; if (typeof d === 'string') { try { d = JSON.parse(d); } catch (x) { return; } }
       if (d && d.type === 'onStateChange' && d.value === 1) stop();
     });
-    setText('tt-caption', 'His latest TikToks, straight from @thatbishbloke.');
   }
 
   // ---------- 2. The Stash: live shop ----------

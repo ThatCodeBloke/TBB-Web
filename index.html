@@ -31,6 +31,9 @@
     }
   </script>
 
+  <link rel="icon" type="image/jpeg" href="logo-bish.jpg" />
+  <link rel="apple-touch-icon" href="logo-bish.jpg" />
+  <meta name="theme-color" content="#020617" />
   <link rel="stylesheet" href="styles.css" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMW43G0FHH"></script>
@@ -48,15 +51,18 @@
         <img src="logo-bish.jpg" alt="ThatBishBloke Official Logo" class="logo-img" width="50" height="50" />
         <span class="logo-text">ThatBishBloke</span>
       </a> 
-      <nav class="site-nav" aria-label="Main Navigation">
+      <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#merch">Merch</a>
         <a href="#watch">Watch</a>
         <a href="#community">Discord</a>
         <a href="#contact">Contact</a>
-        <a href="#live-hub" class="nav-live" id="nav-live" target="_blank" rel="noopener" hidden>● LIVE</a>
       </nav>
+      <div class="header-actions">
+        <a href="#live-hub" class="nav-live" id="nav-live" target="_blank" rel="noopener" hidden>● LIVE</a>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+      </div>
     </div>
   </header>
 
@@ -77,22 +83,24 @@
           </div>
         </div>
 
-        <aside class="hero-card">
-          <div class="hero-tag">Featured Clip</div>
-          <div class="hero-video-placeholder tt-rotator">
-            <!-- live.js swaps in his latest TikToks; this one shows if it can't -->
+        <aside class="clip-card">
+          <div class="clip-head">
+            <img src="assets/social logos/TTLogo.png" alt="" class="clip-logo" width="32" height="32" />
+            <div class="clip-who"><strong>Latest on TikTok</strong><span>@thatbishbloke</span></div>
+            <a class="clip-follow" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener">Follow</a>
+          </div>
+          <!-- live.js swaps in his latest TikToks; this one shows if it can't -->
+          <div class="tt-frame" id="tt-frame">
             <iframe class="tt-player" id="tt-player"
                     src="https://www.tiktok.com/player/v1/7628582437324377366?music_info=1&amp;description=1&amp;rel=0&amp;native_context_menu=0"
                     title="Latest TikTok from ThatBishBloke" allow="fullscreen; encrypted-media" loading="lazy"></iframe>
-            <div class="tt-nav" id="tt-nav" hidden>
-              <button type="button" class="tt-arrow" data-dir="-1" aria-label="Previous clip">‹</button>
-              <div class="tt-dots" id="tt-dots"></div>
-              <button type="button" class="tt-arrow" data-dir="1" aria-label="Next clip">›</button>
-            </div>
           </div>
-          <p class="hero-caption" id="tt-caption">
-            A rotating selection of British comedy sketches.
-          </p>
+          <div class="tt-nav" id="tt-nav" hidden>
+            <button type="button" class="tt-arrow" data-dir="-1" aria-label="Previous clip">‹</button>
+            <div class="tt-dots" id="tt-dots"></div>
+            <button type="button" class="tt-arrow" data-dir="1" aria-label="Next clip">›</button>
+          </div>
+          <p class="clip-caption" id="tt-caption">A rotating selection of British comedy sketches.</p>
         </aside>
       </div>
     </section>
@@ -107,14 +115,15 @@
           <a class="btn ghost" href="#merch">Shop the Bish-Verse merch</a>
         </article>
 
-        <div class="about-card">
+        <div class="services-card">
           <h3>Services &amp; Expertise</h3>
-          <ul class="tick-list">
-            <li>Acting &amp; Character Work</li>
-            <li>Writing &amp; Improv</li>
-            <li>Streaming &amp; Live Hosting</li>
-            <li>Voice Work &amp; Narration</li>
-          </ul>
+          <div class="service-grid">
+            <div class="service"><span class="service-icon" aria-hidden="true">🎭</span><strong>Acting &amp; Character Work</strong><span>Recurring characters, sketches and skits</span></div>
+            <div class="service"><span class="service-icon" aria-hidden="true">✍️</span><strong>Writing &amp; Improv</strong><span>Sketch ideas, scripts and off-the-cuff chaos</span></div>
+            <div class="service"><span class="service-icon" aria-hidden="true">🎙️</span><strong>Streaming &amp; Live Hosting</strong><span>Regular lives with the community</span></div>
+            <div class="service"><span class="service-icon" aria-hidden="true">🗣️</span><strong>Voice Work &amp; Narration</strong><span>Voices, narration and characters</span></div>
+          </div>
+          <a class="btn primary" href="#contact">Work with me</a>
         </div>
       </div>
     </section>
@@ -428,6 +437,15 @@
       const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`);
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     });
+  })();
+
+  // --- Phone menu ---
+  (function () {
+    const btn = document.getElementById("nav-toggle"), nav = document.getElementById("site-nav");
+    if (!btn || !nav) return;
+    const set = (open) => { nav.classList.toggle("open", open); btn.setAttribute("aria-expanded", String(open)); };
+    btn.addEventListener("click", () => set(!nav.classList.contains("open")));
+    nav.addEventListener("click", (e) => { if (e.target.closest("a")) set(false); });
   })();
 
   // Live counts, latest TikToks, shop, Live Hub and the Discord card: live.js
