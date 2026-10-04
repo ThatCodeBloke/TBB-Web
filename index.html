@@ -55,6 +55,7 @@
         <a href="#watch">Watch</a>
         <a href="#community">Discord</a>
         <a href="#contact">Contact</a>
+        <a href="#live-hub" class="nav-live" id="nav-live" target="_blank" rel="noopener" hidden>● LIVE</a>
       </nav>
     </div>
   </header>
@@ -78,18 +79,18 @@
 
         <aside class="hero-card">
           <div class="hero-tag">Featured Clip</div>
-          <div class="hero-video-placeholder">
-            <blockquote class="tiktok-embed" 
-                        cite="https://www.tiktok.com/@thatbishbloke/video/7628582437324377366" 
-                        data-video-id="7628582437324377366"
-                        style="max-width: 605px; min-width: 325px;">
-              <section>
-                <a target="_blank" title="@thatbishbloke" href="https://www.tiktok.com/@thatbishbloke">@thatbishbloke on TikTok</a>
-              </section>
-            </blockquote>
-            <script async src="https://www.tiktok.com/embed.js"></script>
+          <div class="hero-video-placeholder tt-rotator">
+            <!-- live.js swaps in his latest TikToks; this one shows if it can't -->
+            <iframe class="tt-player" id="tt-player"
+                    src="https://www.tiktok.com/player/v1/7628582437324377366?music_info=1&amp;description=1&amp;rel=0&amp;native_context_menu=0"
+                    title="Latest TikTok from ThatBishBloke" allow="fullscreen; encrypted-media" loading="lazy"></iframe>
+            <div class="tt-nav" id="tt-nav" hidden>
+              <button type="button" class="tt-arrow" data-dir="-1" aria-label="Previous clip">‹</button>
+              <div class="tt-dots" id="tt-dots"></div>
+              <button type="button" class="tt-arrow" data-dir="1" aria-label="Next clip">›</button>
+            </div>
           </div>
-          <p class="hero-caption">
+          <p class="hero-caption" id="tt-caption">
             A rotating selection of British comedy sketches.
           </p>
         </aside>
@@ -125,7 +126,8 @@
       <p class="section-lead" style="margin: 0 auto;">Official gear for the mildly feral. Shipped worldwide.</p>
     </div>
 
-    <div class="product-grid">
+    <!-- live.js fills this with live products and prices from the shop; these show if it can't -->
+    <div class="product-grid" id="product-grid">
       <div class="product-card">
         <div class="product-tag">BEST SELLER</div>
         <div class="product-img-wrap">
@@ -133,7 +135,7 @@
         </div>
         <div class="product-info">
           <h3>Knobhead Unisex Hoodie</h3>
-          <p class="price">£25.92</p>
+          <p class="price">£35.00</p>
           <p style="font-size: 0.8rem; color: var(--muted); margin-top: -10px;">Available in 6 Sizes</p>
           <a href="https://shop.thatbishbloke.com/products/youre-a-knobhead-unisex-hoodie?variant=57322201350476" target="_blank" class="btn-buy">GET THE THREADS</a>
         </div>
@@ -163,7 +165,7 @@
         </div>
       </div>
     </div> <div style="text-align: center; margin-top: 4rem;">
-      <a href="https://shop.thatbishbloke.com" target="_blank" class="btn primary">VIEW FULL COLLECTION</a>
+      <a href="https://shop.thatbishbloke.com" target="_blank" class="btn primary" id="shop-all">VIEW FULL COLLECTION</a>
     </div>
   </div>
 </section>
@@ -178,8 +180,8 @@
     <div class="mega-live-card">
       <div class="mega-live-content">
         <div class="mega-live-text">
-          <span class="live-meta-tag">COMMUNITY FAVORITE</span>
-          <h3>I'm Live Frequently!</h3>
+          <span class="live-meta-tag" id="live-tag">COMMUNITY FAVORITE</span>
+          <h3 id="live-heading">I'm Live Frequently!</h3>
           <p>The Bish-Verse is most active on <strong>TikTok Live</strong>, with high-quality backups on <strong>Twitch</strong> and <strong>YouTube</strong>.</p>
           
           <div class="platform-cta-group">
@@ -189,11 +191,15 @@
             <a href="https://www.youtube.com/@ThatBishBloke/live" target="_blank" class="platform-btn yt">
               <img src="assets/social logos/YTLogo.png" alt=""> WATCH ON YOUTUBE
             </a>
+            <a href="https://www.twitch.tv/thatbishbloke" target="_blank" class="platform-btn tw">
+              <img src="assets/social logos/TwitchLogo.png" alt=""> CATCH HIM ON TWITCH
+            </a>
           </div>
           <p class="hint">TikTok offers the best interaction, while Twitch/YouTube are best for the big screen.</p>
         </div>
 
-        <div class="mega-live-player">
+        <!-- live.js: TikTok LIVE card when he's live there, the Twitch player when he's live there, otherwise how often he goes live -->
+        <div class="mega-live-player" id="live-player">
           <div id="twitch-embed"></div>
         </div>
       </div>
@@ -215,7 +221,7 @@
           <span class="stat-value" id="yt-subs">63.7K+</span>
           <span class="stat-label">Subscribers</span>
           <div class="stat-divider"></div>
-          <span class="stat-value">700+</span>
+          <span class="stat-value" id="yt-videos">700+</span>
           <span class="stat-label">Videos</span>
         </div>
         <p>Long-form sketches and highlight compilations.</p>
@@ -227,10 +233,10 @@
       <article class="watch-card card-tiktok">
         <h3><img src="assets/social logos/TTLogo.png" class="title-icon" alt=""> TikTok</h3>
         <div class="live-counter">
-          <span class="stat-value" id="tt-followers">307,600+</span>
+          <span class="stat-value" id="tt-followers">340,600+</span>
           <span class="stat-label">Followers</span>
           <div class="stat-divider"></div>
-          <span class="stat-value">6.7M+</span>
+          <span class="stat-value" id="tt-likes">8.3M+</span>
           <span class="stat-label">Likes</span>
         </div>
         <p>Short-form characters and bite-size chaos.</p>
@@ -245,7 +251,7 @@
           <span class="stat-value" id="ig-followers">58,500+</span>
           <span class="stat-label">Followers</span>
           <div class="stat-divider"></div>
-          <span class="stat-value">500+</span>
+          <span class="stat-value" id="ig-posts">500+</span>
           <span class="stat-label">Posts</span>
         </div>
         <p>Reels, behind-the-scenes and stills.</p>
@@ -275,8 +281,8 @@
           <span class="stat-value" id="tw-followers">270+</span>
           <span class="stat-label">Followers</span>
           <div class="stat-divider"></div>
-          <span class="stat-value">Live</span>
-          <span class="stat-label">Streams</span>
+          <span class="stat-value" id="tw-live">Live</span>
+          <span class="stat-label" id="tw-live-label">Streams</span>
         </div>
         <p>Live streams and community gaming nights.</p>
         <div class="chip-row">
@@ -321,11 +327,11 @@
       <h2>Join an ever-growing community of</h2>
       <div class="highlight-grid">
         <div class="highlight-item">
-          <span class="highlight-value">458,900+</span>
+          <span class="highlight-value" id="hl-followers">458,900+</span>
           <span class="highlight-label">Followers</span>
         </div>
         <div class="highlight-item">
-          <span class="highlight-value">6.7M+</span>
+          <span class="highlight-value" id="hl-likes">8.3M+</span>
           <span class="highlight-label">Likes</span>
         </div>
         <div class="highlight-item">
@@ -357,7 +363,8 @@
       <a class="btn primary" href="https://discord.gg/HPK7kQ459s" target="_blank" rel="noopener noreferrer">Join Our Discord</a>
     </div>
 
-    <aside class="community-widget-wrapper" style="width: 100%; max-width: 400px;">
+    <!-- live.js replaces the widget with a card (members, online, events) from J.A.D.E. -->
+    <aside class="community-widget-wrapper" id="discord-card" style="width: 100%; max-width: 400px;">
       <iframe src="https://discord.com/widget?id=1373033379045310595&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-soft);"></iframe>
     </aside>
   </div>
@@ -401,7 +408,6 @@
     </div>
   </footer>
 
-<script src="https://embed.twitch.tv/embed/v1.js"></script>
 
 <script>
   // --- UI Logic: Footer Year ---
@@ -424,46 +430,8 @@
     });
   })();
 
-  // --- Platform Stats Logic ---
-  // Fetches live follower counts for the "Watch & Stream" section
-  async function fetchLiveStats() {
-    const platforms = [
-      { id: 'yt-subs', url: 'https://api.subscribercounter.com/api/youtube/channel/UCVp3N2Z_5lX4vXFf-E6_H0A', key: 'est_sub' }, 
-      { id: 'tt-followers', url: 'https://countle.com/api/tiktok/user/thatbishbloke', key: 'followers' },
-      { id: 'ig-followers', url: 'https://api.socialcounts.org/instagram-live-follower-count/thatbishbloke', key: 'followers' },
-      { id: 'tw-followers', url: 'https://countle.com/api/twitch/user/thatbishbloke', key: 'followers' },
-      { id: 'fb-followers', url: 'https://api.socialcounts.org/facebook-live-follower-count/61575693107276', key: 'followers' },
-      { id: 'th-followers', url: 'https://api.socialcounts.org/threads-live-follower-count/thatbishbloke', key: 'followers' }
-    ];
-
-    platforms.forEach(async (p) => {
-      try {
-        const response = await fetch(p.url);
-        const data = await response.json();
-        const count = data[p.key];
-        const el = document.getElementById(p.id);
-        if (count !== undefined && el) el.innerText = count.toLocaleString();
-      } catch (e) { console.error(`Error loading ${p.id}`); }
-    });
-  }
-
-// --- Initialize Hub on Load ---
-  window.onload = () => {
-    if (document.getElementById("twitch-embed")) {
-      new Twitch.Embed("twitch-embed", {
-        width: "100%",
-        height: 600, // Increased from 500 to 600
-        channel: "thatbishbloke",
-        layout: "video-with-chat",
-        autoplay: false, 
-        muted: true,
-        theme: "dark",
-        parent: ["thatbishbloke.com"]
-      });
-    }
-    
-    fetchLiveStats();
-  };
+  // Live counts, latest TikToks, shop, Live Hub and the Discord card: live.js
 </script>
+<script src="live.js" defer></script>
 </body>
 </html>
