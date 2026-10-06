@@ -7,7 +7,7 @@
    - Discord: a card with members, who's online and upcoming events
 
    Data: the shop is read directly (Shopify allows it). Everything else comes
-   from J.A.D.E. (the Discord bot) at FEED_URL, which gathers it every 10 minutes.
+   from the live feed at FEED_URL, which is refreshed every 10 minutes.
    If either can't be reached, the page simply keeps what's written in index.html.
    ============================================================ */
 (function () {
@@ -247,7 +247,6 @@
     }
     var join = el('a', 'btn primary btn-full', 'JOIN THE SERVER'); join.href = d.invite || 'https://discord.gg/HPK7kQ459s'; join.target = '_blank'; join.rel = 'noopener noreferrer';
     body.appendChild(join);
-    body.appendChild(el('p', 'dc-note', 'Kept in order by J.A.D.E., the server’s resident AI. Say hi.'));
     card.appendChild(body);
     box.appendChild(card);
   }
