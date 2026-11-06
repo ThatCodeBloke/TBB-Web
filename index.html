@@ -1,455 +1,253 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-GB">
 <head>
-  <meta charset="UTF-8" />
-  <title>ThatBishBloke | British Comedy Sketches, Characters & Live Streams</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Welcome to the Bish-Verse. Official site for ThatBishBloke, featuring British comedy sketches, recurring characters, live gaming streams, and community chaos." />
-  
-  <link rel="canonical" href="https://thatbishbloke.com/" />
-
-  <meta property="og:title" content="ThatBishBloke | British Comedy & Controlled Chaos" />
-  <meta property="og:description" content="Dive into the world of Craig, Thomas’ Dad, and the rest of the Bish-Verse." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://thatbishbloke.com/" />
-  <meta property="og:image" content="https://thatbishbloke.com/logo-bish.jpg" />
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "ThatBishBloke",
-      "url": "https://thatbishbloke.com",
-      "description": "British creator, storyteller and character comedian.",
-      "sameAs": [
-        "https://www.tiktok.com/@thatbishbloke",
-        "https://www.youtube.com/@ThatBishBloke",
-        "https://www.instagram.com/thatbishbloke/",
-        "https://www.twitch.tv/thatbishbloke"
-      ],
-      "jobTitle": "Content Creator & Actor"
-    }
-  </script>
-
-  <link rel="icon" type="image/jpeg" href="logo-bish.jpg" />
-  <link rel="apple-touch-icon" href="logo-bish.jpg" />
-  <meta name="theme-color" content="#020617" />
-  <link rel="stylesheet" href="styles.css" />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMW43G0FHH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-MMW43G0FHH');
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThatBishBloke | Life's better with a bit of Bish</title>
+<meta name="description" content="British comedy sketches, characters and controlled chaos from ThatBishBloke. Watch the sketches, meet the Bish-Verse, shop the merch and catch him live.">
+<meta property="og:title" content="ThatBishBloke — Life's better with a bit of Bish.">
+<meta property="og:description" content="One bloke. Far too many personalities.">
+<link rel="icon" href="logo-bish.jpg">
+<link rel="canonical" href="https://thatbishbloke.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thatbishbloke.com/">
+<meta property="og:image" content="https://thatbishbloke.com/logo-bish.jpg">
+<meta property="og:site_name" content="ThatBishBloke">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#152d2d">
+<link rel="apple-touch-icon" href="logo-bish.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "ThatBishBloke",
+  "url": "https://thatbishbloke.com",
+  "description": "British creator, storyteller and character comedian.",
+  "sameAs": [
+    "https://www.tiktok.com/@thatbishbloke",
+    "https://www.youtube.com/@ThatBishBloke",
+    "https://www.instagram.com/thatbishbloke/",
+    "https://www.facebook.com/ThatBishBloke/",
+    "https://www.twitch.tv/thatbishbloke",
+    "https://www.threads.com/@thatbishbloke"
+  ],
+  "jobTitle": "Content Creator & Actor"
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMW43G0FHH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MMW43G0FHH');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a href="#home" class="logo">
-        <img src="logo-bish.jpg" alt="ThatBishBloke Official Logo" class="logo-img" width="50" height="50" />
-        <span class="logo-text">ThatBishBloke</span>
-      </a> 
-      <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#merch">Merch</a>
-        <a href="#watch">Watch</a>
-        <a href="#community">Discord</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="header-actions">
-        <a href="#live-hub" class="nav-live" id="nav-live" target="_blank" rel="noopener" hidden>● LIVE</a>
-        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+
+<div class="topline">British humour. Questionable characters. Excellent company.</div>
+
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="ThatBishBloke home">that<b>bish</b>bloke<sup>®</sup></a>
+    <a class="live-pill" id="nav-live" href="#live" hidden><i></i> LIVE NOW</a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <nav class="nav-links" id="nav-links" aria-label="Main">
+      <a href="#watch">Watch</a>
+      <a href="#bishverse">The Bish-Verse</a>
+      <a href="#merch">Merch</a>
+      <a href="#live">Live</a>
+      <a href="#meet">Meet Bish</a>
+      <a href="#work">Work with me</a>
+      <a class="nav-shop" href="https://shop.thatbishbloke.com" target="_blank" rel="noopener">Shop the merch ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow">Comedy skits · Characters · Controlled chaos</p>
+      <h1>Life’s better<br>with a bit<br>of <span class="bish">Bish.</span><span class="spark" aria-hidden="true">✳</span></h1>
+      <p class="lede">One bloke. Far too many personalities.<br>Welcome to the wonderfully dysfunctional world of ThatBishBloke.</p>
+      <div class="cta-row">
+        <a class="btn dark" href="#watch">Watch the chaos <span aria-hidden="true">▶</span></a>
+        <a class="link" href="#merch">Wear the catchphrases ↗</a>
       </div>
+      <p class="stats-line" id="hero-stats"><b id="hl-followers">514,000+</b> followers · <b id="hl-likes">8.4M+</b> likes · and counting</p>
     </div>
-  </header>
-
-  <main>
-    <section id="home" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1>British Comedy, Characters &amp; Controlled Chaos</h1>
-          <p class="hero-subtitle">
-            Hello, I’m Bish.  This is where you can find all the stuff like sketches,
-            streams or key information for stalking.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn primary" href="#watch">Watch the latest</a>
-            <a class="btn ghost" href="#community">Join the community</a>
-            <a class="btn ghost" href="#merch">Shop the merch</a>
-          </div>
-        </div>
-
-        <aside class="clip-card">
-          <div class="clip-head">
-            <img src="assets/social logos/TTLogo.png" alt="" class="clip-logo" width="32" height="32" />
-            <div class="clip-who"><strong>Latest on TikTok</strong><span>@thatbishbloke</span></div>
-            <a class="clip-follow" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener">Follow</a>
-          </div>
-          <!-- live.js swaps in his latest TikToks; this one shows if it can't -->
-          <div class="tt-frame" id="tt-frame">
-            <iframe class="tt-player" id="tt-player"
-                    src="https://www.tiktok.com/player/v1/7628582437324377366?music_info=1&amp;description=1&amp;rel=0&amp;native_context_menu=0"
-                    title="Latest TikTok from ThatBishBloke" allow="fullscreen; encrypted-media" loading="lazy"></iframe>
-          </div>
-          <div class="tt-nav" id="tt-nav" hidden>
-            <button type="button" class="tt-arrow" data-dir="-1" aria-label="Previous clip">‹</button>
-            <div class="tt-dots" id="tt-dots"></div>
-            <button type="button" class="tt-arrow" data-dir="1" aria-label="Next clip">›</button>
-          </div>
-          <p class="clip-caption" id="tt-caption">A rotating selection of British comedy sketches.</p>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about" class="section section-alt">
-      <div class="container two-column">
-        <article>
-          <h2>About ThatBishBloke</h2>
-          <p>
-            I’m just a guy who made up some characters I think some people relate too.. then have random conversations with myself and film it. Fortunately there’s enough people who watch it which makes me feel all fuzzy inside.
-          </p>
-          <a class="btn ghost" href="#merch">Shop the Bish-Verse merch</a>
-        </article>
-
-        <div class="services-card">
-          <h3>Services &amp; Expertise</h3>
-          <div class="service-grid">
-            <div class="service"><span class="service-icon" aria-hidden="true">🎭</span><strong>Acting &amp; Character Work</strong><span>Recurring characters, sketches and skits</span></div>
-            <div class="service"><span class="service-icon" aria-hidden="true">✍️</span><strong>Writing &amp; Improv</strong><span>Sketch ideas, scripts and off-the-cuff chaos</span></div>
-            <div class="service"><span class="service-icon" aria-hidden="true">🎙️</span><strong>Streaming &amp; Live Hosting</strong><span>Regular lives with the community</span></div>
-            <div class="service"><span class="service-icon" aria-hidden="true">🗣️</span><strong>Voice Work &amp; Narration</strong><span>Voices, narration and characters</span></div>
-          </div>
-          <a class="btn primary" href="#contact">Work with me</a>
-        </div>
-      </div>
-    </section>
-
-<section id="merch" class="merch-section">
-  <div class="container">
-    <div class="section-header" style="text-align: center;">
-      <h2 class="glitch" data-text="THE STASH">THE STASH</h2>
-      <p class="section-lead" style="margin: 0 auto;">Official gear for the mildly feral. Shipped worldwide.</p>
-    </div>
-
-    <!-- live.js fills this with live products and prices from the shop; these show if it can't -->
-    <div class="product-grid" id="product-grid">
-      <div class="product-card">
-        <div class="product-tag">BEST SELLER</div>
-        <div class="product-img-wrap">
-          <img src="assets/merch/knobhead-hoodie.png" alt="Knobhead Unisex Hoodie">
-        </div>
-        <div class="product-info">
-          <h3>Knobhead Unisex Hoodie</h3>
-          <p class="price">£35.00</p>
-          <p style="font-size: 0.8rem; color: var(--muted); margin-top: -10px;">Available in 6 Sizes</p>
-          <a href="https://shop.thatbishbloke.com/products/youre-a-knobhead-unisex-hoodie?variant=57322201350476" target="_blank" class="btn-buy">GET THE THREADS</a>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img-wrap">
-          <img src="assets/merch/denise-mat.png" alt="Denise Gaming Desk Mat">
-        </div>
-        <div class="product-info">
-          <h3>Denise Gaming Mat</h3>
-          <p class="price">From £16.83</p>
-          <p style="font-size: 0.8rem; color: var(--muted); margin-top: -10px;">Available in 2 Sizes</p>
-          <a href="https://shop.thatbishbloke.com/products/gaming-mouse-pad?variant=57335065739596" target="_blank" class="btn-buy">UPGRADE YOUR DESK</a>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img-wrap">
-          <img src="assets/merch/bellend-mug.png" alt="The Bellend Mug">
-        </div>
-        <div class="product-info">
-          <h3>The "Bellend" Mug</h3>
-          <p class="price">£12.50</p>
-          <p style="font-size: 0.8rem; color: var(--muted); margin-top: -10px;">Available in 2 Sizes</p>
-          <a href="https://shop.thatbishbloke.com/products/bellend-mug?variant=57321949167948" target="_blank" class="btn-buy">GRAB A BREW</a>
-        </div>
-      </div>
-    </div> <div style="text-align: center; margin-top: 4rem;">
-      <a href="https://shop.thatbishbloke.com" target="_blank" class="btn primary" id="shop-all">VIEW FULL COLLECTION</a>
-    </div>
+    <a class="polaroid hero-shot" id="hero-shot" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener">
+      <span class="tape">You’ve met people like this.</span>
+      <span class="shot cutout" id="hero-img" style="background-image:url('assets/characters/Thomas.png')"></span>
+      <span class="sticker quote">“Dafuq?”</span>
+      <span class="badge-round" aria-hidden="true"><small>100%</small>BISH<small>0% filter</small></span>
+      <span class="shot-cap"><span class="play" aria-hidden="true">▶</span><span><small>Latest from the chaos</small><b id="hero-cap">Watch on TikTok ↗</b></span></span>
+    </a>
   </div>
 </section>
 
-<section id="live-hub" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>The Live Hub</h2>
-      <p class="section-lead">The chaos is usually happening somewhere right now.</p>
+<div class="ticker" aria-hidden="true"><div class="ticker-in">
+  <span>Hiya</span><i>✳</i><span>The Bish-Verse</span><i>✳</i><span>Dafuq?</span><i>✳</i><span>Put the kettle on</span><i>✳</i><span>Knobhead</span><i>✳</i><span>ThatBishBloke</span><i>✳</i>
+  <span>Hiya</span><i>✳</i><span>The Bish-Verse</span><i>✳</i><span>Dafuq?</span><i>✳</i><span>Put the kettle on</span><i>✳</i><span>Knobhead</span><i>✳</i><span>ThatBishBloke</span><i>✳</i>
+</div></div>
+
+<!-- WATCH -->
+<section class="section" id="watch">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Your next laugh starts here</p><h2>Go on. Have a watch.</h2></div>
     </div>
-
-    <div class="mega-live-card">
-      <div class="mega-live-content">
-        <div class="mega-live-text">
-          <span class="live-meta-tag" id="live-tag">COMMUNITY FAVORITE</span>
-          <h3 id="live-heading">I'm Live Frequently!</h3>
-          <p>The Bish-Verse is most active on <strong>TikTok Live</strong>, with high-quality backups on <strong>Twitch</strong> and <strong>YouTube</strong>.</p>
-          
-          <div class="platform-cta-group">
-            <a href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" class="platform-btn tt">
-              <img src="assets/social logos/TTLogo.png" alt=""> ENTER TIKTOK LIVE
-            </a>
-            <a href="https://www.youtube.com/@ThatBishBloke/live" target="_blank" class="platform-btn yt">
-              <img src="assets/social logos/YTLogo.png" alt=""> WATCH ON YOUTUBE
-            </a>
-            <a href="https://www.twitch.tv/thatbishbloke" target="_blank" class="platform-btn tw">
-              <img src="assets/social logos/TwitchLogo.png" alt=""> CATCH HIM ON TWITCH
-            </a>
-          </div>
-          <p class="hint">TikTok offers the best interaction, while Twitch/YouTube are best for the big screen.</p>
-        </div>
-
-        <!-- live.js: TikTok LIVE card when he's live there, the Twitch player when he's live there, otherwise how often he goes live -->
-        <div class="mega-live-player" id="live-player">
-          <div id="twitch-embed"></div>
-        </div>
+    <div class="live-banner" id="live-banner" hidden>
+      <span class="dot"></span><b id="live-banner-text">Bish is live on TikTok right now.</b>
+      <a class="btn pink" id="live-banner-go" href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" rel="noopener">Join the live ↗</a>
+    </div>
+    <div class="sketches" id="sketches">
+      <a class="sketch" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener"><span class="sk-img cutout" style="background-image:url('assets/characters/Thomas Dad.png')"></span><span class="sk-play">▶</span><span class="sk-cap"><small>Sketch 01 · TikTok ↗</small><b>Talking about life and death</b></span></a>
+      <a class="sketch" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener"><span class="sk-img cutout" style="background-image:url('assets/characters/Thomas.png')"></span><span class="sk-play">▶</span><span class="sk-cap"><small>Sketch 02 · TikTok ↗</small><b>How to get a girlfriend with Thomas and Todd</b></span></a>
+      <a class="sketch" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener"><span class="sk-img cutout" style="background-image:url('assets/characters/Denise.png')"></span><span class="sk-play">▶</span><span class="sk-cap"><small>Sketch 03 · TikTok ↗</small><b>Thomas’ health hacks are hazardous to your health.</b></span></a>
+    </div>
+    <div class="screens" id="socials">
+      <p class="muted">Same Bish. Different screens.</p>
+      <div class="screen-list">
+        <a href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener"><b id="tt-followers">340K+</b><span>TikTok ↗</span></a>
+        <a href="https://www.youtube.com/@ThatBishBloke" target="_blank" rel="noopener"><b id="yt-subs">76K+</b><span>YouTube ↗</span></a>
+        <a href="https://www.instagram.com/thatbishbloke/" target="_blank" rel="noopener"><b id="ig-followers">63K+</b><span>Instagram ↗</span></a>
+        <a href="https://www.facebook.com/ThatBishBloke/" target="_blank" rel="noopener"><b id="fb-followers">35K+</b><span>Facebook ↗</span></a>
+        <a href="https://www.twitch.tv/thatbishbloke" target="_blank" rel="noopener"><b id="tw-followers">315+</b><span>Twitch ↗</span></a>
+        <a href="https://www.threads.com/@thatbishbloke" target="_blank" rel="noopener"><b id="th-followers">762+</b><span>Threads ↗</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="watch" class="section section-alt">
-  <div class="container">
-    <div class="section-header">
-      <h2>Watch &amp; Stream</h2>
-      <p class="section-lead">Find the comedy chaos on your preferred platform.</p>
+<!-- BISH-VERSE -->
+<section class="section dark" id="bishverse">
+  <div class="wrap">
+    <p class="eyebrow teal">One man. An entire cast of problems.</p>
+    <h2>Welcome to the Bish-Verse.</h2>
+    <div class="leads">
+      <article class="lead"><img src="assets/characters/Thomas Dad.png" alt="Dad" loading="lazy"><p class="eyebrow teal">01 / The old school one</p><h3>Dad.</h3><p>A brew in hand. An opinion on everything. Patience sold separately.</p><p class="catch">“Knobhead.”</p></article>
+      <article class="lead"><img src="assets/characters/Thomas.png" alt="Thomas" loading="lazy"><p class="eyebrow teal">02 / The well-meaning one</p><h3>Thomas.</h3><p>Big questions. Questionable logic. Somehow, always making things worse.</p><p class="catch">“Dafuq?”</p></article>
+      <article class="lead"><img src="assets/characters/Denise.png" alt="Denise" loading="lazy"><p class="eyebrow teal">03 / The persistent one</p><h3>Denise.</h3><p>Crisps, confidence and absolutely no intention of taking a hint.</p><p class="catch">“Hiya.”</p></article>
     </div>
-
-    <div class="watch-grid">
-      <article class="watch-card card-youtube">
-        <h3><img src="assets/social logos/YTLogo.png" class="title-icon" alt=""> YouTube</h3>
-        <div class="live-counter">
-          <span class="stat-value" id="yt-subs">63.7K+</span>
-          <span class="stat-label">Subscribers</span>
-          <div class="stat-divider"></div>
-          <span class="stat-value" id="yt-videos">700+</span>
-          <span class="stat-label">Videos</span>
-        </div>
-        <p>Long-form sketches and highlight compilations.</p>
-        <div class="chip-row">
-          <a class="chip-link btn ghost" target="_blank" href="https://www.youtube.com/@ThatBishBloke">View YouTube</a>
-        </div>
-      </article>
-
-      <article class="watch-card card-tiktok">
-        <h3><img src="assets/social logos/TTLogo.png" class="title-icon" alt=""> TikTok</h3>
-        <div class="live-counter">
-          <span class="stat-value" id="tt-followers">340,600+</span>
-          <span class="stat-label">Followers</span>
-          <div class="stat-divider"></div>
-          <span class="stat-value" id="tt-likes">8.3M+</span>
-          <span class="stat-label">Likes</span>
-        </div>
-        <p>Short-form characters and bite-size chaos.</p>
-        <div class="chip-row">
-          <a class="chip-link btn ghost" target="_blank" href="https://www.tiktok.com/@thatbishbloke">View TikTok</a>
-        </div>
-      </article>
-
-      <article class="watch-card card-instagram">
-        <h3><img src="assets/social logos/IGLogo.png" class="title-icon" alt=""> Instagram</h3>
-        <div class="live-counter">
-          <span class="stat-value" id="ig-followers">58,500+</span>
-          <span class="stat-label">Followers</span>
-          <div class="stat-divider"></div>
-          <span class="stat-value" id="ig-posts">500+</span>
-          <span class="stat-label">Posts</span>
-        </div>
-        <p>Reels, behind-the-scenes and stills.</p>
-        <div class="chip-row">
-          <a class="chip-link btn ghost" target="_blank" href="https://www.instagram.com/thatbishbloke/">View Instagram</a>
-        </div>
-      </article>
-
-      <article class="watch-card card-facebook">
-        <h3><img src="assets/social logos/FBLogo.png" class="title-icon" alt=""> Facebook</h3>
-        <div class="live-counter">
-          <span class="stat-value" id="fb-followers">25,000+</span>
-          <span class="stat-label">Followers</span>
-          <div class="stat-divider"></div>
-          <span class="stat-value">Updates</span>
-          <span class="stat-label">Every Week</span>
-        </div>
-        <p>Clips and shares for the Facebook crowd.</p>
-        <div class="chip-row">
-          <a class="chip-link btn ghost" target="_blank" href="https://www.facebook.com/people/Thatbishbloke/61575693107276/">View Facebook</a>
-        </div>
-      </article>
-
-      <article class="watch-card card-twitch">
-        <h3><img src="assets/social logos/TwitchLogo.png" class="title-icon" alt=""> Twitch</h3>
-        <div class="live-counter">
-          <span class="stat-value" id="tw-followers">270+</span>
-          <span class="stat-label">Followers</span>
-          <div class="stat-divider"></div>
-          <span class="stat-value" id="tw-live">Live</span>
-          <span class="stat-label" id="tw-live-label">Streams</span>
-        </div>
-        <p>Live streams and community gaming nights.</p>
-        <div class="chip-row">
-          <a class="chip-link btn ghost" target="_blank" href="https://www.twitch.tv/thatbishbloke">View Twitch</a>
-        </div>
-      </article>
-
-      <article class="watch-card card-threads">
-        <h3><img src="assets/social logos/ThreadsLogo.png" class="title-icon" alt=""> Threads</h3>
-        <div class="live-counter">
-          <span class="stat-value" id="th-followers">300+</span>
-          <span class="stat-label">Followers</span>
-          <div class="stat-divider"></div>
-          <span class="stat-value">Daily</span>
-          <span class="stat-label">Thoughts</span>
-        </div>
-        <p>Thoughts and chaotic updates between uploads.</p>
-        <div class="chip-row">
-          <a class="chip-link btn ghost" target="_blank" href="https://www.threads.com/@thatbishbloke">View Threads</a>
-        </div>
-      </article>
-    </div>
-
-    <div style="display: flex; justify-content: center; margin-top: 2rem;">
-      <article class="watch-card card-amazon" style="max-width: 350px; width: 100%;">
-        <h3><img src="assets/social logos/AmazonLogo.png" class="title-icon" alt=""> Amazon</h3>
-        <div class="live-counter">
-          <span class="stat-value">Streaming</span>
-          <span class="stat-label">Gear list for visuals & audio</span>
-          <div class="stat-divider"></div>
-          <span class="stat-value">Fishing</span>
-          <span class="stat-label">Future "Pro" Angler gear</span>
-        </div>
-        <p>Support the channel and the hobby via my wishlists.</p>
-        <div class="chip-row">
-          <a class="chip-link btn ghost" target="_blank" href="https://www.amazon.co.uk/shop/thatbishbloke">View My Wishlists</a>
-        </div>
-      </article>
-    </div>
-
-    <div class="community-highlight">
-      <h2>Join an ever-growing community of</h2>
-      <div class="highlight-grid">
-        <div class="highlight-item">
-          <span class="highlight-value" id="hl-followers">458,900+</span>
-          <span class="highlight-label">Followers</span>
-        </div>
-        <div class="highlight-item">
-          <span class="highlight-value" id="hl-likes">8.3M+</span>
-          <span class="highlight-label">Likes</span>
-        </div>
-        <div class="highlight-item">
-          <span class="highlight-value">1260+</span>
-          <span class="highlight-label">Sketches</span>
-        </div>
-      </div>
+    <div class="cast-head"><h3>The rest of the cast.</h3><p class="muted-l">Fourteen of them and counting. Swipe through.</p></div>
+    <div class="cast" id="cast" tabindex="0" aria-label="The full cast">
+      <figure><img src="assets/characters/Chad.png" alt="" loading="lazy"><figcaption>Chad</figcaption></figure>
+      <figure><img src="assets/characters/Clive.png" alt="" loading="lazy"><figcaption>Clive</figcaption></figure>
+      <figure><img src="assets/characters/Craig.png" alt="" loading="lazy"><figcaption>Craig</figcaption></figure>
+      <figure><img src="assets/characters/Bryan.png" alt="" loading="lazy"><figcaption>Bryan</figcaption></figure>
+      <figure><img src="assets/characters/Fred.png" alt="" loading="lazy"><figcaption>Fred</figcaption></figure>
+      <figure><img src="assets/characters/Freds Dad.png" alt="" loading="lazy"><figcaption>Fred’s Dad</figcaption></figure>
+      <figure><img src="assets/characters/Mandy.png" alt="" loading="lazy"><figcaption>Mandy</figcaption></figure>
+      <figure><img src="assets/characters/Pob.png" alt="" loading="lazy"><figcaption>Pob</figcaption></figure>
+      <figure><img src="assets/characters/Sheila.png" alt="" loading="lazy"><figcaption>Sheila</figcaption></figure>
+      <figure><img src="assets/characters/Tashie Von Grim.png" alt="" loading="lazy"><figcaption>Tashie Von Grim</figcaption></figure>
+      <figure><img src="assets/characters/Umar.png" alt="" loading="lazy"><figcaption>Umar</figcaption></figure>
     </div>
   </div>
 </section>
 
-<section id="community" class="section">
-  <div class="container two-column" style="align-items: center; gap: 4rem;">
+<!-- MERCH -->
+<section class="section" id="merch">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Official ThatBishBloke merch</p><h2>Wear your bad influence.</h2><p class="sub">For the people who get the joke. And the people who’ll ask.</p></div>
+      <a class="btn dark" id="shop-all" href="https://shop.thatbishbloke.com" target="_blank" rel="noopener">The whole stash ↗</a>
+    </div>
+    <div class="products" id="products">
+      <a class="product" href="https://shop.thatbishbloke.com/products/youre-a-knobhead-unisex-hoodie" target="_blank" rel="noopener"><span class="p-img t1"><span class="p-tag">The catchphrase classic</span><img src="assets/merch/knobhead-hoodie.png" alt="" loading="lazy"></span><span class="p-row"><b>Knobhead Hoodie</b><span>£35.00</span></span><span class="p-sub">Say it without saying it.</span></a>
+      <a class="product" href="https://shop.thatbishbloke.com/products/bellend-mug" target="_blank" rel="noopener"><span class="p-img t2"><span class="p-tag">Brew with attitude</span><img src="assets/merch/bellend-mug.png" alt="" loading="lazy"></span><span class="p-row"><b>The Bellend Mug</b><span>£12.50</span></span><span class="p-sub">That’s someone’s present sorted.</span></a>
+      <a class="product" href="https://shop.thatbishbloke.com/products/gaming-mouse-pad" target="_blank" rel="noopener"><span class="p-img t3"><span class="p-tag">Hiya, gamers</span><img src="assets/merch/denise-mat.png" alt="" loading="lazy"></span><span class="p-row"><b>Denise Gaming Mat</b><span>£16.83</span></span><span class="p-sub">She’s on your desk now. Good luck.</span></a>
+    </div>
+    <p class="fine">Live prices from the official shop. Sizes, checkout, delivery and returns are all handled there.</p>
+  </div>
+</section>
+
+<!-- MEET BISH -->
+<section class="section line" id="meet">
+  <div class="wrap meet">
+    <a class="polaroid tilt-l" id="meet-shot" href="#socials">
+      <span class="shot" id="meet-img" style="background-image:url('assets/bish-portrait.png')"></span>
+      <span class="pol-cap">The bloke behind the lot. Follow him ↑</span>
+      <span class="meet-live" id="meet-live" hidden></span>
+    </a>
     <div>
-      <h2>ThatBishCommunity</h2>
-      <p class="section-lead">Welcome to ThatBishCommunity!</p>
-      <p>The official hub for ThatBishBloke. Join for comedy, livestreams, clips, and community chaos.</p>
-
-      <div style="margin: 2rem 0;">
-        <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;">Inside the server:</h3>
-        <ul class="tick-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.95rem;">
-          <li>Chat with Bish &amp; regulars</li>
-          <li>Behind-the-scenes bits</li>
-          <li>Stream updates &amp; events</li>
-          <li>Character &amp; sketch ideas</li>
-        </ul>
-      </div>
-
-      <a class="btn primary" href="https://discord.gg/HPK7kQ459s" target="_blank" rel="noopener noreferrer">Join Our Discord</a>
-    </div>
-
-    <!-- live.js replaces the widget with a card (members, online, events) -->
-    <aside class="community-widget-wrapper" id="discord-card" style="width: 100%; max-width: 400px;">
-      <iframe src="https://discord.com/widget?id=1373033379045310595&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-soft);"></iframe>
-    </aside>
-  </div>
-</section>
-
-<section id="contact" class="section section-alt">
-  <div class="container">
-    <div class="contact-card merged-card">
-      <div class="section-header">
-        <h2>Contact &amp; Collabs</h2>
-        <p class="section-lead">Open for collaborations across acting, character work, and branded content.</p>
-      </div>
-
-      <form class="contact-form" id="contactForm">
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" type="text" placeholder="Your name" required />
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" type="email" placeholder="you@example.com" required />
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-        </div>
-        <button type="submit" class="btn primary btn-full">Send Collaboration Request</button>
-      </form>
+      <p class="eyebrow">Hello, I’m Bish.</p>
+      <h2>I talk to myself.<br>You lot watch.</h2>
+      <p>I’m just a guy who made up some characters I think some people relate to — then have random conversations with myself and film it. Every awkward conversation. Every overconfident dad. Every beautifully ridiculous moment.</p>
+      <p>One camera, a collection of characters, and a community that keeps coming back for more. Fortunately there’s enough of you watching that it makes me feel all fuzzy inside. Make yourself at home.</p>
+      <div class="mini-stats"><span><b id="hl-sketches">850+</b> videos on YouTube</span><span><b id="tt-likes-m">8.4M+</b> likes on TikTok</span></div>
+      <a class="link" href="#socials">Follow the bloke behind the characters ↑</a>
     </div>
   </div>
 </section>
 
-<footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <span>&copy; <span id="year"></span> ThatBishBloke | British Content Creator</span>
-      <div class="footer-links">
-        <a target="_blank" rel="me noopener noreferrer" href="https://www.instagram.com/thatbishbloke/">Instagram</a>
-        <a target="_blank" rel="me noopener noreferrer" href="https://www.tiktok.com/@thatbishbloke">TikTok</a>
-        <a target="_blank" rel="me noopener noreferrer" href="https://www.youtube.com/@ThatBishBloke">YouTube</a>
+<!-- COMMUNITY + LIVE -->
+<section class="section teal-bg" id="live">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow">The comments section, but cosier</p>
+      <h2>Your kind<br>of weird.</h2>
+      <p>Come for the sketches. Stay for the people. Join ThatBishCommunity for character chat, sketch ideas, behind-the-scenes bits and stream updates.</p>
+      <div class="dc" id="discord-card">
+        <div class="dc-stats"><span><i class="on"></i><b id="dc-online">—</b> online</span><span><i></i><b id="dc-members">—</b> members</span></div>
+        <div class="dc-events" id="dc-events" hidden></div>
       </div>
+      <a class="btn dark" id="dc-join" href="https://discord.gg/HPK7kQ459s" target="_blank" rel="noopener noreferrer">Join the Discord ↗</a>
     </div>
-  </footer>
+    <div class="stream-box">
+      <p class="eyebrow" id="live-kicker">Off script. On stream.</p>
+      <h3 id="live-heading">More Bish.<br>Less editing.</h3>
+      <p id="live-text">Catch a live, have a chat and see where the conversation goes. TikTok is where he’s live most.</p>
+      <div class="live-stats" id="live-stats"></div>
+      <a class="stream-link" id="tt-live-link" href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" rel="noopener">Check TikTok Live ↗</a>
+      <a class="stream-link" href="https://www.youtube.com/@ThatBishBloke/live" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+      <a class="stream-link" href="https://www.twitch.tv/thatbishbloke" target="_blank" rel="noopener">Find me on Twitch ↗</a>
+    </div>
+  </div>
+</section>
 
+<!-- WORK WITH ME -->
+<section class="section dark" id="work">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow teal">Brands & collaborations</p>
+      <h2>Let’s make<br>something <span class="tealtxt">funny.</span></h2>
+    </div>
+    <div>
+      <p class="on-dark">Character-led branded content, comedy writing, acting and hosting. Got an idea that belongs in the Bish-Verse?</p>
+      <ul class="services">
+        <li><b>Acting & character work</b><span>Recurring characters, sketches and skits</span></li>
+        <li><b>Writing & improv</b><span>Sketch ideas, scripts and off-the-cuff chaos</span></li>
+        <li><b>Streaming & live hosting</b><span>Regular lives with the community</span></li>
+        <li><b>Voice work & narration</b><span>Voices, narration and characters</span></li>
+      </ul>
+      <a class="btn tealbtn" href="mailto:thatbishbloke@gmail.com?subject=Let%E2%80%99s%20make%20something%20funny">Let’s talk ↗</a>
+      <p class="mail">thatbishbloke@gmail.com</p>
+    </div>
+  </div>
+</section>
+</main>
 
-<script>
-  // --- UI Logic: Footer Year ---
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a class="logo" href="#top">that<b>bish</b>bloke</a>
+    <span class="muted">A bit of British nonsense. A lot of Bish.</span>
+    <span class="foot-links"><a href="https://shop.thatbishbloke.com" target="_blank" rel="noopener">Official shop ↗</a><a href="https://www.amazon.co.uk/shop/thatbishbloke" target="_blank" rel="noopener">Wishlists ↗</a><span>© 2026 ThatBishBloke</span></span>
+  </div>
+</footer>
 
-  // --- Contact Form Logic ---
-  (function () {
-    const form = document.getElementById("contactForm");
-    if (!form) return;
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("message").value.trim();
-      const to = "thatbishbloke@gmail.com";
-      const subject = encodeURIComponent("New website enquiry (ThatBishBloke)");
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`);
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    });
-  })();
+<dialog class="player" id="player" aria-label="Watch the sketch">
+  <button class="player-x" type="button" id="player-x" aria-label="Close">✕</button>
+  <iframe id="player-frame" title="TikTok sketch" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>
+  <a class="link teal" id="player-out" href="#" target="_blank" rel="noopener">Open on TikTok ↗</a>
+</dialog>
 
-  // --- Phone menu ---
-  (function () {
-    const btn = document.getElementById("nav-toggle"), nav = document.getElementById("site-nav");
-    if (!btn || !nav) return;
-    const set = (open) => { nav.classList.toggle("open", open); btn.setAttribute("aria-expanded", String(open)); };
-    btn.addEventListener("click", () => set(!nav.classList.contains("open")));
-    nav.addEventListener("click", (e) => { if (e.target.closest("a")) set(false); });
-  })();
-
-  // Live counts, latest TikToks, shop, Live Hub and the Discord card: live.js
-</script>
-<script src="live.js" defer></script>
+<script src="site.js"></script>
 </body>
 </html>
