@@ -14,7 +14,7 @@
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-section[id] { scroll-margin-top: 84px; }
+section[id], #socials { scroll-margin-top: 84px; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--cream); color: var(--ink); font: 400 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; display: block; }
@@ -65,7 +65,9 @@ h2 { font-size: clamp(42px, 6vw, 72px); }
 .hero-in { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
 .hero h1 { font-size: clamp(60px, 8.6vw, 112px); }
 .hero .bish { color: var(--green); text-decoration: underline; text-decoration-color: var(--teal); text-decoration-thickness: .07em; text-underline-offset: .12em; }
-.spark { color: var(--pink); font-size: .55em; margin-left: .25em; vertical-align: .25em; display: inline-block; animation: spin 9s linear infinite; }
+/* the star: a green box with a white star (like the ✳️ emoji, the same on every device) */
+.spark { display: inline-grid; place-items: center; width: 1.15em; height: 1.15em; margin-left: .3em; vertical-align: .9em; background: var(--green); color: #fff; border-radius: .16em; font: 700 .42em/1 system-ui, 'Segoe UI Symbol', 'Apple Symbols', sans-serif; }
+.spark::before { content: ''; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .lede { font-size: 17px; max-width: 420px; margin: 28px 0 30px; }
 .cta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
@@ -73,9 +75,13 @@ h2 { font-size: clamp(42px, 6vw, 72px); }
 .stats-line b { color: var(--ink); }
 
 /* polaroids */
+/* a photo and the stickers on it: the stickers are their own layer (not part of the link), and move with the photo */
+.frame { position: relative; }
+.frame > .polaroid { width: 100%; }
 .polaroid { position: relative; display: block; background: #fff; padding: 12px 12px 56px; box-shadow: 0 30px 60px -30px rgba(21, 45, 45, .5); text-decoration: none; transition: transform .25s ease; }
-.hero-shot { transform: rotate(2deg); max-width: 540px; justify-self: end; width: 100%; }
-.hero-shot:hover { transform: rotate(0deg) scale(1.01); }
+.hero-frame { transform: rotate(2deg); max-width: 540px; justify-self: end; width: 100%; transition: transform .25s ease; }
+.hero-frame:hover { transform: rotate(0deg) scale(1.01); }
+.frame > .tape, .frame > .sticker, .frame > .badge-round { pointer-events: none; }
 .shot { display: block; aspect-ratio: 4 / 3.6; background: var(--teal) center / cover no-repeat; }
 .shot.cutout { background-size: contain; background-position: center bottom; }
 .tape { position: absolute; top: 18px; left: 26px; z-index: 2; background: var(--cream); font: 700 12px var(--body); padding: 6px 10px; transform: rotate(-3deg); box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
@@ -89,7 +95,9 @@ h2 { font-size: clamp(42px, 6vw, 72px); }
 
 /* ticker */
 .ticker { background: var(--teal); border-block: 2px solid var(--ink); overflow: hidden; }
-.ticker-in { display: flex; gap: 56px; width: max-content; padding: 16px 0; animation: tick 34s linear infinite; font: 800 24px var(--head); text-transform: uppercase; white-space: nowrap; }
+/* site.js repeats the set until half the strip is wider than the screen, so the loop never shows a gap */
+.ticker-set { display: flex; gap: 56px; padding-right: 56px; flex: none; }
+.ticker-in { display: flex; width: max-content; padding: 16px 0; animation: tick var(--tick-time, 34s) linear infinite; font: 800 24px var(--head); text-transform: uppercase; white-space: nowrap; }
 .ticker-in i { font-style: normal; }
 @keyframes tick { to { transform: translateX(-50%); } }
 
@@ -119,7 +127,7 @@ h2 { font-size: clamp(42px, 6vw, 72px); }
 .screen-list b { font: 800 22px var(--head); }
 .screen-list span { font-size: 12px; font-weight: 700; }
 .screen-list a:hover span { color: var(--green); }
-.meet-live { position: absolute; right: -14px; top: 22px; z-index: 2; background: var(--ink); color: var(--cream); font: 700 11px var(--body); letter-spacing: .06em; padding: 8px 12px; transform: rotate(4deg); box-shadow: 4px 4px 0 var(--teal); max-width: 75%; }
+.meet-live { position: absolute; right: -14px; top: 22px; z-index: 3; text-decoration: none; background: var(--ink); color: var(--cream); font: 700 11px var(--body); letter-spacing: .06em; padding: 8px 12px; transform: rotate(4deg); box-shadow: 4px 4px 0 var(--teal); max-width: 75%; }
 .meet-live.on { background: var(--pink); color: #fff; box-shadow: 4px 4px 0 var(--ink); }
 .meet-live i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor; margin-right: 6px; vertical-align: 1px; }
 .meet-live.on i { animation: pulse 1.4s infinite; }
@@ -157,8 +165,9 @@ h2 { font-size: clamp(42px, 6vw, 72px); }
 
 /* meet */
 .meet { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
-.tilt-l { transform: rotate(-3deg); max-width: 460px; background: #dcdcd2; }
+.tilt-l { transform: rotate(-3deg); max-width: 460px; transition: transform .25s ease; }
 .tilt-l:hover { transform: rotate(-1deg); }
+.tilt-l .polaroid { background: #dcdcd2; }
 .tilt-l .shot { aspect-ratio: 1 / 1.02; background-position: center 18%; }
 .pol-cap { position: absolute; left: 22px; bottom: 18px; font: 700 13px var(--body); }
 .meet h2 { margin-bottom: 26px; }
@@ -218,7 +227,7 @@ h2 { font-size: clamp(42px, 6vw, 72px); }
   .live-pill { margin-left: auto; }
   .live-pill:not([hidden]) + .menu-btn { margin-left: 0; }
   .hero-in, .meet, .two { grid-template-columns: 1fr; }
-  .hero-shot { justify-self: stretch; margin: 16px 14px 0; width: auto; max-width: none; }
+  .hero-frame { justify-self: stretch; margin: 16px 14px 0; width: auto; max-width: none; }
   .sticker.quote { right: -10px; }
   .badge-round { left: -14px; width: 80px; height: 80px; font-size: 22px; }
   .sketches, .products { grid-template-columns: 1fr; }

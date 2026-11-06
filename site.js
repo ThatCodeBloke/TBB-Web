@@ -58,14 +58,26 @@
   }
 
   // ---------- 1. sketches + hero ----------
+  var heroV = null, spare = [], shownCards = [];
+  function setHero(v) {
+    heroV = v;
+    bg($('hero-img'), v.cover);
+    set('hero-cap', (caption(v.title) || 'His latest sketch') + ' ↗');
+    $('hero-shot').href = v.url || 'https://www.tiktok.com/@thatbishbloke/video/' + v.id;
+  }
+  // every minute: a newer video goes up top, and the cards rotate through his latest ten as they are now
+  function refreshVideos(videos) {
+    if (!videos || !videos.length) return;
+    if (!heroV) return sketches(videos);
+    if (videos[0].id !== heroV.id) setHero(videos[0]);
+    var showing = {}; shownCards.forEach(function (a) { if (a._v) showing[a._v.id] = true; });
+    spare = videos.slice(1).filter(function (v) { return !showing[v.id]; })
+      .map(function (v) { return [Math.random(), v]; }).sort(function (a, b) { return a[0] - b[0]; }).map(function (x) { return x[1]; });
+  }
   function sketches(videos) {
     if (!videos || !videos.length) return;
-    var hero = videos[0];
-    bg($('hero-img'), hero.cover);
-    set('hero-cap', (caption(hero.title) || 'His latest sketch') + ' ↗');
-    var heroLink = $('hero-shot');
-    heroLink.href = hero.url || heroLink.href;
-    heroLink.addEventListener('click', function (e) { if (play(hero)) e.preventDefault(); });
+    setHero(videos[0]);
+    $('hero-shot').addEventListener('click', function (e) { if (heroV && play(heroV)) e.preventDefault(); });
     // The three cards: a random mix of his other recent sketches (the newest is up in the hero), and every
     // few seconds one card swaps for one that isn't showing — so each visit (and each minute) shows different ones.
     var pool = videos.slice(1);
@@ -89,12 +101,13 @@
       a.querySelector('b').textContent = caption(v.title) || 'Watch on TikTok';
     }
     cards.forEach(function (a, i) { fill(a, shown[i]); });
-    var spare = order.slice(cards.length), slot = 0, paused = false;
+    var slot = 0, paused = false;
+    spare = order.slice(cards.length); shownCards = cards;
     var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     box.addEventListener('mouseenter', function () { paused = true; });
     box.addEventListener('mouseleave', function () { paused = false; });
-    if (spare.length && !still) setInterval(function () {
-      if (paused || document.hidden || (dlg && dlg.open)) return;
+    if (!still) setInterval(function () {
+      if (paused || document.hidden || (dlg && dlg.open) || !spare.length) return;
       var a = cards[slot % cards.length]; slot++;
       var next = spare.shift(); spare.push(a._v);
       a.classList.add('swap');
@@ -148,23 +161,34 @@
   }
 
   // ---------- 3. live ----------
+  var liveDefaults = null;
   function live(feed) {
     var tt = feed.tiktok || {}, tw = feed.twitch || {};
     var on = tt.live && tt.live.live ? { where: 'TikTok', url: tt.live.url || 'https://www.tiktok.com/@thatbishbloke/live', title: tt.live.title, viewers: tt.live.viewers, at: tt.live.startedAt }
       : tw.live && tw.live.live ? { where: 'Twitch', url: 'https://www.twitch.tv/thatbishbloke', title: tw.live.title, viewers: tw.live.viewers, at: tw.live.startedAt } : null;
     var box = document.querySelector('.stream-box'), stats = $('live-stats');
-    // the "meet Bish" polaroid says whether he's live right now, like the current site does
+    if (!liveDefaults) liveDefaults = { kicker: ($('live-kicker') || {}).textContent, heading: ($('live-heading') || {}).innerHTML, text: ($('live-text') || {}).textContent, link: ($('tt-live-link') || {}).textContent, href: ($('tt-live-link') || {}).href };
+    // the "meet Bish" badge: its own link, over the photo; live right now, or when he last was
     var chip = $('meet-live');
     if (chip) {
       chip.hidden = false; chip.innerHTML = '';
       chip.appendChild(el('i'));
-      if (on) { chip.classList.add('on'); chip.appendChild(document.createTextNode('Live on ' + on.where + ' right now — come say hiya')); $('meet-shot').href = on.url; $('meet-shot').target = '_blank'; }
-      else chip.appendChild(document.createTextNode(tt.lastLiveAt ? 'Not live right now · last live on TikTok ' + ago(tt.lastLiveAt) : 'Not live right now'));
+      chip.classList.toggle('on', !!on);
+      chip.href = on ? on.url : 'https://www.tiktok.com/@thatbishbloke/live';
+      chip.appendChild(document.createTextNode(on ? 'Live on ' + on.where + ' right now — come say hiya' : tt.lastLiveAt ? 'Not live right now · last live on TikTok ' + ago(tt.lastLiveAt) : 'Not live right now'));
     }
-    if (tw.live && tw.live.live) { var ts = $('tw-status'); if (ts) { ts.textContent = '● live right now'; ts.classList.add('live'); } }
+    var ts = $('tw-status'); if (ts) { ts.classList.toggle('live', !!(tw.live && tw.live.live)); if (tw.live && tw.live.live) ts.textContent = '● live right now'; }
+    var pill = $('nav-live'), b = $('live-banner');
+    if (pill) pill.hidden = !on;
+    if (b) b.hidden = !on;
+    if (box) box.classList.toggle('is-live', !!on);
+    if (stats) stats.innerHTML = '';
+    if (!on) {
+      set('live-kicker', liveDefaults.kicker); if ($('live-heading')) $('live-heading').innerHTML = liveDefaults.heading;
+      set('live-text', liveDefaults.text); set('tt-live-link', liveDefaults.link); if ($('tt-live-link')) $('tt-live-link').href = liveDefaults.href;
+    }
     if (on) {
-      var pill = $('nav-live'); pill.hidden = false; pill.href = on.url; pill.target = '_blank';
-      var b = $('live-banner'); b.hidden = false;
+      pill.href = on.url; pill.target = '_blank';
       set('live-banner-text', 'Bish is live on ' + on.where + ' right now' + (on.title ? ': ' + on.title : '.'));
       $('live-banner-go').href = on.url;
       box.classList.add('is-live');
@@ -199,8 +223,9 @@
     set('dc-members', d.members.toLocaleString('en-GB'));
     if (isNum(d.online)) set('dc-online', d.online.toLocaleString('en-GB'));
     if (d.invite) $('dc-join').href = d.invite;
-    if (d.events && d.events.length) {
-      var ev = $('dc-events'); ev.hidden = false; ev.innerHTML = '';
+    var ev = $('dc-events'); if (ev) { ev.hidden = true; ev.innerHTML = ''; }
+    if (d.events && d.events.length && ev) {
+      ev.hidden = false;
       ev.appendChild(el('span', 'eyebrow', 'Coming up in the server'));
       d.events.slice(0, 3).forEach(function (e) {
         var row = el('div'); row.appendChild(el('strong', null, e.name));
@@ -210,12 +235,35 @@
     }
   }
 
+  // ---------- 6. the ticker: enough copies that the loop never runs out ----------
+  function ticker() {
+    var row = $('ticker-in'); if (!row) return;
+    var sets = row.querySelectorAll('.ticker-set'); if (!sets.length) return;
+    var w = sets[0].getBoundingClientRect().width; if (!w) return;
+    var half = Math.max(1, Math.ceil(window.innerWidth / w) + 1); // (half the strip is wider than the screen)
+    while (row.children.length > 1) row.removeChild(row.lastChild);
+    for (var i = 1; i < half * 2; i++) row.appendChild(sets[0].cloneNode(true));
+    row.style.setProperty('--tick-time', (34 * half) + 's'); // (the same speed however many copies: 34s a set)
+  }
+  var tickerTimer = null;
+  window.addEventListener('resize', function () { clearTimeout(tickerTimer); tickerTimer = setTimeout(ticker, 200); });
+
+  var lastFeed = null;
+  function load() {
+    return getJSON(FEED_URL, 8000).then(function (feed) {
+      lastFeed = feed;
+      refreshVideos(feed.tiktok && feed.tiktok.videos);
+      live(feed); counts(feed); discord(feed.discord);
+    }).catch(function () { /* feed unreachable: keep what's showing */ });
+  }
   function init() {
     shop();
-    getJSON(FEED_URL, 8000).then(function (feed) {
-      sketches(feed.tiktok && feed.tiktok.videos);
-      live(feed); counts(feed); discord(feed.discord);
-    }).catch(function () { /* feed unreachable: keep what's written */ });
+    ticker(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(ticker);
+    load();
+    // live: every minute while the page is open (and straight away when you come back to it)
+    setInterval(function () { if (!document.hidden) load(); }, 60000);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) load(); });
+    setInterval(function () { if (lastFeed && !document.hidden) live(lastFeed); }, 30000); // ("x min ago")
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

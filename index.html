@@ -81,25 +81,27 @@
       </div>
       <p class="stats-line" id="hero-stats"><b id="hl-followers">514,000+</b> followers · <b id="hl-likes">8.4M+</b> likes · and counting</p>
     </div>
-    <a class="polaroid hero-shot" id="hero-shot" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener">
+    <div class="frame hero-frame">
+      <a class="polaroid hero-shot" id="hero-shot" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener">
+        <span class="shot cutout" id="hero-img" style="background-image:url('assets/characters/Thomas.png')"></span>
+        <span class="shot-cap"><span class="play" aria-hidden="true">▶</span><span><small>Latest from the chaos</small><b id="hero-cap">Watch on TikTok ↗</b></span></span>
+      </a>
       <span class="tape">You’ve met people like this.</span>
-      <span class="shot cutout" id="hero-img" style="background-image:url('assets/characters/Thomas.png')"></span>
       <span class="sticker quote">“Dafuq?”</span>
       <span class="badge-round" aria-hidden="true"><small>100%</small>BISH<small>0% filter</small></span>
-      <span class="shot-cap"><span class="play" aria-hidden="true">▶</span><span><small>Latest from the chaos</small><b id="hero-cap">Watch on TikTok ↗</b></span></span>
-    </a>
+    </div>
   </div>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="ticker-in">
-  <span>Hiya</span><i>✳</i><span>The Bish-Verse</span><i>✳</i><span>Dafuq?</span><i>✳</i><span>Put the kettle on</span><i>✳</i><span>Knobhead</span><i>✳</i><span>ThatBishBloke</span><i>✳</i>
-  <span>Hiya</span><i>✳</i><span>The Bish-Verse</span><i>✳</i><span>Dafuq?</span><i>✳</i><span>Put the kettle on</span><i>✳</i><span>Knobhead</span><i>✳</i><span>ThatBishBloke</span><i>✳</i>
+<div class="ticker" aria-hidden="true"><div class="ticker-in" id="ticker-in">
+  <div class="ticker-set"><span>Hiya</span><i>✳</i><span>The Bish-Verse</span><i>✳</i><span>Dafuq?</span><i>✳</i><span>Put the kettle on</span><i>✳</i><span>Knobhead</span><i>✳</i><span>ThatBishBloke</span><i>✳</i></div>
+  <div class="ticker-set"><span>Hiya</span><i>✳</i><span>The Bish-Verse</span><i>✳</i><span>Dafuq?</span><i>✳</i><span>Put the kettle on</span><i>✳</i><span>Knobhead</span><i>✳</i><span>ThatBishBloke</span><i>✳</i></div>
 </div></div>
 
 <!-- WATCH -->
 <section class="section" id="watch">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head" id="socials">
       <div><p class="eyebrow">Your next laugh starts here</p><h2>Go on. Have a watch.</h2></div>
     </div>
     <div class="live-banner" id="live-banner" hidden>
@@ -111,7 +113,7 @@
       <a class="sketch" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener"><span class="sk-img cutout" style="background-image:url('assets/characters/Thomas.png')"></span><span class="sk-play">▶</span><span class="sk-cap"><small>Sketch 02 · TikTok ↗</small><b>How to get a girlfriend with Thomas and Todd</b></span></a>
       <a class="sketch" href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener"><span class="sk-img cutout" style="background-image:url('assets/characters/Denise.png')"></span><span class="sk-play">▶</span><span class="sk-cap"><small>Sketch 03 · TikTok ↗</small><b>Thomas’ health hacks are hazardous to your health.</b></span></a>
     </div>
-    <div class="screens" id="socials">
+    <div class="screens">
       <p class="muted">Same Bish. Different screens.</p>
       <div class="screen-list">
         <a href="https://www.tiktok.com/@thatbishbloke" target="_blank" rel="noopener"><b id="tt-followers">340K+</b><span>TikTok ↗</span></a>
@@ -171,11 +173,13 @@
 <!-- MEET BISH -->
 <section class="section line" id="meet">
   <div class="wrap meet">
-    <a class="polaroid tilt-l" id="meet-shot" href="#socials">
-      <span class="shot" id="meet-img" style="background-image:url('assets/bish-portrait.png')"></span>
-      <span class="pol-cap">The bloke behind the lot. Follow him ↑</span>
-      <span class="meet-live" id="meet-live" hidden></span>
-    </a>
+    <div class="frame tilt-l">
+      <a class="polaroid meet-shot" id="meet-shot" href="#socials">
+        <span class="shot" id="meet-img" style="background-image:url('assets/bish-portrait.png')"></span>
+        <span class="pol-cap">The bloke behind the lot. Follow him ↑</span>
+      </a>
+      <a class="meet-live" id="meet-live" href="https://www.tiktok.com/@thatbishbloke/live" target="_blank" rel="noopener" hidden></a>
+    </div>
     <div>
       <p class="eyebrow">Hello, I’m Bish.</p>
       <h2>I talk to myself.<br>You lot watch.</h2>
